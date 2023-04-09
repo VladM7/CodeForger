@@ -27,5 +27,21 @@ namespace CodeForger
             var form=new FormMain();
             form.Show();
         }
+
+        private void inchidere()
+        {
+            this.Show();
+        }
+
+        private void buttonLog_Click(object sender, EventArgs e)
+        {
+            var form = new FormAccount();
+            form.Show();
+            this.Hide();
+            form.FormClosed += (s, args)=>
+            {
+                this.Show();
+            };
+        }
     }
 }

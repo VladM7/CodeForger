@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonLogin = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.buttonRegister = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -51,27 +51,27 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "CodeForger Login";
             // 
-            // pictureBox1
+            // pictureBoxLogo
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 10);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(166, 137);
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(12, 10);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(166, 137);
+            this.pictureBoxLogo.TabIndex = 10;
+            this.pictureBoxLogo.TabStop = false;
             // 
-            // textBox3
+            // textBoxPassword
             // 
-            this.textBox3.Location = new System.Drawing.Point(234, 296);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(249, 44);
-            this.textBox3.TabIndex = 14;
+            this.textBoxPassword.Location = new System.Drawing.Point(234, 296);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.Size = new System.Drawing.Size(249, 44);
+            this.textBoxPassword.TabIndex = 14;
             // 
-            // textBox2
+            // textBoxEmail
             // 
-            this.textBox2.Location = new System.Drawing.Point(234, 210);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(249, 44);
-            this.textBox2.TabIndex = 13;
+            this.textBoxEmail.Location = new System.Drawing.Point(234, 210);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(249, 44);
+            this.textBoxEmail.TabIndex = 13;
             // 
             // label4
             // 
@@ -91,23 +91,24 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "Email:";
             // 
-            // button2
+            // buttonCancel
             // 
-            this.button2.Location = new System.Drawing.Point(402, 408);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(347, 90);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonCancel.Location = new System.Drawing.Point(402, 408);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(347, 90);
+            this.buttonCancel.TabIndex = 16;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // button1
+            // buttonLogin
             // 
-            this.button1.Location = new System.Drawing.Point(12, 408);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(347, 90);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Login";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonLogin.Location = new System.Drawing.Point(12, 408);
+            this.buttonLogin.Name = "buttonLogin";
+            this.buttonLogin.Size = new System.Drawing.Size(347, 90);
+            this.buttonLogin.TabIndex = 15;
+            this.buttonLogin.Text = "Login";
+            this.buttonLogin.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -118,14 +119,15 @@
             this.label2.TabIndex = 17;
             this.label2.Text = "No account yet?";
             // 
-            // button3
+            // buttonRegister
             // 
-            this.button3.Location = new System.Drawing.Point(12, 614);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(248, 57);
-            this.button3.TabIndex = 18;
-            this.button3.Text = "Register";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonRegister.Location = new System.Drawing.Point(12, 614);
+            this.buttonRegister.Name = "buttonRegister";
+            this.buttonRegister.Size = new System.Drawing.Size(248, 57);
+            this.buttonRegister.TabIndex = 18;
+            this.buttonRegister.Text = "Register";
+            this.buttonRegister.UseVisualStyleBackColor = true;
+            this.buttonRegister.Click += new System.EventHandler(this.buttonRegister_Click);
             // 
             // FormAccount
             // 
@@ -133,19 +135,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1514, 871);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.buttonRegister);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonLogin);
+            this.Controls.Add(this.textBoxPassword);
+            this.Controls.Add(this.textBoxEmail);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBoxLogo);
             this.Controls.Add(this.label1);
             this.Name = "FormAccount";
             this.Text = "FormAccount";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,14 +156,14 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
+        private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.TextBox textBoxEmail;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonRegister;
     }
 }

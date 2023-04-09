@@ -16,5 +16,21 @@ namespace CodeForger
         {
             InitializeComponent();
         }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void buttonRegister_Click(object sender, EventArgs e)
+        {
+            var form = new FormLogin();
+            form.Show();
+            this.Hide();
+            form.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+        }
     }
 }
