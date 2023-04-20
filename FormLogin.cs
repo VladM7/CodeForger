@@ -88,10 +88,15 @@ namespace CodeForger
             {
                 //Adaugare in DB
                 UsersTableTableAdapter adapter = new UsersTableTableAdapter();
-                adapter.Insert(1, textBoxEmail.Text, textBoxUsername.Text, textBoxPassword.Text);
+                adapter.Insert(textBoxUsername.Text, textBoxEmail.Text, textBoxPassword.Text);
                 MessageBox.Show("Account created successfully!");
                 this.Close();
             }
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -33,5 +33,51 @@ namespace CodeForger.Properties {
                 return ((string)(this["CodeForgerDBConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\CodeForgerDB." +
+            "mdf;Integrated Security=True;Connect Timeout=30")]
+        public string CodeForgerDBConnectionString1 {
+            get {
+                return ((string)(this["CodeForgerDBConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\CodeForgerDB." +
+            "mdf;Integrated Security=True;Connect Timeout=30")]
+        public string CodeForgerDBConnectionString2 {
+            get {
+                return ((string)(this["CodeForgerDBConnectionString2"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int AccountLogin {
+            get {
+                return ((int)(this["AccountLogin"]));
+            }
+            set {
+                this["AccountLogin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool RememberAccount {
+            get {
+                return ((bool)(this["RememberAccount"]));
+            }
+            set {
+                this["RememberAccount"] = value;
+            }
+        }
     }
 }

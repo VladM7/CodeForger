@@ -33,6 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.buttonLog = new System.Windows.Forms.Button();
+            this.labelEmail = new System.Windows.Forms.Label();
+            this.buttonAccountSettings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,9 +81,27 @@
             this.buttonLog.Name = "buttonLog";
             this.buttonLog.Size = new System.Drawing.Size(226, 67);
             this.buttonLog.TabIndex = 4;
-            this.buttonLog.Text = "Login";
+            this.buttonLog.Text = "Sign in";
             this.buttonLog.UseVisualStyleBackColor = true;
             this.buttonLog.Click += new System.EventHandler(this.buttonLog_Click);
+            // 
+            // labelEmail
+            // 
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Location = new System.Drawing.Point(1246, 109);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(0, 37);
+            this.labelEmail.TabIndex = 5;
+            // 
+            // buttonAccountSettings
+            // 
+            this.buttonAccountSettings.Location = new System.Drawing.Point(835, 12);
+            this.buttonAccountSettings.Name = "buttonAccountSettings";
+            this.buttonAccountSettings.Size = new System.Drawing.Size(372, 67);
+            this.buttonAccountSettings.TabIndex = 6;
+            this.buttonAccountSettings.Text = "Account Settings";
+            this.buttonAccountSettings.UseVisualStyleBackColor = true;
+            this.buttonAccountSettings.Click += new System.EventHandler(this.buttonAccountSettings_Click);
             // 
             // Form1
             // 
@@ -89,6 +109,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1475, 938);
+            this.Controls.Add(this.buttonAccountSettings);
+            this.Controls.Add(this.labelEmail);
             this.Controls.Add(this.buttonLog);
             this.Controls.Add(this.pictureBoxLogo);
             this.Controls.Add(this.label1);
@@ -110,6 +132,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.Button buttonLog;
+        private System.Windows.Forms.Label labelEmail;
+        private System.Windows.Forms.Button buttonAccountSettings;
     }
 }
 

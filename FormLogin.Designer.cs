@@ -109,6 +109,7 @@
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(249, 44);
             this.textBoxPassword.TabIndex = 7;
+            this.textBoxPassword.UseSystemPasswordChar = true;
             // 
             // textBoxConfirmPassword
             // 
@@ -116,6 +117,7 @@
             this.textBoxConfirmPassword.Name = "textBoxConfirmPassword";
             this.textBoxConfirmPassword.Size = new System.Drawing.Size(249, 44);
             this.textBoxConfirmPassword.TabIndex = 8;
+            this.textBoxConfirmPassword.UseSystemPasswordChar = true;
             // 
             // pictureBoxLogo
             // 
@@ -165,6 +167,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormLogin";
             this.Text = "FormLogin";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
