@@ -84,7 +84,7 @@
             this.richTextBoxCode.Location = new System.Drawing.Point(1, 1);
             this.richTextBoxCode.Margin = new System.Windows.Forms.Padding(1);
             this.richTextBoxCode.Name = "richTextBoxCode";
-            this.richTextBoxCode.Size = new System.Drawing.Size(1042, 588);
+            this.richTextBoxCode.Size = new System.Drawing.Size(1374, 588);
             this.richTextBoxCode.TabIndex = 0;
             this.richTextBoxCode.Text = "";
             // 
@@ -114,7 +114,7 @@
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip2.Size = new System.Drawing.Size(1052, 55);
+            this.toolStrip2.Size = new System.Drawing.Size(1384, 55);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -149,13 +149,13 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAllToolStripMenuItem
             // 
             this.saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
-            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.saveAllToolStripMenuItem.Text = "Save All";
             // 
             // toolStripSeparator1
@@ -187,25 +187,25 @@
             // continueToolStripMenuItem
             // 
             this.continueToolStripMenuItem.Name = "continueToolStripMenuItem";
-            this.continueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.continueToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.continueToolStripMenuItem.Text = "Continue";
             // 
             // stopToolStripMenuItem
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.stopToolStripMenuItem.Text = "Stop";
             // 
             // runToCursorToolStripMenuItem
             // 
             this.runToCursorToolStripMenuItem.Name = "runToCursorToolStripMenuItem";
-            this.runToCursorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.runToCursorToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.runToCursorToolStripMenuItem.Text = "Run to cursor";
             // 
             // nextLineToolStripMenuItem
             // 
             this.nextLineToolStripMenuItem.Name = "nextLineToolStripMenuItem";
-            this.nextLineToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nextLineToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.nextLineToolStripMenuItem.Text = "Next line";
             // 
             // toolStripSeparator2
@@ -312,7 +312,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1052, 618);
+            this.tabControl1.Size = new System.Drawing.Size(1384, 618);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPage1
@@ -323,7 +323,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(1);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabPage1.Size = new System.Drawing.Size(1044, 590);
+            this.tabPage1.Size = new System.Drawing.Size(1376, 590);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "File 1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -336,7 +336,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(1);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(1);
-            this.groupBox1.Size = new System.Drawing.Size(1042, 127);
+            this.groupBox1.Size = new System.Drawing.Size(1374, 127);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Errors";
@@ -347,7 +347,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(1);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(1);
-            this.tabPage2.Size = new System.Drawing.Size(1044, 590);
+            this.tabPage2.Size = new System.Drawing.Size(1376, 590);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "File 2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -401,7 +401,7 @@
             this.toolStripStatusLabel3});
             this.statusStrip1.Location = new System.Drawing.Point(0, 651);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1052, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1384, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -428,7 +428,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1052, 673);
+            this.ClientSize = new System.Drawing.Size(1384, 673);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolStrip2);
