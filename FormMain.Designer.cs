@@ -82,7 +82,7 @@
             // 
             this.richTextBoxCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBoxCode.Location = new System.Drawing.Point(1, 1);
-            this.richTextBoxCode.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.richTextBoxCode.Margin = new System.Windows.Forms.Padding(1);
             this.richTextBoxCode.Name = "richTextBoxCode";
             this.richTextBoxCode.Size = new System.Drawing.Size(1042, 588);
             this.richTextBoxCode.TabIndex = 0;
@@ -113,7 +113,7 @@
             this.toolStripButton10});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.toolStrip2.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip2.Size = new System.Drawing.Size(1052, 55);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip2";
@@ -125,6 +125,7 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(104, 52);
             this.toolStripButton1.Text = "New File";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton2
             // 
@@ -148,13 +149,13 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAllToolStripMenuItem
             // 
             this.saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
-            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAllToolStripMenuItem.Text = "Save All";
             // 
             // toolStripSeparator1
@@ -186,25 +187,25 @@
             // continueToolStripMenuItem
             // 
             this.continueToolStripMenuItem.Name = "continueToolStripMenuItem";
-            this.continueToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.continueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.continueToolStripMenuItem.Text = "Continue";
             // 
             // stopToolStripMenuItem
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.stopToolStripMenuItem.Text = "Stop";
             // 
             // runToCursorToolStripMenuItem
             // 
             this.runToCursorToolStripMenuItem.Name = "runToCursorToolStripMenuItem";
-            this.runToCursorToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.runToCursorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.runToCursorToolStripMenuItem.Text = "Run to cursor";
             // 
             // nextLineToolStripMenuItem
             // 
             this.nextLineToolStripMenuItem.Name = "nextLineToolStripMenuItem";
-            this.nextLineToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.nextLineToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.nextLineToolStripMenuItem.Text = "Next line";
             // 
             // toolStripSeparator2
@@ -308,7 +309,7 @@
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.ItemSize = new System.Drawing.Size(300, 20);
             this.tabControl1.Location = new System.Drawing.Point(0, 55);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1052, 618);
@@ -319,9 +320,9 @@
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.richTextBoxCode);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(1);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(1);
             this.tabPage1.Size = new System.Drawing.Size(1044, 590);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "File 1";
@@ -332,9 +333,9 @@
             this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox1.Location = new System.Drawing.Point(1, 462);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(1);
             this.groupBox1.Size = new System.Drawing.Size(1042, 127);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
@@ -342,11 +343,11 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 50);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(1);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.tabPage2.Size = new System.Drawing.Size(1044, 564);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(1);
+            this.tabPage2.Size = new System.Drawing.Size(1044, 590);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "File 2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -431,7 +432,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolStrip2);
-            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "FormMain";
             this.Text = "FormMain";
             this.toolStrip2.ResumeLayout(false);
