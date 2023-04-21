@@ -16,6 +16,7 @@ namespace CodeForger
         public FormLogin()
         {
             InitializeComponent();
+            this.BackgroundImage = Properties.Resources.fundal;
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -94,9 +95,5 @@ namespace CodeForger
             }
         }
 
-        private void FormLogin_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

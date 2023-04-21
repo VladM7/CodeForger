@@ -17,6 +17,7 @@ namespace CodeForger
         public FormAccount()
         {
             InitializeComponent();
+            this.BackgroundImage = Properties.Resources.fundal;
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)

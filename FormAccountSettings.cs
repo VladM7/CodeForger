@@ -16,6 +16,7 @@ namespace CodeForger
         public FormAccountSettings()
         {
             InitializeComponent();
+            this.BackgroundImage = Properties.Resources.fundal;
         }
 
         private void buttonChangePassword_Click(object sender, EventArgs e)

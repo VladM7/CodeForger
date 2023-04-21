@@ -37,9 +37,9 @@
             this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.textBoxConfirmPassword = new System.Windows.Forms.TextBox();
-            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.buttonConfirm = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,7 +97,7 @@
             // textBoxUsername
             // 
             this.textBoxUsername.Location = new System.Drawing.Point(108, 83);
-            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(1);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(81, 20);
             this.textBoxUsername.TabIndex = 5;
@@ -105,7 +105,7 @@
             // textBoxEmail
             // 
             this.textBoxEmail.Location = new System.Drawing.Point(108, 112);
-            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(1);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(81, 20);
             this.textBoxEmail.TabIndex = 6;
@@ -113,7 +113,7 @@
             // textBoxPassword
             // 
             this.textBoxPassword.Location = new System.Drawing.Point(108, 144);
-            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(1);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(81, 20);
             this.textBoxPassword.TabIndex = 7;
@@ -122,27 +122,16 @@
             // textBoxConfirmPassword
             // 
             this.textBoxConfirmPassword.Location = new System.Drawing.Point(108, 178);
-            this.textBoxConfirmPassword.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.textBoxConfirmPassword.Margin = new System.Windows.Forms.Padding(1);
             this.textBoxConfirmPassword.Name = "textBoxConfirmPassword";
             this.textBoxConfirmPassword.Size = new System.Drawing.Size(81, 20);
             this.textBoxConfirmPassword.TabIndex = 8;
             this.textBoxConfirmPassword.UseSystemPasswordChar = true;
             // 
-            // pictureBoxLogo
-            // 
-            this.pictureBoxLogo.Image = global::CodeForger.Properties.Resources.image;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(4, 4);
-            this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(85, 67);
-            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxLogo.TabIndex = 9;
-            this.pictureBoxLogo.TabStop = false;
-            // 
             // buttonConfirm
             // 
             this.buttonConfirm.Location = new System.Drawing.Point(4, 226);
-            this.buttonConfirm.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.buttonConfirm.Margin = new System.Windows.Forms.Padding(1);
             this.buttonConfirm.Name = "buttonConfirm";
             this.buttonConfirm.Size = new System.Drawing.Size(110, 32);
             this.buttonConfirm.TabIndex = 10;
@@ -153,13 +142,24 @@
             // buttonCancel
             // 
             this.buttonCancel.Location = new System.Drawing.Point(127, 226);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(1);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(110, 32);
             this.buttonCancel.TabIndex = 11;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // pictureBoxLogo
+            // 
+            this.pictureBoxLogo.Image = global::CodeForger.Properties.Resources.Logo;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(4, 0);
+            this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(1);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(85, 67);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxLogo.TabIndex = 9;
+            this.pictureBoxLogo.TabStop = false;
             // 
             // FormLogin
             // 
@@ -179,10 +179,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "FormLogin";
             this.Text = "FormLogin";
-            this.Load += new System.EventHandler(this.FormLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

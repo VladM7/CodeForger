@@ -16,6 +16,9 @@ namespace CodeForger
         public Form1()
         {
             InitializeComponent();
+            this.BackgroundImage = Properties.Resources.fundal;
+            pictureBoxLogo.BackColor = Color.Transparent;
+            label1.BackColor = Color.Transparent;
         }
 
         private void updateLoginButtonState()
