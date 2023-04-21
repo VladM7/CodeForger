@@ -79,5 +79,27 @@ namespace CodeForger.Properties {
                 this["RememberAccount"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\CodeForgerDB." +
+            "mdf;Integrated Security=True;Connect Timeout=30")]
+        public string CodeForgerDBConnectionString3 {
+            get {
+                return ((string)(this["CodeForgerDBConnectionString3"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\bin\\Debug\\Cod" +
+            "eForgerDB.mdf;Integrated Security=True;Connect Timeout=30")]
+        public string CodeForgerDBConnectionString4 {
+            get {
+                return ((string)(this["CodeForgerDBConnectionString4"]));
+            }
+        }
     }
 }

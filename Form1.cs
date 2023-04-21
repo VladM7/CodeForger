@@ -52,7 +52,7 @@ namespace CodeForger
 
         private void buttonNewFile_Click(object sender, EventArgs e)
         {
-            var form = new FormMain();
+            var form = new FormMain("Untitled*", "", "");
             form.Show();
         }
 

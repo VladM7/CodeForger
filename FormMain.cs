@@ -12,13 +12,19 @@ namespace CodeForger
 {
     public partial class FormMain : Form
     {
-        string titleGlobal, contentsGlobal;
+        string titleGlobal, contentsGlobal, pathGlobal;
 
-        public FormMain(string title, string contents)
+        public FormMain(string title, string path, string contents)
         {
             InitializeComponent();
             titleGlobal = title;
             contentsGlobal = contents;
+            pathGlobal = path;
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            MessageBox.Show("Titlu: " + titleGlobal + "\nContents: " + contentsGlobal);
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
