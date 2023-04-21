@@ -93,5 +93,11 @@ namespace CodeForger
                 updateLoginButtonState();
             };
         }
+
+        private void buttonOpenFile_Click(object sender, EventArgs e)
+        {
+            var form = new FormOpenFileDialog();
+            form.Show();
+        }
     }
 }

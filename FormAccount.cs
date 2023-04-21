@@ -37,6 +37,12 @@ namespace CodeForger
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+            if (textBoxEmail.Text.Length == 0 || textBoxPassword.Text.Length == 0)
+            {
+                MessageBox.Show("Please fill out the required fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             UsersTableTableAdapter adapter = new UsersTableTableAdapter();
             CodeForgerDBDataSet.UsersTableDataTable data = adapter.GetData();
             //MessageBox.Show(data.Rows[0][1].ToString());

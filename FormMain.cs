@@ -12,12 +12,21 @@ namespace CodeForger
 {
     public partial class FormMain : Form
     {
-        public FormMain()
+        string titleGlobal, contentsGlobal;
+
+        public FormMain(string title, string contents)
         {
             InitializeComponent();
+            titleGlobal = title;
+            contentsGlobal = contents;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
         {
 
         }
