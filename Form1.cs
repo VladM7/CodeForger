@@ -52,7 +52,7 @@ namespace CodeForger
 
         private void buttonNewFile_Click(object sender, EventArgs e)
         {
-            var form = new FormMain("Untitled*", "", "");
+            var form = new FormMain("Untitled*", null, null, null);
             form.Show();
         }
 
@@ -100,7 +100,8 @@ namespace CodeForger
         private void buttonOpenFile_Click(object sender, EventArgs e)
         {
             var form = new FormOpenFileDialog();
-            form.Show();
+            form.Owner = this;
+            form.ShowDialog();
         }
     }
 }

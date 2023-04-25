@@ -14,6 +14,8 @@ namespace CodeForger
 {
     public partial class FormOpenFileDialog : Form
     {
+        public static string titleGlobal, pathGlobal, contentsGlobal, isexternalGlobal;
+
         public FormOpenFileDialog()
         {
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace CodeForger
         private void FormOpenFileDialog_Load(object sender, EventArgs e)
         {
             showDBData();
+            MessageBox.Show(this.Owner.Name);
         }
 
         private void buttonOpenFile_Click(object sender, EventArgs e)
@@ -37,42 +40,23 @@ namespace CodeForger
                 string content = sr.ReadToEnd();
                 //MessageBox.Show(title);
 
-                var form = new FormMain(title, path, content);
-                form.Show();
-                this.Hide();
-                form.FormClosed += (s, args) =>
+                titleGlobal = title;
+                pathGlobal = path;
+                contentsGlobal = content;
+                isexternalGlobal = "1";
+
+                Properties.Settings.Default.OpenFileTitle = titleGlobal;
+                Properties.Settings.Default.OpenFilePath = pathGlobal;
+                Properties.Settings.Default.OpenFileContents = contentsGlobal;
+                Properties.Settings.Default.OpenFileIsExternal = isexternalGlobal;
+
+                if (string.Equals(this.Owner.Name, "Form1"))
                 {
-                    this.Close();
-                    foreach (Form f in Application.OpenForms)
-                        if (f.Name == "Form1")
-                            f.Close();
-                };
-                foreach (Form f in Application.OpenForms)
-                {
-                    if (f.Name == "Form1")
-                        f.Hide();
-                }
-            }
-        }
-
-        private void linkLabelFiles_Click(object sender, EventArgs e)
-        {
-            LinkLabel linkLabel = sender as LinkLabel;
-
-            CodeTableTableAdapter codeTableTA = new CodeTableTableAdapter();
-            var data = codeTableTA.GetData();
-
-            string text=linkLabel.Text;
-            var name = text.Split('|');
-            string codeName = name[0].Trim();
-
-            foreach (var row in data)
-            {
-                if (string.Equals(row[5].ToString(), codeName))
-                {
-                    var form = new FormMain(row[5].ToString(), null, row[1].ToString());
+                    var form = new FormMain(title, path, content, "1");
                     form.Show();
                     this.Hide();
+                    //this.Close();
+                    //this.Dispose();
                     form.FormClosed += (s, args) =>
                     {
                         this.Close();
@@ -86,6 +70,67 @@ namespace CodeForger
                             f.Hide();
                     }
                 }
+                else
+                {
+                    this.Close();
+                    this.Dispose();
+                }
+            }
+        }
+
+        private void linkLabelFiles_Click(object sender, EventArgs e)
+        {
+            LinkLabel linkLabel = sender as LinkLabel;
+
+            CodeTableTableAdapter codeTableTA = new CodeTableTableAdapter();
+            var data = codeTableTA.GetData();
+
+            string text = linkLabel.Text;
+            var name = text.Split('|');
+            string codeName = name[0].Trim();
+
+            int counter = 0;
+            foreach (var row in data)
+            {
+                if (string.Equals(row[5].ToString(), codeName))
+                {
+                    titleGlobal = row[5].ToString();
+                    pathGlobal = null;
+                    contentsGlobal = row[1].ToString();
+                    isexternalGlobal = "0";
+
+                    Properties.Settings.Default.OpenFileTitle = titleGlobal;
+                    Properties.Settings.Default.OpenFilePath = pathGlobal;
+                    Properties.Settings.Default.OpenFileContents = contentsGlobal;
+                    Properties.Settings.Default.OpenFileIsExternal = isexternalGlobal;
+
+                    if (this.Owner.Name == "Form1")
+                    {
+
+                        var form = new FormMain(row[5].ToString(), counter.ToString(), row[1].ToString(), "0");
+                        form.Show();
+                        this.Hide();
+                        //this.Close();
+                        form.FormClosed += (s, args) =>
+                        {
+                            this.Close();
+                            foreach (Form f in Application.OpenForms)
+                                if (f.Name == "Form1")
+                                    f.Close();
+                        };
+                        foreach (Form f in Application.OpenForms)
+                        {
+                            if (f.Name == "Form1")
+                                f.Hide();
+                        }
+                    }
+                    else
+                    {
+                        //MessageBox.Show("lol");
+                        this.Close();
+                    }
+                }
+                counter++;
             }
         }
 

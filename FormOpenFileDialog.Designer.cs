@@ -84,7 +84,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelOptions);
             this.Name = "FormOpenFileDialog";
-            this.Text = "FormOpenFileDialog";
+            this.Text = "Open File";
             this.Load += new System.EventHandler(this.FormOpenFileDialog_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

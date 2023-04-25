@@ -128,7 +128,7 @@
             this.Controls.Add(this.buttonNewFile);
             this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "CodeForger";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);

@@ -68,7 +68,7 @@
             // 
             this.textBoxPassword.Location = new System.Drawing.Point(234, 296);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(248, 44);
+            this.textBoxPassword.Size = new System.Drawing.Size(361, 44);
             this.textBoxPassword.TabIndex = 14;
             this.textBoxPassword.UseSystemPasswordChar = true;
             // 
@@ -76,7 +76,7 @@
             // 
             this.textBoxEmail.Location = new System.Drawing.Point(234, 211);
             this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(248, 44);
+            this.textBoxEmail.Size = new System.Drawing.Size(361, 44);
             this.textBoxEmail.TabIndex = 13;
             // 
             // label4
@@ -166,7 +166,7 @@
             this.Controls.Add(this.pictureBoxLogo);
             this.Controls.Add(this.label1);
             this.Name = "FormAccount";
-            this.Text = "FormAccount";
+            this.Text = "CodeForger Sign in";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -101,5 +101,53 @@ namespace CodeForger.Properties {
                 return ((string)(this["CodeForgerDBConnectionString4"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        public string OpenFileTitle {
+            get {
+                return ((string)(this["OpenFileTitle"]));
+            }
+            set {
+                this["OpenFileTitle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        public string OpenFileContents {
+            get {
+                return ((string)(this["OpenFileContents"]));
+            }
+            set {
+                this["OpenFileContents"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        public string OpenFilePath {
+            get {
+                return ((string)(this["OpenFilePath"]));
+            }
+            set {
+                this["OpenFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        public string OpenFileIsExternal {
+            get {
+                return ((string)(this["OpenFileIsExternal"]));
+            }
+            set {
+                this["OpenFileIsExternal"] = value;
+            }
+        }
     }
 }

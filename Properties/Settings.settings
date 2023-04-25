@@ -48,5 +48,17 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\bin\Debug\CodeForgerDB.mdf;Integrated Security=True;Connect Timeout=30</Value>
     </Setting>
+    <Setting Name="OpenFileTitle" Type="System.String" Scope="User">
+      <Value Profile="(Default)">null</Value>
+    </Setting>
+    <Setting Name="OpenFileContents" Type="System.String" Scope="User">
+      <Value Profile="(Default)">null</Value>
+    </Setting>
+    <Setting Name="OpenFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">null</Value>
+    </Setting>
+    <Setting Name="OpenFileIsExternal" Type="System.String" Scope="User">
+      <Value Profile="(Default)">null</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

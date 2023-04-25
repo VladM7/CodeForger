@@ -26,16 +26,16 @@ namespace CodeForger
 
         private bool valid()
         {
-            if(textBoxEmail.Text.IndexOf('@')==-1)
+            if (textBoxEmail.Text.IndexOf('@') == -1 || textBoxEmail.Text.IndexOf('.') == -1)
             {
-                Label error=new Label();
+                Label error = new Label();
                 error.Text = "Invalid Email!";
                 error.Location = new Point(10, 280);
                 error.Size = new Size(350, 40);
                 this.Controls.Add(error);
                 return false;
             }
-            if(textBoxPassword.Text.Length<3)
+            if (textBoxPassword.Text.Length < 3)
             {
                 Label error = new Label();
                 error.Text = "Password is too short! Minimum length is 3 characters.";
@@ -53,7 +53,7 @@ namespace CodeForger
                 this.Controls.Add(error);
                 return false;
             }*/
-            if(textBoxUsername.Text=="")
+            if (textBoxUsername.Text == "")
             {
                 Label error = new Label();
                 error.Text = "Username field is required!";
@@ -95,5 +95,9 @@ namespace CodeForger
             }
         }
 
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
