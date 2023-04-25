@@ -21,6 +21,7 @@ namespace CodeForger
         {
             InitializeComponent();
             contentsGlobal = contents;
+            comboBoxFileType.SelectedIndex = 0;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -28,14 +29,28 @@ namespace CodeForger
             if (radioButtonSaveDBFile.Checked)
             {
                 CodeTableTableAdapter codeTableTA = new CodeTableTableAdapter();
-                codeTableTA.Insert(contentsGlobal, "LISP", DateTime.Now, Properties.Settings.Default.AccountLogin, textBoxTitle.Text);
+                if (comboBoxFileType.SelectedIndex == 0)
+                    codeTableTA.Insert(contentsGlobal, "LISP", DateTime.Now, Properties.Settings.Default.AccountLogin, textBoxTitle.Text);
+                Properties.Settings.Default.OpenFileTitle = textBoxTitle.Text;
+                Properties.Settings.Default.OpenFilePath = null;
+                Properties.Settings.Default.OpenFileIsExternal = "0";
+                this.Close();
             }
             else
             {
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Title = "Save File";
                 //if (comboBoxFileType.SelectedIndex == 0)
-                sfd.Filter = "LISP files (txt,lsp)|*.txt;*.lsp";
+                sfd.Filter = "Text files (*.txt)|*.txt|LISP files (*.lsp)|*.lsp|All files (*.*)|*.*";
+                switch (sfd.FilterIndex)
+                {
+                    case 1:
+                        sfd.FileName = "untitled.txt";
+                        break;
+                    case 2:
+                        sfd.FileName = "untitled.lsp";
+                        break;
+                }
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     using (FileStream fs = File.Create(sfd.FileName))
@@ -71,6 +86,13 @@ namespace CodeForger
                 comboBoxFileType.Enabled = true;
                 comboBoxFileType.Visible = true;
             }
+        }
+
+        private void FormSaveFileDialog_Load(object sender, EventArgs e)
+        {
+            this.Location = new Point(
+    (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
+    (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
         }
     }
 }

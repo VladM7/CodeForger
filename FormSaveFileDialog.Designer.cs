@@ -32,12 +32,12 @@
             this.radioButtonSaveDBFile = new System.Windows.Forms.RadioButton();
             this.radioButtonSaveExtFile = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxTitle = new System.Windows.Forms.TextBox();
             this.comboBoxFileType = new System.Windows.Forms.ComboBox();
+            this.textBoxTitle = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -77,6 +77,14 @@
             this.panel1.Size = new System.Drawing.Size(1124, 420);
             this.panel1.TabIndex = 4;
             // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(644, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(458, 355);
+            this.label1.TabIndex = 5;
+            this.label1.Text = resources.GetString("label1.Text");
+            // 
             // buttonSave
             // 
             this.buttonSave.Location = new System.Drawing.Point(12, 237);
@@ -98,13 +106,22 @@
             this.panel2.Size = new System.Drawing.Size(1124, 200);
             this.panel2.TabIndex = 5;
             // 
-            // label1
+            // comboBoxFileType
             // 
-            this.label1.Location = new System.Drawing.Point(644, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(458, 355);
-            this.label1.TabIndex = 5;
-            this.label1.Text = resources.GetString("label1.Text");
+            this.comboBoxFileType.FormattingEnabled = true;
+            this.comboBoxFileType.Items.AddRange(new object[] {
+            ".lsp (LISP)"});
+            this.comboBoxFileType.Location = new System.Drawing.Point(420, 138);
+            this.comboBoxFileType.Name = "comboBoxFileType";
+            this.comboBoxFileType.Size = new System.Drawing.Size(306, 45);
+            this.comboBoxFileType.TabIndex = 2;
+            // 
+            // textBoxTitle
+            // 
+            this.textBoxTitle.Location = new System.Drawing.Point(144, 138);
+            this.textBoxTitle.Name = "textBoxTitle";
+            this.textBoxTitle.Size = new System.Drawing.Size(257, 44);
+            this.textBoxTitle.TabIndex = 1;
             // 
             // label2
             // 
@@ -115,23 +132,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Title:";
             // 
-            // textBoxTitle
-            // 
-            this.textBoxTitle.Location = new System.Drawing.Point(144, 138);
-            this.textBoxTitle.Name = "textBoxTitle";
-            this.textBoxTitle.Size = new System.Drawing.Size(257, 44);
-            this.textBoxTitle.TabIndex = 1;
-            // 
-            // comboBoxFileType
-            // 
-            this.comboBoxFileType.FormattingEnabled = true;
-            this.comboBoxFileType.Items.AddRange(new object[] {
-            ".lsp (LISP)"});
-            this.comboBoxFileType.Location = new System.Drawing.Point(420, 138);
-            this.comboBoxFileType.Name = "comboBoxFileType";
-            this.comboBoxFileType.Size = new System.Drawing.Size(171, 45);
-            this.comboBoxFileType.TabIndex = 2;
-            // 
             // FormSaveFileDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
@@ -141,6 +141,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "FormSaveFileDialog";
             this.Text = "Save File";
+            this.Load += new System.EventHandler(this.FormSaveFileDialog_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

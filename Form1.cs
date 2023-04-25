@@ -48,17 +48,21 @@ namespace CodeForger
             }
             else
                 buttonAccountSettings.Visible = false;
+
+            this.Location = new Point(
+    (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
+    (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
         }
 
         private void buttonNewFile_Click(object sender, EventArgs e)
         {
             var form = new FormMain("Untitled*", null, null, null);
             form.Show();
-        }
-
-        private void inchidere()
-        {
-            this.Show();
+            this.Hide();
+            form.FormClosed += (sdr, args) =>
+            {
+                Application.Exit();
+            };
         }
 
         private void buttonLog_Click(object sender, EventArgs e)

@@ -24,7 +24,10 @@ namespace CodeForger
         private void FormOpenFileDialog_Load(object sender, EventArgs e)
         {
             showDBData();
-            MessageBox.Show(this.Owner.Name);
+            this.Location = new Point(
+    (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
+    (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
+            //MessageBox.Show(this.Owner.Name);
         }
 
         private void buttonOpenFile_Click(object sender, EventArgs e)
@@ -146,9 +149,9 @@ namespace CodeForger
             {
                 //MessageBox.Show(Convert.ToDateTime(row[3]).Day.ToString());
                 files[counter] = new LinkLabel();
-                files[counter].Size = new Size(200, 25);
+                files[counter].Size = new Size(300, 25);
                 files[counter].Font = new Font("Microsoft Sans Serif", 10);
-                files[counter].Text = row[5].ToString() + "     |     " + Convert.ToDateTime(row[3]).Day.ToString() + "." + Convert.ToDateTime(row[3]).Month.ToString() + "." + Convert.ToDateTime(row[3]).Year.ToString();
+                files[counter].Text = row[5].ToString() + "     |     " + Convert.ToDateTime(row[3]).Day.ToString() + "." + Convert.ToDateTime(row[3]).Month.ToString() + "." + Convert.ToDateTime(row[3]).Year.ToString() + " at " + Convert.ToDateTime(row[3]).Hour + ":" + Convert.ToDateTime(row[3]).Minute;
                 files[counter].Location = new Point(10, counter * 30);
                 files[counter].Click += new EventHandler(linkLabelFiles_Click);
                 panelOptions.Controls.Add(files[counter]);

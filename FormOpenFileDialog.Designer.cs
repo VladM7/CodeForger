@@ -60,6 +60,7 @@
             // 
             // panelOptions
             // 
+            this.panelOptions.AutoScroll = true;
             this.panelOptions.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelOptions.Location = new System.Drawing.Point(0, 443);
             this.panelOptions.Name = "panelOptions";
