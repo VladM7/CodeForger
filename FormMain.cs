@@ -375,6 +375,129 @@ namespace CodeForger
             form.ShowDialog();
         }
 
+        struct token
+        {
+            public string type;
+            public string value;
+        };
+
+        List<token> tokens = new List<token>();
+
+        private void tokenizer(string input)
+        {
+            int n = input.Length;
+            for (int i = 0; i < n; i++)
+            {
+                char c = input[i];
+
+                if (c == '(' || c == ')')
+                {
+                    token aux = new token();
+                    aux.type = "paren";
+                    aux.value = c.ToString();
+                    tokens.Add(aux);
+                    continue;
+                }
+                if (c >= 'a' && c <= 'z')
+                {
+                    string value = "";
+                    while (c >= 'a' && c <= 'z')
+                    {
+                        value += c;
+                        if (i < n - 1)
+                            c = input[++i];
+                        else break;
+                    }
+                    i--;
+                    token aux = new token();
+                    aux.type = "name";
+                    aux.value = value;
+                    tokens.Add(aux);
+                    continue;
+                }
+                if (c == ' ')
+                    continue;
+                if (c >= '0' && c <= '9')
+                {
+                    string value = "";
+                    while (c >= '0' && c <= '9')
+                    {
+                        value += c;
+                        if (i < n - 1)
+                            c = input[++i];
+                        else break;
+                    }
+                    i--;
+                    token aux = new token();
+                    aux.type = "number";
+                    aux.value = value;
+                    tokens.Add(aux);
+                    continue;
+                }
+                //TODO throw error
+            }
+        }
+
+        struct ast
+        {
+            public string type;
+            public node[] body;
+        }
+
+        struct node
+        {
+            public string type;
+            public string value;
+            public node[] par;
+        }
+
+        ast structure;
+        int current=0;
+
+        private node Walk()
+        {
+            token tkn = tokens[current];
+            if (tkn.type == "number")
+            {
+                current++;
+                node aux;
+                aux.type = "NumberLiteral";
+                aux.value = tokens[current].value;
+                aux.par = null;
+                return aux;
+            }
+            if(tkn.type == "paren" && tkn.value == "(")
+            {
+                tkn = tokens[++current];
+                node expression;
+                expression.type = "CallExpression";
+                expression.value = tkn.value;
+                expression.par= null;
+                tkn = tokens[current];
+                while (tkn.value != ")")
+                {
+                    expression.par.Append(Walk());
+                    tkn = tokens[current];
+                }
+                current++;
+                return expression;
+            }
+            throw new Exception("Unknown token type");
+        }
+
+        private void parser()
+        {
+            structure.type = "Program";
+            structure.body.Append(Walk());
+        }
+
+        private void toolStripButtonRun_Click(object sender, EventArgs e)
+        {
+            tokenizer("(add 8 (sub 8 6))");
+            foreach (var token in tokens)
+                MessageBox.Show("Type: " + token.type + "\nValue: " + token.value);
+        }
+
         private void addTab(string title, string path, string contents, string isexternal)
         {
             TabPage tabPage = new TabPage();

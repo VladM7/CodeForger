@@ -29,29 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.buttonNewFile = new System.Windows.Forms.Button();
             this.buttonOpenFile = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonLog = new System.Windows.Forms.Button();
             this.labelEmail = new System.Windows.Forms.Label();
             this.buttonAccountSettings = new System.Windows.Forms.Button();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.buttonNewFile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
-            // buttonNewFile
-            // 
-            this.buttonNewFile.Location = new System.Drawing.Point(360, 392);
-            this.buttonNewFile.Margin = new System.Windows.Forms.Padding(1);
-            this.buttonNewFile.Name = "buttonNewFile";
-            this.buttonNewFile.Size = new System.Drawing.Size(288, 111);
-            this.buttonNewFile.TabIndex = 0;
-            this.buttonNewFile.Text = "New File";
-            this.buttonNewFile.UseVisualStyleBackColor = true;
-            this.buttonNewFile.Click += new System.EventHandler(this.buttonNewFile_Click);
-            // 
             // buttonOpenFile
             // 
+            this.buttonOpenFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonOpenFile.Location = new System.Drawing.Point(672, 392);
             this.buttonOpenFile.Margin = new System.Windows.Forms.Padding(1);
             this.buttonOpenFile.Name = "buttonOpenFile";
@@ -112,6 +102,17 @@
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLogo.TabIndex = 3;
             this.pictureBoxLogo.TabStop = false;
+            // 
+            // buttonNewFile
+            // 
+            this.buttonNewFile.Location = new System.Drawing.Point(360, 392);
+            this.buttonNewFile.Margin = new System.Windows.Forms.Padding(1);
+            this.buttonNewFile.Name = "buttonNewFile";
+            this.buttonNewFile.Size = new System.Drawing.Size(288, 111);
+            this.buttonNewFile.TabIndex = 0;
+            this.buttonNewFile.Text = "New File";
+            this.buttonNewFile.UseVisualStyleBackColor = true;
+            this.buttonNewFile.Click += new System.EventHandler(this.buttonNewFile_Click);
             // 
             // Form1
             // 
