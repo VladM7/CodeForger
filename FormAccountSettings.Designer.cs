@@ -43,15 +43,19 @@
             // 
             // pictureBoxLogo
             // 
-            this.pictureBoxLogo.Location = new System.Drawing.Point(32, 37);
+            this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxLogo.Image = global::CodeForger.Properties.Resources.Logo;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(32, 12);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(187, 151);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(237, 230);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLogo.TabIndex = 5;
             this.pictureBoxLogo.TabStop = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(253, 54);
             this.label2.Name = "label2";
@@ -62,6 +66,8 @@
             // buttonDeleteAccount
             // 
             this.buttonDeleteAccount.BackColor = System.Drawing.Color.IndianRed;
+            this.buttonDeleteAccount.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
+            this.buttonDeleteAccount.FlatAppearance.BorderSize = 0;
             this.buttonDeleteAccount.ForeColor = System.Drawing.Color.White;
             this.buttonDeleteAccount.Location = new System.Drawing.Point(32, 726);
             this.buttonDeleteAccount.Name = "buttonDeleteAccount";
@@ -74,10 +80,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(28, 245);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(414, 55);
+            this.label1.Size = new System.Drawing.Size(429, 55);
             this.label1.TabIndex = 7;
             this.label1.Text = "Change password";
             // 
@@ -100,6 +107,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Location = new System.Drawing.Point(32, 342);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(223, 37);
@@ -109,6 +117,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Location = new System.Drawing.Point(32, 433);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(237, 37);
@@ -152,7 +161,7 @@
             this.Controls.Add(this.pictureBoxLogo);
             this.Controls.Add(this.label2);
             this.Name = "FormAccountSettings";
-            this.Text = "FormAccountSettings";
+            this.Text = "Account Settings";
             this.Load += new System.EventHandler(this.FormAccountSettings_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);

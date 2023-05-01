@@ -167,6 +167,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormAccount";
             this.Text = "CodeForger Sign in";
+            this.Load += new System.EventHandler(this.FormAccount_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

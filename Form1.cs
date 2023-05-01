@@ -23,6 +23,8 @@ namespace CodeForger
 
         private void updateLoginButtonState()
         {
+            //MessageBox.Show(Properties.Settings.Default.AccountLogin.ToString());
+
             if (Properties.Settings.Default.AccountLogin == -1)
             {
                 buttonLog.Text = "Sign in";
@@ -34,14 +36,22 @@ namespace CodeForger
                 buttonLog.Text = "Sign out";
                 UsersTableTableAdapter adapter = new UsersTableTableAdapter();
                 CodeForgerDBDataSet.UsersTableDataTable data = adapter.GetData();
-                labelEmail.Text = data[Properties.Settings.Default.AccountLogin][2].ToString();
+                foreach (var row in data)
+                {
+                    if (int.Parse(row[0].ToString()) == Properties.Settings.Default.AccountLogin)
+                    {
+                        labelEmail.Text = row[1].ToString();
+                        break;
+                    }
+                }
                 buttonAccountSettings.Visible = true;
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.RememberAccount == true)
+            //MessageBox.Show(Properties.Settings.Default.AccountLogin.ToString());
+            if (Properties.Settings.Default.RememberAccount == true && Properties.Settings.Default.AccountLogin != -1)
             {
                 updateLoginButtonState();
                 buttonAccountSettings.Visible = true;

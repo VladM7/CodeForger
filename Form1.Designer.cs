@@ -36,6 +36,7 @@
             this.buttonAccountSettings = new System.Windows.Forms.Button();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.buttonNewFile = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +77,8 @@
             // labelEmail
             // 
             this.labelEmail.AutoSize = true;
-            this.labelEmail.Location = new System.Drawing.Point(1244, 108);
+            this.labelEmail.BackColor = System.Drawing.Color.Transparent;
+            this.labelEmail.Location = new System.Drawing.Point(1258, 93);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(0, 37);
             this.labelEmail.TabIndex = 5;
@@ -95,10 +97,10 @@
             // pictureBoxLogo
             // 
             this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
-            this.pictureBoxLogo.Location = new System.Drawing.Point(951, 131);
+            this.pictureBoxLogo.Location = new System.Drawing.Point(932, 113);
             this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(1);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(319, 247);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(281, 277);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLogo.TabIndex = 3;
             this.pictureBoxLogo.TabStop = false;
@@ -114,12 +116,23 @@
             this.buttonNewFile.UseVisualStyleBackColor = true;
             this.buttonNewFile.Click += new System.EventHandler(this.buttonNewFile_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(542, 719);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(311, 37);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "© 2023, CodeForger";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1491, 774);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonAccountSettings);
             this.Controls.Add(this.labelEmail);
             this.Controls.Add(this.buttonLog);
@@ -146,6 +159,7 @@
         private System.Windows.Forms.Button buttonLog;
         private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.Button buttonAccountSettings;
+        private System.Windows.Forms.Label label2;
     }
 }
 

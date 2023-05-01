@@ -73,6 +73,16 @@ namespace CodeForger.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dark_setting_icon {
+            get {
+                object obj = ResourceManager.GetObject("dark_setting_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DeleteButton_Image {
             get {
                 object obj = ResourceManager.GetObject("DeleteButton_Image", resourceCulture);
@@ -86,6 +96,16 @@ namespace CodeForger.Properties {
         internal static System.Drawing.Bitmap fundal {
             get {
                 object obj = ResourceManager.GetObject("fundal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap light_setting_icon {
+            get {
+                object obj = ResourceManager.GetObject("light_setting_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

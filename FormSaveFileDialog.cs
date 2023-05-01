@@ -29,8 +29,27 @@ namespace CodeForger
             if (radioButtonSaveDBFile.Checked)
             {
                 CodeTableTableAdapter codeTableTA = new CodeTableTableAdapter();
-                if (comboBoxFileType.SelectedIndex == 0)
-                    codeTableTA.Insert(contentsGlobal, "LISP", DateTime.Now, Properties.Settings.Default.AccountLogin, textBoxTitle.Text);
+                string filetype = "";
+                switch (comboBoxFileType.SelectedIndex)
+                {
+                    case 0:
+                        filetype = "LISP";
+                        break;
+                    case 1:
+                        filetype = "C";
+                        break;
+                    case 2:
+                        filetype = "C++";
+                        break;
+                }
+
+                if (filetype == "")
+                {
+                    MessageBox.Show("Please select a file type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                codeTableTA.Insert(contentsGlobal, filetype, DateTime.Now, Properties.Settings.Default.AccountLogin, textBoxTitle.Text);
                 Properties.Settings.Default.OpenFileTitle = textBoxTitle.Text;
                 Properties.Settings.Default.OpenFilePath = null;
                 Properties.Settings.Default.OpenFileIsExternal = "0";
@@ -41,7 +60,7 @@ namespace CodeForger
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Title = "Save File";
                 //if (comboBoxFileType.SelectedIndex == 0)
-                sfd.Filter = "Text files (*.txt)|*.txt|LISP files (*.lsp)|*.lsp|All files (*.*)|*.*";
+                sfd.Filter = "Text files (*.txt)|*.txt|LISP files (*.lsp)|*.lsp|C files (*.c)|*.c|C++ files (*.cpp)|*.cpp|All files (*.*)|*.*";
                 switch (sfd.FilterIndex)
                 {
                     case 1:
@@ -90,6 +109,13 @@ namespace CodeForger
 
         private void FormSaveFileDialog_Load(object sender, EventArgs e)
         {
+            if (Properties.Settings.Default.AccountLogin == -1)
+            {
+                radioButtonSaveDBFile.Enabled = false;
+                radioButtonSaveDBFile.Checked = false;
+                radioButtonSaveExtFile.Checked = true;
+            }
+
             this.Location = new Point(
     (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
     (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);

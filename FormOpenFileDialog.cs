@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,7 +24,17 @@ namespace CodeForger
 
         private void FormOpenFileDialog_Load(object sender, EventArgs e)
         {
-            showDBData();
+            if (Properties.Settings.Default.AccountLogin != -1)
+            {
+                displayDBData();
+            }
+            else
+            {
+                radioButtonLoadDBFile.Enabled = false;
+                radioButtonLoadDBFile.Checked = false;
+                radioButtonOpenExtFile.Checked = true;
+            }
+
             this.Location = new Point(
     (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
     (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
@@ -33,7 +44,7 @@ namespace CodeForger
         private void buttonOpenFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "LISP files (txt,lsp)|*.txt;*.lsp";
+            ofd.Filter = "Text files (*.txt)|*.txt|LISP files (*.lsp)|*.lsp|C files (*.c)|*.c|C++ files (*.cpp)|*.cpp|All files (*.*)|*.*";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 string title = Path.GetFileName(ofd.FileName);
@@ -81,16 +92,45 @@ namespace CodeForger
             }
         }
 
-        private void linkLabelFiles_Click(object sender, EventArgs e)
+        /*private void showDBData()
         {
-            LinkLabel linkLabel = sender as LinkLabel;
+            LinkLabel[] files = new LinkLabel[100];
+            int counter = 0;
 
             CodeTableTableAdapter codeTableTA = new CodeTableTableAdapter();
             var data = codeTableTA.GetData();
 
-            string text = linkLabel.Text;
-            var name = text.Split('|');
-            string codeName = name[0].Trim();
+            foreach (var row in data)
+            {
+                //MessageBox.Show(Convert.ToDateTime(row[3]).Day.ToString());
+                files[counter] = new LinkLabel();
+                files[counter].Size = new Size(300, 25);
+                files[counter].Font = new Font("Microsoft Sans Serif", 10);
+                files[counter].Text = row[5].ToString() + "     |     " + Convert.ToDateTime(row[3]).Day.ToString() + "." + Convert.ToDateTime(row[3]).Month.ToString() + "." + Convert.ToDateTime(row[3]).Year.ToString() + " at " + Convert.ToDateTime(row[3]).Hour + ":" + Convert.ToDateTime(row[3]).Minute;
+                files[counter].Location = new Point(10, counter * 30);
+                files[counter].Click += new EventHandler(linkLabelFiles_Click);
+                panelOptions.Controls.Add(files[counter]);
+                counter++;
+            }
+        }*/
+
+        private void dataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //MessageBox.Show(e.RowIndex.ToString());
+            DataGridView dataGridView = (DataGridView)panelOptions.Controls[0];
+
+            if (e.RowIndex == dataGridView.Rows.Count - 1 || e.RowIndex < 0)
+            {
+                return;
+            }
+
+            DataGridViewRow dataGridViewRow = dataGridView.Rows[e.RowIndex];
+            DataGridViewCell dataGridViewCell = dataGridViewRow.Cells[0];
+
+            CodeTableTableAdapter codeTableTA = new CodeTableTableAdapter();
+            var data = codeTableTA.GetData();
+
+            string codeName = dataGridViewCell.Value.ToString();
 
             int counter = 0;
             foreach (var row in data)
@@ -137,25 +177,45 @@ namespace CodeForger
             }
         }
 
-        private void showDBData()
+        private void displayDBData()
         {
-            LinkLabel[] files = new LinkLabel[100];
-            int counter = 0;
+            DataGridView dataGridView = new DataGridView();
+            dataGridView.Size = new Size(this.Width - 20, panelOptions.Height - 5);
+            dataGridView.Location = new Point(0, 0);
+
+            dataGridView.BackgroundColor = Color.White;
+            dataGridView.BorderStyle = BorderStyle.None;
+            dataGridView.GridColor = Color.White;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.RowHeadersVisible = false;
+            dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView.DefaultCellStyle.SelectionBackColor = Color.WhiteSmoke;
+            dataGridView.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.White;
+            //dataGridView.CurrentCell = null;
+            //dataGridView.ClearSelection();
+            dataGridView.ReadOnly = true;
+            //dataGridView.SelectedRows.Clear();
+            //dataGridView.Column
+
+            dataGridView.CellDoubleClick += dataGridView_CellDoubleClick;
+
+            dataGridView.ColumnCount = 3;
+            dataGridView.Columns[0].Name = "Name";
+            dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView.Columns[1].Name = "Date Modified";
+            dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView.Columns[2].Name = "Type";
+            dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            panelOptions.Controls.Add(dataGridView);
 
             CodeTableTableAdapter codeTableTA = new CodeTableTableAdapter();
             var data = codeTableTA.GetData();
 
             foreach (var row in data)
             {
-                //MessageBox.Show(Convert.ToDateTime(row[3]).Day.ToString());
-                files[counter] = new LinkLabel();
-                files[counter].Size = new Size(300, 25);
-                files[counter].Font = new Font("Microsoft Sans Serif", 10);
-                files[counter].Text = row[5].ToString() + "     |     " + Convert.ToDateTime(row[3]).Day.ToString() + "." + Convert.ToDateTime(row[3]).Month.ToString() + "." + Convert.ToDateTime(row[3]).Year.ToString() + " at " + Convert.ToDateTime(row[3]).Hour + ":" + Convert.ToDateTime(row[3]).Minute;
-                files[counter].Location = new Point(10, counter * 30);
-                files[counter].Click += new EventHandler(linkLabelFiles_Click);
-                panelOptions.Controls.Add(files[counter]);
-                counter++;
+                if (int.Parse(row[4].ToString()) == Properties.Settings.Default.AccountLogin)
+                    dataGridView.Rows.Add(row[5].ToString(), row[3].ToString(), row[2].ToString());
             }
         }
 
@@ -165,13 +225,15 @@ namespace CodeForger
             {
                 panelOptions.Controls.Clear();
                 //MessageBox.Show(nr.ToString());
-                showDBData();
+                displayDBData();
             }
             else
             {
                 panelOptions.Controls.Clear();
                 Button buttonOpenFile = new Button();
                 buttonOpenFile.Text = "Choose file";
+                buttonOpenFile.Location = new Point(5, 5);
+                buttonOpenFile.Size = new Size(120, 30);
                 buttonOpenFile.Click += new EventHandler(buttonOpenFile_Click);
                 panelOptions.Controls.Add(buttonOpenFile);
             }

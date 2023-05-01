@@ -90,6 +90,12 @@ namespace CodeForger
                 //Adaugare in DB
                 UsersTableTableAdapter adapter = new UsersTableTableAdapter();
                 adapter.Insert(textBoxUsername.Text, textBoxEmail.Text, textBoxPassword.Text);
+
+                var data = adapter.GetData();
+
+                PrefsTableTableAdapter prefsTableTA = new PrefsTableTableAdapter();
+                prefsTableTA.Insert(1, 1, 1, 1, 1, 1, int.Parse(data[data.Rows.Count - 1][0].ToString()));
+
                 MessageBox.Show("Account created successfully!");
                 this.Close();
             }
@@ -97,7 +103,9 @@ namespace CodeForger
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
-
+            this.Location = new Point(
+    (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
+    (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
         }
     }
 }

@@ -110,7 +110,9 @@
             // 
             this.comboBoxFileType.FormattingEnabled = true;
             this.comboBoxFileType.Items.AddRange(new object[] {
-            ".lsp (LISP)"});
+            ".lsp (LISP)",
+            ".c (C)",
+            ".cpp (C++)"});
             this.comboBoxFileType.Location = new System.Drawing.Point(420, 138);
             this.comboBoxFileType.Name = "comboBoxFileType";
             this.comboBoxFileType.Size = new System.Drawing.Size(306, 45);

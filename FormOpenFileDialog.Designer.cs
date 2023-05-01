@@ -39,7 +39,7 @@
             // 
             this.radioButtonLoadDBFile.AutoSize = true;
             this.radioButtonLoadDBFile.Checked = true;
-            this.radioButtonLoadDBFile.Location = new System.Drawing.Point(12, 150);
+            this.radioButtonLoadDBFile.Location = new System.Drawing.Point(12, 12);
             this.radioButtonLoadDBFile.Name = "radioButtonLoadDBFile";
             this.radioButtonLoadDBFile.Size = new System.Drawing.Size(426, 41);
             this.radioButtonLoadDBFile.TabIndex = 0;
@@ -51,7 +51,7 @@
             // radioButtonOpenExtFile
             // 
             this.radioButtonOpenExtFile.AutoSize = true;
-            this.radioButtonOpenExtFile.Location = new System.Drawing.Point(12, 226);
+            this.radioButtonOpenExtFile.Location = new System.Drawing.Point(12, 88);
             this.radioButtonOpenExtFile.Name = "radioButtonOpenExtFile";
             this.radioButtonOpenExtFile.Size = new System.Drawing.Size(309, 41);
             this.radioButtonOpenExtFile.TabIndex = 1;
@@ -62,9 +62,9 @@
             // 
             this.panelOptions.AutoScroll = true;
             this.panelOptions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelOptions.Location = new System.Drawing.Point(0, 443);
+            this.panelOptions.Location = new System.Drawing.Point(0, 309);
             this.panelOptions.Name = "panelOptions";
-            this.panelOptions.Size = new System.Drawing.Size(1404, 385);
+            this.panelOptions.Size = new System.Drawing.Size(1404, 519);
             this.panelOptions.TabIndex = 2;
             // 
             // panel1
@@ -74,13 +74,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1404, 302);
+            this.panel1.Size = new System.Drawing.Size(1404, 150);
             this.panel1.TabIndex = 3;
             // 
             // FormOpenFileDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1404, 828);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelOptions);

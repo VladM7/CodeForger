@@ -2,12 +2,13 @@
 <xs:schema id="CodeForgerDBDataSet" targetNamespace="http://tempuri.org/CodeForgerDBDataSet.xsd" xmlns:mstns="http://tempuri.org/CodeForgerDBDataSet.xsd" xmlns="http://tempuri.org/CodeForgerDBDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="3" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="4" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="CodeForgerDBConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="CodeForgerDBConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.CodeForger.Properties.Settings.GlobalReference.Default.CodeForgerDBConnectionString1" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="CodeForgerDBConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="CodeForgerDBConnectionString2 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.CodeForger.Properties.Settings.GlobalReference.Default.CodeForgerDBConnectionString2" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="CodeForgerDBConnectionString3" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="CodeForgerDBConnectionString3 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.CodeForger.Properties.Settings.GlobalReference.Default.CodeForgerDBConnectionString3" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="CodeForgerDBConnectionString4" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="CodeForgerDBConnectionString4 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.CodeForger.Properties.Settings.GlobalReference.Default.CodeForgerDBConnectionString3" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="CodeForgerDBConnectionString5" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="CodeForgerDBConnectionString5 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.CodeForger.Properties.Settings.GlobalReference.Default.CodeForgerDBConnectionString5" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UsersTableTableAdapter" GeneratorDataComponentClassName="UsersTableTableAdapter" Name="UsersTable" UserDataComponentName="UsersTableTableAdapter">
@@ -126,6 +127,97 @@ SELECT Id, Code, Language, LastModified, [User], Title FROM CodeTable WHERE (Id 
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PrefsTableTableAdapter" GeneratorDataComponentClassName="PrefsTableTableAdapter" Name="PrefsTable" UserDataComponentName="PrefsTableTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="CodeForgerDBConnectionString5 (Settings)" DbObjectName="dbo.PrefsTable" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[PrefsTable] WHERE (([Id] = @Original_Id) AND ((@IsNull_AppearanceMode = 1 AND [AppearanceMode] IS NULL) OR ([AppearanceMode] = @Original_AppearanceMode)) AND ((@IsNull_WordWrap = 1 AND [WordWrap] IS NULL) OR ([WordWrap] = @Original_WordWrap)) AND ((@IsNull_ErrorLines = 1 AND [ErrorLines] IS NULL) OR ([ErrorLines] = @Original_ErrorLines)) AND ((@IsNull_ShowOutputTab = 1 AND [ShowOutputTab] IS NULL) OR ([ShowOutputTab] = @Original_ShowOutputTab)) AND ((@IsNull_ShowErrorsTab = 1 AND [ShowErrorsTab] IS NULL) OR ([ShowErrorsTab] = @Original_ShowErrorsTab)) AND ((@IsNull_ShowNavigationBar = 1 AND [ShowNavigationBar] IS NULL) OR ([ShowNavigationBar] = @Original_ShowNavigationBar)) AND ((@IsNull_UserId = 1 AND [UserId] IS NULL) OR ([UserId] = @Original_UserId)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_AppearanceMode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="AppearanceMode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_AppearanceMode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="AppearanceMode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_WordWrap" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="WordWrap" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_WordWrap" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="WordWrap" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ErrorLines" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ErrorLines" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ErrorLines" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ErrorLines" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ShowOutputTab" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowOutputTab" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ShowOutputTab" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowOutputTab" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ShowErrorsTab" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowErrorsTab" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ShowErrorsTab" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowErrorsTab" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ShowNavigationBar" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowNavigationBar" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ShowNavigationBar" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowNavigationBar" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_UserId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_UserId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[PrefsTable] ([AppearanceMode], [WordWrap], [ErrorLines], [ShowOutputTab], [ShowErrorsTab], [ShowNavigationBar], [UserId]) VALUES (@AppearanceMode, @WordWrap, @ErrorLines, @ShowOutputTab, @ShowErrorsTab, @ShowNavigationBar, @UserId);
+SELECT Id, AppearanceMode, WordWrap, ErrorLines, ShowOutputTab, ShowErrorsTab, ShowNavigationBar, UserId FROM PrefsTable WHERE (Id = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@AppearanceMode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="AppearanceMode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@WordWrap" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="WordWrap" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ErrorLines" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ErrorLines" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ShowOutputTab" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowOutputTab" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ShowErrorsTab" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowErrorsTab" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ShowNavigationBar" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowNavigationBar" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@UserId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id, AppearanceMode, WordWrap, ErrorLines, ShowOutputTab, ShowErrorsTab, ShowNavigationBar, UserId FROM dbo.PrefsTable</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[PrefsTable] SET [AppearanceMode] = @AppearanceMode, [WordWrap] = @WordWrap, [ErrorLines] = @ErrorLines, [ShowOutputTab] = @ShowOutputTab, [ShowErrorsTab] = @ShowErrorsTab, [ShowNavigationBar] = @ShowNavigationBar, [UserId] = @UserId WHERE (([Id] = @Original_Id) AND ((@IsNull_AppearanceMode = 1 AND [AppearanceMode] IS NULL) OR ([AppearanceMode] = @Original_AppearanceMode)) AND ((@IsNull_WordWrap = 1 AND [WordWrap] IS NULL) OR ([WordWrap] = @Original_WordWrap)) AND ((@IsNull_ErrorLines = 1 AND [ErrorLines] IS NULL) OR ([ErrorLines] = @Original_ErrorLines)) AND ((@IsNull_ShowOutputTab = 1 AND [ShowOutputTab] IS NULL) OR ([ShowOutputTab] = @Original_ShowOutputTab)) AND ((@IsNull_ShowErrorsTab = 1 AND [ShowErrorsTab] IS NULL) OR ([ShowErrorsTab] = @Original_ShowErrorsTab)) AND ((@IsNull_ShowNavigationBar = 1 AND [ShowNavigationBar] IS NULL) OR ([ShowNavigationBar] = @Original_ShowNavigationBar)) AND ((@IsNull_UserId = 1 AND [UserId] IS NULL) OR ([UserId] = @Original_UserId)));
+SELECT Id, AppearanceMode, WordWrap, ErrorLines, ShowOutputTab, ShowErrorsTab, ShowNavigationBar, UserId FROM PrefsTable WHERE (Id = @Id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@AppearanceMode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="AppearanceMode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@WordWrap" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="WordWrap" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ErrorLines" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ErrorLines" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ShowOutputTab" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowOutputTab" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ShowErrorsTab" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowErrorsTab" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ShowNavigationBar" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowNavigationBar" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@UserId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_Id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_AppearanceMode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="AppearanceMode" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_AppearanceMode" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="AppearanceMode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_WordWrap" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="WordWrap" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_WordWrap" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="WordWrap" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ErrorLines" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ErrorLines" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ErrorLines" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ErrorLines" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ShowOutputTab" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowOutputTab" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ShowOutputTab" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowOutputTab" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ShowErrorsTab" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowErrorsTab" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ShowErrorsTab" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowErrorsTab" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ShowNavigationBar" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowNavigationBar" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ShowNavigationBar" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ShowNavigationBar" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_UserId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_UserId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Id" ColumnName="Id" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="AppearanceMode" DataSetColumn="AppearanceMode" />
+              <Mapping SourceColumn="WordWrap" DataSetColumn="WordWrap" />
+              <Mapping SourceColumn="ErrorLines" DataSetColumn="ErrorLines" />
+              <Mapping SourceColumn="ShowOutputTab" DataSetColumn="ShowOutputTab" />
+              <Mapping SourceColumn="ShowErrorsTab" DataSetColumn="ShowErrorsTab" />
+              <Mapping SourceColumn="ShowNavigationBar" DataSetColumn="ShowNavigationBar" />
+              <Mapping SourceColumn="UserId" DataSetColumn="UserId" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -162,33 +254,47 @@ SELECT Id, Code, Language, LastModified, [User], Title FROM CodeTable WHERE (Id 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CodeTable" msprop:Generator_RowEvHandlerName="CodeTableRowChangeEventHandler" msprop:Generator_RowDeletedName="CodeTableRowDeleted" msprop:Generator_RowDeletingName="CodeTableRowDeleting" msprop:Generator_RowEvArgName="CodeTableRowChangeEvent" msprop:Generator_TablePropName="CodeTable" msprop:Generator_RowChangedName="CodeTableRowChanged" msprop:Generator_RowChangingName="CodeTableRowChanging" msprop:Generator_TableClassName="CodeTableDataTable" msprop:Generator_RowClassName="CodeTableRow" msprop:Generator_TableVarName="tableCodeTable" msprop:Generator_UserTableName="CodeTable">
+        <xs:element name="CodeTable" msprop:Generator_RowClassName="CodeTableRow" msprop:Generator_RowEvHandlerName="CodeTableRowChangeEventHandler" msprop:Generator_RowDeletedName="CodeTableRowDeleted" msprop:Generator_RowDeletingName="CodeTableRowDeleting" msprop:Generator_RowEvArgName="CodeTableRowChangeEvent" msprop:Generator_TablePropName="CodeTable" msprop:Generator_RowChangedName="CodeTableRowChanged" msprop:Generator_UserTableName="CodeTable" msprop:Generator_RowChangingName="CodeTableRowChanging" msprop:Generator_TableClassName="CodeTableDataTable" msprop:Generator_TableVarName="tableCodeTable">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" type="xs:int" />
+              <xs:element name="Code" msprop:Generator_UserColumnName="Code" msprop:Generator_ColumnPropNameInTable="CodeColumn" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_ColumnVarNameInTable="columnCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Language" msprop:Generator_UserColumnName="Language" msprop:Generator_ColumnPropNameInTable="LanguageColumn" msprop:Generator_ColumnPropNameInRow="Language" msprop:Generator_ColumnVarNameInTable="columnLanguage" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LastModified" msprop:Generator_UserColumnName="LastModified" msprop:Generator_ColumnPropNameInTable="LastModifiedColumn" msprop:Generator_ColumnPropNameInRow="LastModified" msprop:Generator_ColumnVarNameInTable="columnLastModified" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="User" msprop:Generator_UserColumnName="User" msprop:Generator_ColumnPropNameInTable="UserColumn" msprop:Generator_ColumnPropNameInRow="User" msprop:Generator_ColumnVarNameInTable="columnUser" type="xs:int" minOccurs="0" />
+              <xs:element name="Title" msprop:Generator_UserColumnName="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PrefsTable" msprop:Generator_RowEvHandlerName="PrefsTableRowChangeEventHandler" msprop:Generator_RowDeletedName="PrefsTableRowDeleted" msprop:Generator_RowDeletingName="PrefsTableRowDeleting" msprop:Generator_RowEvArgName="PrefsTableRowChangeEvent" msprop:Generator_TablePropName="PrefsTable" msprop:Generator_RowChangedName="PrefsTableRowChanged" msprop:Generator_RowChangingName="PrefsTableRowChanging" msprop:Generator_TableClassName="PrefsTableDataTable" msprop:Generator_RowClassName="PrefsTableRow" msprop:Generator_TableVarName="tablePrefsTable" msprop:Generator_UserTableName="PrefsTable">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_UserColumnName="Id" type="xs:int" />
-              <xs:element name="Code" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_ColumnPropNameInTable="CodeColumn" msprop:Generator_ColumnVarNameInTable="columnCode" msprop:Generator_UserColumnName="Code" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Language" msprop:Generator_ColumnPropNameInRow="Language" msprop:Generator_ColumnPropNameInTable="LanguageColumn" msprop:Generator_ColumnVarNameInTable="columnLanguage" msprop:Generator_UserColumnName="Language" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="LastModified" msprop:Generator_ColumnPropNameInRow="LastModified" msprop:Generator_ColumnPropNameInTable="LastModifiedColumn" msprop:Generator_ColumnVarNameInTable="columnLastModified" msprop:Generator_UserColumnName="LastModified" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="User" msprop:Generator_ColumnPropNameInRow="User" msprop:Generator_ColumnPropNameInTable="UserColumn" msprop:Generator_ColumnVarNameInTable="columnUser" msprop:Generator_UserColumnName="User" type="xs:int" minOccurs="0" />
-              <xs:element name="Title" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_UserColumnName="Title" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
+              <xs:element name="AppearanceMode" msprop:Generator_ColumnPropNameInRow="AppearanceMode" msprop:Generator_ColumnPropNameInTable="AppearanceModeColumn" msprop:Generator_ColumnVarNameInTable="columnAppearanceMode" msprop:Generator_UserColumnName="AppearanceMode" type="xs:int" minOccurs="0" />
+              <xs:element name="WordWrap" msprop:Generator_ColumnPropNameInRow="WordWrap" msprop:Generator_ColumnPropNameInTable="WordWrapColumn" msprop:Generator_ColumnVarNameInTable="columnWordWrap" msprop:Generator_UserColumnName="WordWrap" type="xs:int" minOccurs="0" />
+              <xs:element name="ErrorLines" msprop:Generator_ColumnPropNameInRow="ErrorLines" msprop:Generator_ColumnPropNameInTable="ErrorLinesColumn" msprop:Generator_ColumnVarNameInTable="columnErrorLines" msprop:Generator_UserColumnName="ErrorLines" type="xs:int" minOccurs="0" />
+              <xs:element name="ShowOutputTab" msprop:Generator_ColumnPropNameInRow="ShowOutputTab" msprop:Generator_ColumnPropNameInTable="ShowOutputTabColumn" msprop:Generator_ColumnVarNameInTable="columnShowOutputTab" msprop:Generator_UserColumnName="ShowOutputTab" type="xs:int" minOccurs="0" />
+              <xs:element name="ShowErrorsTab" msprop:Generator_ColumnPropNameInRow="ShowErrorsTab" msprop:Generator_ColumnPropNameInTable="ShowErrorsTabColumn" msprop:Generator_ColumnVarNameInTable="columnShowErrorsTab" msprop:Generator_UserColumnName="ShowErrorsTab" type="xs:int" minOccurs="0" />
+              <xs:element name="ShowNavigationBar" msprop:Generator_ColumnPropNameInRow="ShowNavigationBar" msprop:Generator_ColumnPropNameInTable="ShowNavigationBarColumn" msprop:Generator_ColumnVarNameInTable="columnShowNavigationBar" msprop:Generator_UserColumnName="ShowNavigationBar" type="xs:int" minOccurs="0" />
+              <xs:element name="UserId" msprop:Generator_ColumnPropNameInRow="UserId" msprop:Generator_ColumnPropNameInTable="UserIdColumn" msprop:Generator_ColumnVarNameInTable="columnUserId" msprop:Generator_UserColumnName="UserId" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -200,6 +306,10 @@ SELECT Id, Code, Language, LastModified, [User], Title FROM CodeTable WHERE (Id 
     </xs:unique>
     <xs:unique name="CodeTable_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:CodeTable" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="PrefsTable_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:PrefsTable" />
       <xs:field xpath="mstns:Id" />
     </xs:unique>
   </xs:element>

@@ -57,13 +57,20 @@ namespace CodeForger
                     {
                         MessageBox.Show("Email and password are correct!");
                         Properties.Settings.Default.RememberAccount = checkBoxRemember.Checked;
-                        Properties.Settings.Default.AccountLogin = i;
+                        Properties.Settings.Default.AccountLogin = int.Parse(data.Rows[i][0].ToString());
                         Properties.Settings.Default.Save();
                         //MessageBox.Show(i + "");
                         this.Close();
                     }
                 }
             }
+        }
+
+        private void FormAccount_Load(object sender, EventArgs e)
+        {
+            this.Location = new Point(
+    (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
+    (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
         }
     }
 }

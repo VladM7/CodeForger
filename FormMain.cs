@@ -1,9 +1,11 @@
 ﻿using CodeForger.CodeForgerDBDataSetTableAdapters;
 using FastColoredTextBoxNS;
+using AutocompleteMenuNS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -12,6 +14,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AutocompleteMenu = AutocompleteMenuNS.AutocompleteMenu;
+using System.Runtime.Remoting.Channels;
 
 namespace CodeForger
 {
@@ -55,6 +59,17 @@ namespace CodeForger
             FastColoredTextBox richTextBox = sender as FastColoredTextBox;
             object tabPageAux = richTextBox.Parent;
             TabPage tabPage = tabPageAux as TabPage;
+
+            foreach (Control ctrl in tabPage.Controls)
+                if (ctrl.GetType() == typeof(StatusBar))
+                {
+                    StatusBar statusBar = ctrl as StatusBar;
+                    var pnls = statusBar.Panels;
+                    var pnl = pnls[2];
+                    var place = richTextBox.Selection.Start;
+                    pnl.Text = "Lin " + (place.iLine + 1) + ", Col " + (place.iChar + 1);
+                }
+
             char x = richTextBox.Name[11];
             if (openTabs[int.Parse(x.ToString()), 2] == "saved")
             {
@@ -116,12 +131,15 @@ namespace CodeForger
                 form.FormClosed += (sdr, args) =>
                 {
                     //MessageBox.Show(Properties.Settings.Default.OpenFileTitle);
-                    tabPage.Text = Properties.Settings.Default.OpenFileTitle;
-                    openTabs[tabIndex, 0] = Properties.Settings.Default.OpenFileTitle;
-                    openTabs[tabIndex, 1] = contentsTextbox.Text;
-                    openTabs[tabIndex, 2] = "saved";
-                    openTabs[tabIndex, 3] = Properties.Settings.Default.OpenFileIsExternal + Properties.Settings.Default.OpenFilePath;
-                    openTabs[tabIndex, 4] = "1";
+                    if (Properties.Settings.Default.OpenFileTitle != "null")
+                    {
+                        tabPage.Text = Properties.Settings.Default.OpenFileTitle;
+                        openTabs[tabIndex, 0] = Properties.Settings.Default.OpenFileTitle;
+                        openTabs[tabIndex, 1] = contentsTextbox.Text;
+                        openTabs[tabIndex, 2] = "saved";
+                        openTabs[tabIndex, 3] = Properties.Settings.Default.OpenFileIsExternal + Properties.Settings.Default.OpenFilePath;
+                        openTabs[tabIndex, 4] = "1";
+                    }
                 };
                 form.ShowDialog();
                 foreach (Control ctrl in tabPage.Controls)
@@ -452,7 +470,7 @@ namespace CodeForger
         }
 
         ast structure;
-        int current=0;
+        int current = 0;
 
         private node Walk()
         {
@@ -466,13 +484,13 @@ namespace CodeForger
                 aux.par = null;
                 return aux;
             }
-            if(tkn.type == "paren" && tkn.value == "(")
+            if (tkn.type == "paren" && tkn.value == "(")
             {
                 tkn = tokens[++current];
                 node expression;
                 expression.type = "CallExpression";
                 expression.value = tkn.value;
-                expression.par= null;
+                expression.par = null;
                 tkn = tokens[current];
                 while (tkn.value != ")")
                 {
@@ -493,9 +511,109 @@ namespace CodeForger
 
         private void toolStripButtonRun_Click(object sender, EventArgs e)
         {
-            tokenizer("(add 8 (sub 8 6))");
-            foreach (var token in tokens)
-                MessageBox.Show("Type: " + token.type + "\nValue: " + token.value);
+            //tokenizer("(add 8 (sub 8 6))");
+            //foreach (var token in tokens)
+            //MessageBox.Show("Type: " + token.type + "\nValue: " + token.value);
+
+            int tab = tabControlMain.SelectedIndex;
+
+            string path = openTabs[tab, 3].ToString();
+            path = path.Substring(1);
+
+            //string path = Path.GetDirectoryName(Application.ExecutablePath);
+            string compilerPath = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\compilers\c"));
+
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "cmd.exe";
+            startInfo.Arguments = "/c c4 " + path + " & pause";
+            startInfo.WorkingDirectory = compilerPath;
+
+            //MessageBox.Show(Application.StartupPath);
+
+            Process.Start(startInfo);
+            //System.Console.ReadLine();
+            //process1.Close();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormAbout();
+            form.ShowDialog();
+        }
+
+        private void updateLayout()
+        {
+            PrefsTableTableAdapter prefsTableTA = new PrefsTableTableAdapter();
+            var data = prefsTableTA.GetData();
+
+            foreach (var row in data)
+            {
+                if (int.Parse(row[7].ToString()) == Properties.Settings.Default.AccountLogin)
+                {
+                    if (int.Parse(row[2].ToString()) == 1)
+                    {
+                        foreach (TabPage tab in tabControlMain.TabPages)
+                            foreach (Control control in tab.Controls)
+                                if (control.GetType() == typeof(FastColoredTextBox))
+                                {
+                                    FastColoredTextBox txt = control as FastColoredTextBox;
+                                    txt.WordWrap = true;
+                                }
+                    }
+                    else
+                    {
+                        foreach (TabPage tab in tabControlMain.TabPages)
+                            foreach (Control control in tab.Controls)
+                                if (control.GetType() == typeof(FastColoredTextBox))
+                                {
+                                    FastColoredTextBox txt = control as FastColoredTextBox;
+                                    txt.WordWrap = false;
+                                }
+                    }
+
+                    if (int.Parse(row[6].ToString()) == 0)
+                        toolStripOptions.Visible = false;
+                    else
+                        toolStripOptions.Visible = true;
+                }
+            }
+        }
+
+        private void generalOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormSettings(0);
+            form.FormClosed += (sdr, args) =>
+            {
+                updateLayout();
+            };
+            form.ShowDialog();
+        }
+
+        private void manageDatabaseFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormSettings(1);
+            form.ShowDialog();
+        }
+
+        private void releaseNotesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/VladM7/CodeForger/releases");
+        }
+
+        private void toolStripButtonFormat_Click(object sender, EventArgs e)
+        {
+            TabPage tabPage = tabControlMain.SelectedTab;
+            foreach (Control control in tabPage.Controls)
+                if (control.GetType() == typeof(FastColoredTextBox))
+                {
+                    FastColoredTextBox fastColoredTextBox = control as FastColoredTextBox;
+                    fastColoredTextBox.DoAutoIndent();
+                }
+        }
+
+        private void closeAllButCurrentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void addTab(string title, string path, string contents, string isexternal)
@@ -515,6 +633,21 @@ namespace CodeForger
             textBox.WordWrap = true;
             textBox.AddStyle(GreenStyle);
             textBox.SelectionChanged += TextBox_SelectionChanged;
+            textBox.AutoIndent = true;
+            textBox.Language = Language.CSharp;
+            textBox.AutoCompleteBrackets = true;
+            AutocompleteMenu autocompleteMenuC = new AutocompleteMenu();
+            autocompleteMenuC.Items = new string[]
+            {
+"auto", "double", "int", "struct", "break", "else", "long", "switch", "case", "enum", "register", "typedef", "char", "extern", "return", "union", "continue", "for", "signed", "void", "do", "if", "static", "while", "default", "goto", "sizeof", "volatile", "const", "float", "short", "unsigned"
+            };
+
+            Colors clrs = new Colors();
+            clrs.HighlightingColor = Color.FromArgb(101, 98, 252);
+            clrs.SelectedBackColor = Color.FromArgb(101, 98, 252);
+            autocompleteMenuC.Colors = clrs;
+
+            autocompleteMenuC.Show(textBox, false);
 
             tabPage.Controls.Add(textBox);
 
@@ -545,7 +678,7 @@ namespace CodeForger
             languagePanel.Text = "LISP";
             //languagePanel.AutoSize= StatusBarPanelAutoSize.Spring;
             //statusPanel.Alignment = HorizontalAlignment.Left;
-            lineColPanel.Text = "Lin 2, Col 4";
+            lineColPanel.Text = "Lin ?, Col ?";
             //lineColPanel.Alignment = HorizontalAlignment.Right;
             zoomPanel.Text = "100%";
             zoomPanel.Name = "zoomPanel";
@@ -594,11 +727,25 @@ namespace CodeForger
 
         private void TextBox_SelectionChanged(object sender, EventArgs e)
         {
+            FastColoredTextBox richTextBox = sender as FastColoredTextBox;
+            object tabPageAux = richTextBox.Parent;
+            TabPage tabPage = tabPageAux as TabPage;
 
+            foreach (Control ctrl in tabPage.Controls)
+                if (ctrl.GetType() == typeof(StatusBar))
+                {
+                    StatusBar statusBar = ctrl as StatusBar;
+                    var pnls = statusBar.Panels;
+                    var pnl = pnls[2];
+                    var place = richTextBox.Selection.Start;
+                    pnl.Text = "Lin " + (place.iLine + 1) + ", Col " + (place.iChar + 1);
+                }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            updateLayout();
+
             this.tabControlMain.Padding = new Point(12, 4);
             //this.tabControlMain.DrawMode = TabDrawMode.OwnerDrawFixed;
             this.tabControlMain.SizeMode = TabSizeMode.Fixed;

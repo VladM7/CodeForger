@@ -24,13 +24,35 @@ namespace CodeForger
             UsersTableTableAdapter adapter = new UsersTableTableAdapter();
             CodeForgerDBDataSet.UsersTableDataTable data = adapter.GetData();
             int accID = Properties.Settings.Default.AccountLogin;
-            if (string.Equals(data[accID][3].ToString(), textBoxOldPassword.Text))
+
+            int counter = 0;
+            foreach (var row in data)
             {
-                data[accID][3] = textBoxNewPassword.Text;
-                adapter.Update(data);
-                MessageBox.Show("Password updated successfully!");
-                textBoxOldPassword.Text = "";
-                textBoxNewPassword.Text = "";
+                if (int.Parse(row[0].ToString()) == accID)
+                {
+                    if (string.Equals(row[3].ToString(), textBoxOldPassword.Text))
+                    {
+                        if (textBoxNewPassword.Text.Length < 3)
+                        {
+                            MessageBox.Show("Minimum password length is 3 characters", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxOldPassword.Text = "";
+                            textBoxNewPassword.Text = "";
+                            return;
+                        }
+                        data[counter][3] = textBoxNewPassword.Text;
+                        adapter.Update(data);
+                        MessageBox.Show("Password updated successfully!");
+                        textBoxOldPassword.Text = "";
+                        textBoxNewPassword.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid old password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        textBoxOldPassword.Text = "";
+                        textBoxNewPassword.Text = "";
+                    }
+                }
+                counter++;
             }
         }
 
@@ -41,14 +63,40 @@ namespace CodeForger
 
         private void buttonDeleteAccount_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Are you sure you want to delete your account?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show("Are you sure you want to delete your account? This will also delete the files you saved in the database.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 UsersTableTableAdapter adapter = new UsersTableTableAdapter();
                 CodeForgerDBDataSet.UsersTableDataTable data = adapter.GetData();
                 int accID = Properties.Settings.Default.AccountLogin;
-                data[accID].Delete();
+
+                int counter = 0;
+                foreach (var row in data)
+                {
+                    if (int.Parse(row[0].ToString()) == accID)
+                    {
+                        data[counter].Delete();
+                        break;
+                    }
+                    counter++;
+                }
+                //data[accID].Delete();
                 adapter.Update(data);
+
+
+                CodeTableTableAdapter codeTA = new CodeTableTableAdapter();
+                var data2 = codeTA.GetData();
+
+                counter = 0;
+                foreach (var row in data2)
+                {
+                    if (int.Parse(row[4].ToString()) == accID)
+                    {
+                        data2[counter].Delete();
+                    }
+                    counter++;
+                }
+                codeTA.Update(data2);
 
                 Properties.Settings.Default.AccountLogin = -1;
                 Properties.Settings.Default.RememberAccount = false;

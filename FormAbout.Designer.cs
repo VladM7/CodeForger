@@ -66,14 +66,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1883, 240);
+            this.panel1.Size = new System.Drawing.Size(2169, 240);
             this.panel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
-            this.label1.Location = new System.Drawing.Point(789, 74);
+            this.label1.Location = new System.Drawing.Point(274, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(513, 101);
             this.label1.TabIndex = 1;
@@ -81,9 +81,11 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(540, 21);
+            this.pictureBox1.Image = global::CodeForger.Properties.Resources.Logo;
+            this.pictureBox1.Location = new System.Drawing.Point(25, -10);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(222, 198);
+            this.pictureBox1.Size = new System.Drawing.Size(251, 261);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -91,9 +93,9 @@
             // 
             this.panel2.Controls.Add(this.tabControlAbout);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 254);
+            this.panel2.Location = new System.Drawing.Point(0, 324);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1883, 1087);
+            this.panel2.Size = new System.Drawing.Size(2169, 516);
             this.panel2.TabIndex = 1;
             // 
             // tabControlAbout
@@ -106,7 +108,7 @@
             this.tabControlAbout.Location = new System.Drawing.Point(0, 0);
             this.tabControlAbout.Name = "tabControlAbout";
             this.tabControlAbout.SelectedIndex = 0;
-            this.tabControlAbout.Size = new System.Drawing.Size(1883, 1087);
+            this.tabControlAbout.Size = new System.Drawing.Size(2169, 516);
             this.tabControlAbout.TabIndex = 0;
             // 
             // tabPageDescription
@@ -115,7 +117,7 @@
             this.tabPageDescription.Location = new System.Drawing.Point(12, 58);
             this.tabPageDescription.Name = "tabPageDescription";
             this.tabPageDescription.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDescription.Size = new System.Drawing.Size(1859, 1017);
+            this.tabPageDescription.Size = new System.Drawing.Size(2145, 446);
             this.tabPageDescription.TabIndex = 0;
             this.tabPageDescription.Text = "Description";
             this.tabPageDescription.UseVisualStyleBackColor = true;
@@ -144,7 +146,7 @@
             this.tabPageInformation.Location = new System.Drawing.Point(12, 58);
             this.tabPageInformation.Name = "tabPageInformation";
             this.tabPageInformation.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageInformation.Size = new System.Drawing.Size(1859, 1017);
+            this.tabPageInformation.Size = new System.Drawing.Size(2145, 446);
             this.tabPageInformation.TabIndex = 1;
             this.tabPageInformation.Text = "Information";
             this.tabPageInformation.UseVisualStyleBackColor = true;
@@ -255,26 +257,28 @@
             // 
             this.tabPageCredits.Location = new System.Drawing.Point(12, 58);
             this.tabPageCredits.Name = "tabPageCredits";
-            this.tabPageCredits.Size = new System.Drawing.Size(1859, 1017);
+            this.tabPageCredits.Size = new System.Drawing.Size(2145, 446);
             this.tabPageCredits.TabIndex = 2;
             this.tabPageCredits.Text = "Credits";
             this.tabPageCredits.UseVisualStyleBackColor = true;
             // 
             // tabPageLicense
             // 
+            this.tabPageLicense.AutoScroll = true;
             this.tabPageLicense.Controls.Add(this.label12);
             this.tabPageLicense.Location = new System.Drawing.Point(12, 58);
             this.tabPageLicense.Name = "tabPageLicense";
-            this.tabPageLicense.Size = new System.Drawing.Size(1859, 1017);
+            this.tabPageLicense.Size = new System.Drawing.Size(2145, 446);
             this.tabPageLicense.TabIndex = 3;
             this.tabPageLicense.Text = "License";
             this.tabPageLicense.UseVisualStyleBackColor = true;
             // 
             // label12
             // 
+            this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(3, 66);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(1830, 870);
+            this.label12.Size = new System.Drawing.Size(8625, 259);
             this.label12.TabIndex = 0;
             this.label12.Text = resources.GetString("label12.Text");
             // 
@@ -282,7 +286,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1883, 1341);
+            this.ClientSize = new System.Drawing.Size(2169, 840);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "FormAbout";
@@ -299,6 +303,7 @@
             this.tabPageInformation.ResumeLayout(false);
             this.tabPageInformation.PerformLayout();
             this.tabPageLicense.ResumeLayout(false);
+            this.tabPageLicense.PerformLayout();
             this.ResumeLayout(false);
 
         }
