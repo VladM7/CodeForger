@@ -16,7 +16,7 @@ namespace CodeForger
         public Form1()
         {
             InitializeComponent();
-            this.BackgroundImage = Properties.Resources.fundal;
+            //this.BackgroundImage = Properties.Resources.fundal;
             pictureBoxLogo.BackColor = Color.Transparent;
             label1.BackColor = Color.Transparent;
         }
@@ -50,6 +50,7 @@ namespace CodeForger
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //MessageBox.Show(Properties.Settings.Default.RememberAccount.ToString());
             //MessageBox.Show(Properties.Settings.Default.AccountLogin.ToString());
             if (Properties.Settings.Default.RememberAccount == true && Properties.Settings.Default.AccountLogin != -1)
             {

@@ -59,9 +59,9 @@
             this.radioButtonSaveExtFile.AutoSize = true;
             this.radioButtonSaveExtFile.Location = new System.Drawing.Point(12, 111);
             this.radioButtonSaveExtFile.Name = "radioButtonSaveExtFile";
-            this.radioButtonSaveExtFile.Size = new System.Drawing.Size(373, 41);
+            this.radioButtonSaveExtFile.Size = new System.Drawing.Size(229, 41);
             this.radioButtonSaveExtFile.TabIndex = 3;
-            this.radioButtonSaveExtFile.Text = "Save locally to .lsp file";
+            this.radioButtonSaveExtFile.Text = "Save locally";
             this.radioButtonSaveExtFile.UseVisualStyleBackColor = true;
             this.radioButtonSaveExtFile.CheckedChanged += new System.EventHandler(this.radioButtonSaveExtFile_CheckedChanged);
             // 

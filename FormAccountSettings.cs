@@ -19,6 +19,139 @@ namespace CodeForger
             this.BackgroundImage = Properties.Resources.fundal;
         }
 
+        public string cesar(StringBuilder s)
+        {
+            int n = s.Length;
+            for (int i = 0; i < n; i++)
+            {
+                if (s[i] != 32)
+                {
+                    if ((s[i] >= 88 && s[i] <= 91) || (s[i] >= 120 && s[i] <= 123))
+                        s[i] = (char)(s[i] - 23);
+                    else
+                        s[i] = (char)(s[i] + 3);
+                }
+            }
+
+            return transport(s);
+        }
+
+        public string transport(StringBuilder s)
+        {
+            int n = s.Length;
+            if (n % 5 == 0)
+            {
+                for (int i = 0; i < n; i += 5)
+                {
+                    char aux1 = (char)s[i];
+                    char aux3 = (char)s[i + 2];
+                    char aux4 = (char)s[i + 3];
+                    char aux5 = (char)s[i + 4];
+                    s[i] = (char)aux3;
+                    s[i + 2] = (char)aux5;
+                    s[i + 3] = (char)aux1;
+                    s[i + 4] = (char)aux4;
+                }
+                string str = s.ToString();
+                return str;
+            }
+            else
+                if (n % 5 == 1)
+            {
+                for (int i = 0; i < n - 1; i += 5)
+                {
+                    char aux1 = (char)s[i];
+                    char aux3 = (char)s[i + 2];
+                    char aux4 = (char)s[i + 3];
+                    char aux5 = (char)s[i + 4];
+                    s[i] = (char)aux3;
+                    s[i + 2] = (char)aux5;
+                    s[i + 3] = (char)aux1;
+                    s[i + 4] = (char)aux4;
+                }
+                string str = s.ToString();
+                return str;
+            }
+            else
+                if (n % 5 == 2)
+            {
+                for (int i = 0; i < n - 2; i += 5)
+                {
+                    char aux1 = (char)s[i];
+                    char aux3 = (char)s[i + 2];
+                    char aux4 = (char)s[i + 3];
+                    char aux5 = (char)s[i + 4];
+                    s[i] = (char)aux3;
+                    s[i + 2] = (char)aux5;
+                    s[i + 3] = (char)aux1;
+                    s[i + 4] = (char)aux4;
+                }
+                char aux6 = (char)s[n - 1];
+                char aux2 = (char)s[n - 2];
+                s[n - 2] = (char)aux6;
+                s[n - 1] = (char)aux2;
+                string str = s.ToString();
+                return str;
+            }
+            else
+                if (n % 5 == 3)
+            {
+                for (int i = 0; i < n - 3; i += 5)
+                {
+                    char aux1 = (char)s[i];
+                    char aux3 = (char)s[i + 2];
+                    char aux4 = (char)s[i + 3];
+                    char aux5 = (char)s[i + 4];
+                    s[i] = (char)aux3;
+                    s[i + 2] = (char)aux5;
+                    s[i + 3] = (char)aux1;
+                    s[i + 4] = (char)aux4;
+                }
+                char aux6 = (char)s[n - 1];
+                char aux2 = (char)s[n - 2];
+                char aux7 = (char)s[n - 3];
+                s[n - 2] = (char)aux7;
+                s[n - 1] = (char)aux2;
+                s[n - 3] = (char)aux6;
+                string str = s.ToString();
+                return str;
+            }
+            else
+                if (n % 5 == 4)
+            {
+                for (int i = 0; i < n - 4; i += 5)
+                {
+                    char aux1 = (char)s[i];
+                    char aux3 = (char)s[i + 2];
+                    char aux4 = (char)s[i + 3];
+                    char aux5 = (char)s[i + 4];
+                    s[i] = (char)aux3;
+                    s[i + 2] = (char)aux5;
+                    s[i + 3] = (char)aux1;
+                    s[i + 4] = (char)aux4;
+                }
+                char aux6 = (char)s[n - 1];
+                char aux2 = (char)s[n - 2];
+                char aux7 = (char)s[n - 3];
+                char aux8 = (char)s[n - 4];
+                s[n - 2] = (char)aux7;
+                s[n - 1] = (char)aux2;
+                s[n - 3] = (char)aux8;
+                s[n - 4] = (char)aux6;
+                string str = s.ToString();
+                return str;
+            }
+            return null;
+        }
+
+        private string encrypt(string text)
+        {
+            StringBuilder sb = new StringBuilder();
+            string textBoxValue = text;
+            sb.Append(textBoxValue);
+            return cesar(sb);
+        }
+
         private void buttonChangePassword_Click(object sender, EventArgs e)
         {
             UsersTableTableAdapter adapter = new UsersTableTableAdapter();
@@ -30,8 +163,14 @@ namespace CodeForger
             {
                 if (int.Parse(row[0].ToString()) == accID)
                 {
-                    if (string.Equals(row[3].ToString(), textBoxOldPassword.Text))
+                    if (string.Equals(row[3].ToString(), encrypt(textBoxOldPassword.Text)))
                     {
+                        if (textBoxNewPassword.Text == textBoxOldPassword.Text)
+                        {
+                            MessageBox.Show("New password cannot be the same as the old password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxNewPassword.Text = "";
+                            return;
+                        }
                         if (textBoxNewPassword.Text.Length < 3)
                         {
                             MessageBox.Show("Minimum password length is 3 characters", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -39,7 +178,7 @@ namespace CodeForger
                             textBoxNewPassword.Text = "";
                             return;
                         }
-                        data[counter][3] = textBoxNewPassword.Text;
+                        data[counter][3] = encrypt(textBoxNewPassword.Text);
                         adapter.Update(data);
                         MessageBox.Show("Password updated successfully!");
                         textBoxOldPassword.Text = "";

@@ -49,9 +49,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(232, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(752, 101);
+            this.label1.Size = new System.Drawing.Size(809, 101);
             this.label1.TabIndex = 1;
-            this.label1.Text = "CodeForger Login";
+            this.label1.Text = "CodeForger Sign In";
             // 
             // pictureBoxLogo
             // 
@@ -122,6 +122,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(13, 589);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(248, 37);
@@ -132,7 +133,7 @@
             // 
             this.buttonRegister.Location = new System.Drawing.Point(13, 652);
             this.buttonRegister.Name = "buttonRegister";
-            this.buttonRegister.Size = new System.Drawing.Size(247, 57);
+            this.buttonRegister.Size = new System.Drawing.Size(272, 78);
             this.buttonRegister.TabIndex = 18;
             this.buttonRegister.Text = "Register";
             this.buttonRegister.UseVisualStyleBackColor = true;
@@ -141,12 +142,13 @@
             // checkBoxRemember
             // 
             this.checkBoxRemember.AutoSize = true;
+            this.checkBoxRemember.BackColor = System.Drawing.Color.Transparent;
             this.checkBoxRemember.Location = new System.Drawing.Point(13, 521);
             this.checkBoxRemember.Name = "checkBoxRemember";
             this.checkBoxRemember.Size = new System.Drawing.Size(272, 41);
             this.checkBoxRemember.TabIndex = 19;
             this.checkBoxRemember.Text = "Remember me";
-            this.checkBoxRemember.UseVisualStyleBackColor = true;
+            this.checkBoxRemember.UseVisualStyleBackColor = false;
             // 
             // FormAccount
             // 
@@ -166,7 +168,7 @@
             this.Controls.Add(this.pictureBoxLogo);
             this.Controls.Add(this.label1);
             this.Name = "FormAccount";
-            this.Text = "CodeForger Sign in";
+            this.Text = "Sign in";
             this.Load += new System.EventHandler(this.FormAccount_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);

@@ -236,6 +236,10 @@
   <ItemGroup>
     <Content Include="compilers\c\c4.c" />
     <Content Include="compilers\c\c4.exe" />
+    <None Include="Resources\White1.jpg" />
+    <None Include="Resources\Main-White.jpg" />
+    <None Include="Resources\Fundal-Main-White.jpg" />
+    <None Include="Resources\icons8-male-user-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

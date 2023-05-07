@@ -103,6 +103,16 @@ namespace CodeForger.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Fundal_Main_White {
+            get {
+                object obj = ResourceManager.GetObject("Fundal_Main_White", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap light_setting_icon {
             get {
                 object obj = ResourceManager.GetObject("light_setting_icon", resourceCulture);
@@ -116,6 +126,16 @@ namespace CodeForger.Properties {
         internal static System.Drawing.Bitmap Logo {
             get {
                 object obj = ResourceManager.GetObject("Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Main_White {
+            get {
+                object obj = ResourceManager.GetObject("Main_White", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -146,6 +166,26 @@ namespace CodeForger.Properties {
         internal static System.Drawing.Bitmap open_file_icon {
             get {
                 object obj = ResourceManager.GetObject("open-file-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_icon {
+            get {
+                object obj = ResourceManager.GetObject("user_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap White1 {
+            get {
+                object obj = ResourceManager.GetObject("White1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

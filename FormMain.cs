@@ -1,4 +1,5 @@
 ﻿using CodeForger.CodeForgerDBDataSetTableAdapters;
+//using DefineIMyInterface;
 using FastColoredTextBoxNS;
 using AutocompleteMenuNS;
 using System;
@@ -16,6 +17,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AutocompleteMenu = AutocompleteMenuNS.AutocompleteMenu;
 using System.Runtime.Remoting.Channels;
+using CodeForger.Properties;
+using System.Runtime.CompilerServices;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CodeForger
 {
@@ -34,6 +38,7 @@ namespace CodeForger
             {
                 //MessageBox.Show(Properties.Settings.Default.OpenFileTitle);
                 addTab(Properties.Settings.Default.OpenFileTitle, Properties.Settings.Default.OpenFilePath, Properties.Settings.Default.OpenFileContents, Properties.Settings.Default.OpenFileIsExternal);
+                tabControlMain.Invalidate();
             };
             form1.ShowDialog();
         }
@@ -41,6 +46,7 @@ namespace CodeForger
         private void toolStripButtonNewFile_Click(object sender, EventArgs e)
         {
             addTab("Untitled*", null, null, null);
+            tabControlMain.Invalidate();
         }
 
         public FormMain(string title, string path, string contents, string isExternal)
@@ -76,7 +82,8 @@ namespace CodeForger
                 openTabs[int.Parse(x.ToString()), 2] = "unsaved";
                 if (tabPage.Text[tabPage.Text.Length - 1] != '*')
                     tabPage.Text += "*";
-                //tabPage.Refresh();
+                tabPage.Refresh();
+                tabControlMain.Invalidate();
             }
 
             TextChangedEventArgs er = e as TextChangedEventArgs;
@@ -96,6 +103,7 @@ namespace CodeForger
             FastColoredTextBox contentsTextbox = null;
             foreach (Control ctrl in tabPage.Controls)
             {
+                MessageBox.Show(ctrl.GetType().ToString());
                 if (ctrl.GetType() == typeof(FastColoredTextBox))
                 {
                     contentsTextbox = ctrl as FastColoredTextBox;
@@ -123,6 +131,7 @@ namespace CodeForger
                 }
                 openTabs[tabIndex, 2] = "saved";
                 //openTabs[tabIndex, 4] = "0";
+                tabControlMain.Invalidate();
                 tabPage.Text = tabPage.Text.Remove(tabPage.Text.Length - 1, 1);
             }
             else
@@ -139,6 +148,7 @@ namespace CodeForger
                         openTabs[tabIndex, 2] = "saved";
                         openTabs[tabIndex, 3] = Properties.Settings.Default.OpenFileIsExternal + Properties.Settings.Default.OpenFilePath;
                         openTabs[tabIndex, 4] = "1";
+                        tabControlMain.Invalidate();
                     }
                 };
                 form.ShowDialog();
@@ -159,6 +169,7 @@ namespace CodeForger
                 }
             }
             openTabs[tabIndex, 2] = "saved";
+            tabControlMain.Invalidate();
             //Refresh();
         }
 
@@ -253,6 +264,7 @@ namespace CodeForger
                         codeTableTA.Update(data);
                     }
                     openTabs[tabIndex, 2] = "saved";
+                    tabControlMain.Invalidate();
                     //openTabs[tabIndex, 4] = "0";
                     tabPage.Text = tabPage.Text.Remove(tabPage.Text.Length - 1, 1);
                 }
@@ -268,17 +280,82 @@ namespace CodeForger
                         openTabs[tabIndex, 2] = "saved";
                         openTabs[tabIndex, 3] = Properties.Settings.Default.OpenFileIsExternal + Properties.Settings.Default.OpenFilePath;
                         openTabs[tabIndex, 4] = "1";
+                        tabControlMain.Invalidate();
                     };
                     form.ShowDialog();
                 }
                 openTabs[tabIndex, 2] = "saved";
+                tabControlMain.Invalidate();
                 tabIndex++;
             }
         }
 
+        public static string[,] RemoveRow(string[,] matrix, int rowToRemove)
+        {
+            int numRows = matrix.GetLength(0);
+            int numCols = matrix.GetLength(1);
+
+            // Create a new matrix with one fewer row
+            string[,] newMatrix = new string[numRows - 1, numCols];
+
+            // Copy the rows before the removed row
+            for (int i = 0; i < rowToRemove; i++)
+            {
+                for (int j = 0; j < numCols; j++)
+                {
+                    newMatrix[i, j] = matrix[i, j];
+                }
+            }
+
+            // Copy the rows after the removed row
+            for (int i = rowToRemove + 1; i < numRows; i++)
+            {
+                for (int j = 0; j < numCols; j++)
+                {
+                    newMatrix[i - 1, j] = matrix[i, j];
+                }
+            }
+
+            return newMatrix;
+        }
+
+        private void showOpenTabs()
+        {
+            string afish = null;
+            int numRows = openTabs.GetLength(0);
+            int numCols = openTabs.GetLength(1);
+            for (int j = 0; j < numRows; j++)
+            {
+                for (int k = 0; k < numCols; k++)
+                    afish += openTabs[j, k] + " ";
+                afish += "\n";
+            }
+            MessageBox.Show(afish);
+        }
+
         private void tabControlMain_MouseDown(object sender, MouseEventArgs e)
         {
+            for (var i = 0; i < this.tabControlMain.TabPages.Count; i++)
+            {
+                var tabRect = this.tabControlMain.GetTabRect(i);
+                tabRect.Inflate(-2, -2);
+                var closeImage = Resources.DeleteButton_Image;
+                var imageRect = new Rectangle(
+                    (tabRect.Right - closeImage.Width),
+                    tabRect.Top + (tabRect.Height - closeImage.Height) / 2,
+                    closeImage.Width,
+                    closeImage.Height);
+                if (imageRect.Contains(e.Location))
+                {
+                    this.tabControlMain.TabPages.RemoveAt(i);
+                    openTabs = RemoveRow(openTabs, i);
 
+                    //showOpenTabs();
+
+                    break;
+                }
+            }
+            tabControlMain.Invalidate();
         }
 
         private void toolStripButtonUndo_Click(object sender, EventArgs e)
@@ -520,12 +597,28 @@ namespace CodeForger
             string path = openTabs[tab, 3].ToString();
             path = path.Substring(1);
 
+            if (openTabs[tab, 2] == "unsaved")
+            {
+                var result = MessageBox.Show("Do you want to save the file before compiling?", "Unsaved File", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                    saveFileToolStripMenuItem_Click(null, null);
+                else if (result == DialogResult.Cancel)
+                    return;
+            }
+
+            if (openTabs[tab, 0][openTabs[tab, 0].Length - 1] != 'c')
+            {
+                MessageBox.Show("For now, only .c files are supported for compiling", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             //string path = Path.GetDirectoryName(Application.ExecutablePath);
-            string compilerPath = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\compilers\c"));
+            string compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\c"));
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = "cmd.exe";
             startInfo.Arguments = "/c c4 " + path + " & pause";
+            //startInfo.Arguments = "/c " + path + " & pause";
             startInfo.WorkingDirectory = compilerPath;
 
             //MessageBox.Show(Application.StartupPath);
@@ -616,17 +709,74 @@ namespace CodeForger
 
         }
 
+        private void tabPage_TextChanged(object sender, EventArgs e)
+        {
+            TabPage tabPage = sender as TabPage;
+            tabPage.Refresh();
+            tabControlMain.Invalidate();
+        }
+
+        private void richTextBox_ZoomChanged(object sender, EventArgs e)
+        {
+            TabPage currentTabPage = tabControlMain.SelectedTab;
+            FastColoredTextBox fastColoredTextBox = sender as FastColoredTextBox;
+
+            int zoom = fastColoredTextBox.Zoom;
+
+            foreach (Control ctrl in currentTabPage.Controls)
+            {
+                if (ctrl.GetType() == typeof(StatusBar))
+                {
+                    StatusBar statusBar = ctrl as StatusBar;
+                    foreach (StatusBarPanel statusBarPanel in statusBar.Panels)
+                    {
+                        if (string.Equals(statusBarPanel.Name, "zoomPanel"))
+                            statusBarPanel.Text = zoom.ToString() + "%";
+                    }
+                }
+            }
+        }
+
+        private void createErrorsDataGridView(TabPage tabPage)
+        {
+            DataGridView dataGridView = new DataGridView();
+            dataGridView.Dock = DockStyle.Fill;
+
+            dataGridView.BackgroundColor = Color.White;
+            dataGridView.BorderStyle = BorderStyle.None;
+            dataGridView.GridColor = Color.White;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.RowHeadersVisible = false;
+            dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView.DefaultCellStyle.SelectionBackColor = Color.WhiteSmoke;
+            dataGridView.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.White;
+            dataGridView.ReadOnly = true;
+
+            // dataGridView.CellDoubleClick += dataGridView_CellDoubleClick;
+
+            dataGridView.ColumnCount = 4;
+            dataGridView.Columns[0].Name = "Type";
+            dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView.Columns[1].Name = "Description";
+            dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView.Columns[2].Name = "File";
+            dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView.Columns[3].Name = "Line";
+            dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            tabPage.Controls.Add(dataGridView);
+        }
+
         private void addTab(string title, string path, string contents, string isexternal)
         {
             TabPage tabPage = new TabPage();
 
             tabPage.Text = title;
             tabPage.BackColor = Color.White;
+            tabPage.TextChanged += tabPage_TextChanged;
 
             FastColoredTextBox textBox = new FastColoredTextBox();
-            textBox.Text = contents;
             textBox.Name = "richTextBox" + tabsCounter;
-            textBox.TextChanged += new EventHandler<TextChangedEventArgs>(richTextBoxCode_TextChanged);
             textBox.Dock = DockStyle.Fill;
             textBox.Font = new Font("Consolas", 14);
             textBox.CommentPrefix = "//";
@@ -636,6 +786,11 @@ namespace CodeForger
             textBox.AutoIndent = true;
             textBox.Language = Language.CSharp;
             textBox.AutoCompleteBrackets = true;
+            textBox.BackColor = Color.Transparent;
+            textBox.BackgroundImage = Properties.Resources.White1;
+            textBox.BackgroundImageLayout = ImageLayout.Stretch;
+            //textBox.A;
+            //textBox.Add;
             AutocompleteMenu autocompleteMenuC = new AutocompleteMenu();
             autocompleteMenuC.Items = new string[]
             {
@@ -651,6 +806,29 @@ namespace CodeForger
 
             tabPage.Controls.Add(textBox);
 
+            TabControl tabControl = new TabControl();
+            tabControl.Dock = DockStyle.Bottom;
+            tabControl.Height = 150;
+
+            TabPage tabPageErrorList = new TabPage();
+            tabPageErrorList.Text = "Error List";
+            tabPageErrorList.BackColor = Color.White;
+            createErrorsDataGridView(tabPageErrorList);
+
+            TabPage tabPageOutput = new TabPage();
+            tabPageOutput.Text = "Output";
+            tabPageOutput.BackColor = Color.White;
+
+            Label outputLabel = new Label();
+            outputLabel.Dock = DockStyle.Fill;
+            outputLabel.Text = "==============================";
+            tabPageOutput.Controls.Add(outputLabel);
+
+            tabControl.TabPages.Add(tabPageOutput);
+            tabControl.TabPages.Add(tabPageErrorList);
+            tabPage.Controls.Add(tabControl);
+
+            /*
             GroupBox groupBox = new GroupBox();
             groupBox.Name = "groupBox" + tabsCounter;
             groupBox.BackColor = Color.White;
@@ -658,6 +836,7 @@ namespace CodeForger
             groupBox.Dock = DockStyle.Bottom;
 
             tabPage.Controls.Add(groupBox);
+            */
 
             StatusBar statusBar = new StatusBar();
             statusBar.Dock = DockStyle.Bottom;
@@ -675,7 +854,7 @@ namespace CodeForger
                 filePanel.Text = path;
             filePanel.AutoSize = StatusBarPanelAutoSize.Spring;
             filePanel.Name = "filePanel";
-            languagePanel.Text = "LISP";
+            languagePanel.Text = "C";
             //languagePanel.AutoSize= StatusBarPanelAutoSize.Spring;
             //statusPanel.Alignment = HorizontalAlignment.Left;
             lineColPanel.Text = "Lin ?, Col ?";
@@ -715,6 +894,12 @@ namespace CodeForger
             else
                 openTabs[tabsCounter, 4] = "1";
 
+            textBox.ZoomChanged += new EventHandler(richTextBox_ZoomChanged);
+            textBox.TextChanged += new EventHandler<TextChangedEventArgs>(richTextBoxCode_TextChanged);
+            textBox.Text = contents;
+            openTabs[tabsCounter, 2] = "saved";
+            tabControlMain.Invalidate();
+
             tabControlMain.Controls.Add(tabPage);
             //tabControlMain.TabPages.Insert(tabControlMain.TabCount - 1, tabPage);
 
@@ -722,7 +907,36 @@ namespace CodeForger
 
             //Refresh();
 
+            tabControlMain.Invalidate();
+
             tabsCounter++;
+        }
+
+        private void toolStripButtonResetZoom_Click(object sender, EventArgs e)
+        {
+            TabPage currentTabPage = tabControlMain.SelectedTab;
+            int zoom = 100;
+
+            foreach (Control ctrl in currentTabPage.Controls)
+            {
+                if (ctrl.GetType() == typeof(FastColoredTextBox))
+                {
+                    FastColoredTextBox textBox = ctrl as FastColoredTextBox;
+                    textBox.Zoom = zoom;
+                }
+            }
+            foreach (Control ctrl in currentTabPage.Controls)
+            {
+                if (ctrl.GetType() == typeof(StatusBar))
+                {
+                    StatusBar statusBar = ctrl as StatusBar;
+                    foreach (StatusBarPanel statusBarPanel in statusBar.Panels)
+                    {
+                        if (string.Equals(statusBarPanel.Name, "zoomPanel"))
+                            statusBarPanel.Text = zoom.ToString() + "%";
+                    }
+                }
+            }
         }
 
         private void TextBox_SelectionChanged(object sender, EventArgs e)
@@ -742,18 +956,297 @@ namespace CodeForger
                 }
         }
 
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.Default.AccountLogin = -1;
+            toolStripMenuItemUser.Text = "(user)";
+            toolStripMenuItemUser.Enabled = false;
+        }
+
+        /*
+        private void tabControlMain_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            var tabPage = this.tabControlMain.TabPages[e.Index];
+            var tabRect = this.tabControlMain.GetTabRect(e.Index);
+            tabRect.Inflate(-2, -2);
+            var closeImage = Properties.Resources.DeleteButton_Image;
+            e.Graphics.DrawImage(closeImage,
+                (tabRect.Right - closeImage.Width),
+                tabRect.Top + (tabRect.Height - closeImage.Height) / 2);
+            TextRenderer.DrawText(e.Graphics, tabPage.Text, tabPage.Font,
+                tabRect, tabPage.ForeColor, TextFormatFlags.Left);
+        }
+        */
+
+        private void tabControlMain_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            var tabPage = this.tabControlMain.TabPages[e.Index];
+            var tabRect = this.tabControlMain.GetTabRect(e.Index);
+            tabRect.Inflate(-2, -2);
+            var closeImage = Properties.Resources.DeleteButton_Image;
+            e.Graphics.DrawImage(closeImage,
+                (tabRect.Right - closeImage.Width),
+                tabRect.Top + (tabRect.Height - closeImage.Height) / 2);
+            if (openTabs[e.Index, 2] == "unsaved" && openTabs[e.Index, 0] != "Untitled*")
+                TextRenderer.DrawText(e.Graphics, openTabs[e.Index, 0] + "*", tabPage.Font,
+                tabRect, tabPage.ForeColor, TextFormatFlags.Left);
+            else
+                TextRenderer.DrawText(e.Graphics, openTabs[e.Index, 0], tabPage.Font,
+                    tabRect, tabPage.ForeColor, TextFormatFlags.Left);
+        }
+
+        private void toolStripButtonBuildRun_Click(object sender, EventArgs e)
+        {
+            int tab = tabControlMain.SelectedIndex;
+
+            string path = openTabs[tab, 3].ToString();
+            path = path.Substring(1);
+
+            string compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\c"));
+
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "cmd.exe";
+            startInfo.Arguments = "/c c4 " + path + " & pause";
+            startInfo.WorkingDirectory = compilerPath;
+
+            Process.Start(startInfo);
+        }
+
+        private void toolStripButtonBuild_Click(object sender, EventArgs e)
+        {
+            int tab = tabControlMain.SelectedIndex;
+
+            string path = openTabs[tab, 3].ToString();
+            path = path.Substring(1);
+
+            string compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\c"));
+
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "cmd.exe";
+            startInfo.Arguments = "/c c4 " + path;
+            startInfo.WorkingDirectory = compilerPath;
+
+            Process.Start(startInfo);
+        }
+
+        private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveToolStripMenuItem_Click(null, null);
+        }
+
+        private void saveAllFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveAllToolStripMenuItem_Click(null, null);
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+        }
+
+        private void newFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonNewFile_Click(null, null);
+        }
+
+        private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonOpenFile_Click(null, null);
+        }
+
+        private void findToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonFind_Click(null, null);
+        }
+
+        private void replaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonReplace_Click(null, null);
+        }
+
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonUndo_Click(null, null);
+        }
+
+        private void redoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonRedo_Click(null, null);
+        }
+
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TabPage currentTabPage = tabControlMain.SelectedTab;
+            foreach (Control ctrl in currentTabPage.Controls)
+                if (ctrl.GetType() == typeof(FastColoredTextBox))
+                {
+                    FastColoredTextBox textBox = ctrl as FastColoredTextBox;
+                    textBox.SelectAll();
+                }
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TabPage currentTabPage = tabControlMain.SelectedTab;
+            foreach (Control ctrl in currentTabPage.Controls)
+                if (ctrl.GetType() == typeof(FastColoredTextBox))
+                {
+                    FastColoredTextBox textBox = ctrl as FastColoredTextBox;
+                    Clipboard.SetText(textBox.SelectedText);
+                }
+        }
+
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void findAccount()
+        {
+            //MessageBox.Show(Properties.Settings.Default.AccountLogin.ToString());
+            if (Properties.Settings.Default.AccountLogin == -1)
+            {
+                toolStripMenuItemUser.Text = "(user)";
+                toolStripMenuItemUser.Enabled = false;
+                return;
+            }
+
+            UsersTableTableAdapter usersTA = new UsersTableTableAdapter();
+            var data = usersTA.GetData();
+            foreach (var row in data)
+            {
+                if (int.Parse(row[0].ToString()) == Settings.Default.AccountLogin)
+                {
+                    toolStripMenuItemUser.Text = row[1].ToString();
+                    return;
+                }
+            }
+        }
+
+        private void resize()
+        {
+            foreach (ToolStripItem toolStripItem in toolStripOptions.Items)
+            {
+                toolStripItem.AutoSize = false;
+                //toolStripItem.Width =;
+                toolStripItem.Height = 30;
+                toolStripItem.Width = (int)(0.775 * toolStripItem.Width);
+                toolStripItem.TextAlign = ContentAlignment.MiddleCenter;
+            }
+
+            toolStripButtonBuildRun.Width = (int)(1.125 * toolStripButtonBuildRun.Width);
+
+            toolStripMenuItemUser.AutoSize = false;
+            toolStripMenuItemUser.Height = 22;
+            toolStripMenuItemUser.Width = (int)(0.70 * toolStripMenuItemUser.Width);
+        }
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             updateLayout();
 
             this.tabControlMain.Padding = new Point(12, 4);
             //this.tabControlMain.DrawMode = TabDrawMode.OwnerDrawFixed;
+            //this.tabControlMain.TabPages[this.tabControlMain.TabCount - 1].Text = "";
             this.tabControlMain.SizeMode = TabSizeMode.Fixed;
+            //this.tabControlMain.Selecting += tabControlMain_Selecting;
+            //tabControlMain.HandleCreated += tabControlMain_HandleCreated;
 
             //this.tabControlMain.DrawItem += tabControlMain_DrawItem;
-            //MessageBox.Show("Titlu: " + titleGlobal + "\nContents: " + contentsGlobal);
+            //MessageBox.Show("Title: " + titleGlobal + "\nContents: " + contentsGlobal);
             //MessageBox.Show(tabControlMain.TabCount.ToString());
+            //addTab("muie", null, "lol", "0");
+
+            resize();
+            findAccount();
             addTab(titleGlobal, pathGlobal, contentsGlobal, isExternalGlobal);
+
+            //toolStripMenuItemUser.Image = new Bitmap(Resources.user_icon, new Size(16, 16));
+        }
+    }
+}
+
+/*
+ * TODO
+ * -saving files in DB is buggy
+ * -closing an unsaved tab/file prompt
+ * -compiling a file saved in DB
+ * -set compiler path in settings
+ * -syntax highlighting doesn't work after opening a file
+ * -output tab
+ * -error list tab
+ * -compilers
+ * -menuStrip functions (Go To.., Fullscreen, etc)
+ */
+
+namespace extensions
+{
+    public static class extension
+    {
+        public static void AddContextMenu(this RichTextBox rtb)
+        {
+            if (rtb.ContextMenuStrip == null)
+            {
+                ContextMenuStrip cms = new ContextMenuStrip()
+                {
+                    ShowImageMargin = false
+                };
+
+                ToolStripMenuItem tsmiUndo = new ToolStripMenuItem("Undo");
+                tsmiUndo.Click += (sender, e) => rtb.Undo();
+                cms.Items.Add(tsmiUndo);
+
+                ToolStripMenuItem tsmiRedo = new ToolStripMenuItem("Redo");
+                tsmiRedo.Click += (sender, e) => rtb.Redo();
+                cms.Items.Add(tsmiRedo);
+
+                cms.Items.Add(new ToolStripSeparator());
+
+                ToolStripMenuItem tsmiCut = new ToolStripMenuItem("Cut");
+                tsmiCut.Click += (sender, e) => rtb.Cut();
+                cms.Items.Add(tsmiCut);
+
+                ToolStripMenuItem tsmiCopy = new ToolStripMenuItem("Copy");
+                tsmiCopy.Click += (sender, e) => rtb.Copy();
+                cms.Items.Add(tsmiCopy);
+
+                ToolStripMenuItem tsmiPaste = new ToolStripMenuItem("Paste");
+                tsmiPaste.Click += (sender, e) => rtb.Paste();
+                cms.Items.Add(tsmiPaste);
+
+                ToolStripMenuItem tsmiDelete = new ToolStripMenuItem("Delete");
+                tsmiDelete.Click += (sender, e) => rtb.SelectedText = "";
+                cms.Items.Add(tsmiDelete);
+
+                cms.Items.Add(new ToolStripSeparator());
+
+                ToolStripMenuItem tsmiSelectAll = new ToolStripMenuItem("Select All");
+                tsmiSelectAll.Click += (sender, e) => rtb.SelectAll();
+                cms.Items.Add(tsmiSelectAll);
+
+                cms.Opening += (sender, e) =>
+                {
+                    tsmiUndo.Enabled = !rtb.ReadOnly && rtb.CanUndo;
+                    tsmiRedo.Enabled = !rtb.ReadOnly && rtb.CanRedo;
+                    tsmiCut.Enabled = !rtb.ReadOnly && rtb.SelectionLength > 0;
+                    tsmiCopy.Enabled = rtb.SelectionLength > 0;
+                    tsmiPaste.Enabled = !rtb.ReadOnly && Clipboard.ContainsText();
+                    tsmiDelete.Enabled = !rtb.ReadOnly && rtb.SelectionLength > 0;
+                    tsmiSelectAll.Enabled = rtb.TextLength > 0 && rtb.SelectionLength < rtb.TextLength;
+                };
+
+                rtb.ContextMenuStrip = cms;
+            }
         }
     }
 }

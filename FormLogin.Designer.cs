@@ -46,6 +46,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(288, 54);
             this.label1.Name = "label1";
@@ -56,6 +57,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(13, 239);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(173, 37);
@@ -65,6 +67,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Location = new System.Drawing.Point(13, 322);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(106, 37);
@@ -74,6 +77,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Location = new System.Drawing.Point(13, 413);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(167, 37);
@@ -83,6 +87,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Location = new System.Drawing.Point(13, 507);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(286, 37);
@@ -141,6 +146,7 @@
             // 
             // pictureBoxLogo
             // 
+            this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxLogo.Image = global::CodeForger.Properties.Resources.Logo;
             this.pictureBoxLogo.Location = new System.Drawing.Point(13, 0);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
@@ -168,7 +174,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormLogin";
-            this.Text = "CodeForger Register";
+            this.Text = "Register";
             this.Load += new System.EventHandler(this.FormLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);

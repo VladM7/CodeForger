@@ -55,6 +55,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(399, 174);
             this.label1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
@@ -96,6 +97,7 @@
             // 
             // pictureBoxLogo
             // 
+            this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
             this.pictureBoxLogo.Location = new System.Drawing.Point(932, 113);
             this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(1);
@@ -131,6 +133,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackgroundImage = global::CodeForger.Properties.Resources.fundal;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1491, 774);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonAccountSettings);
@@ -140,6 +144,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonOpenFile);
             this.Controls.Add(this.buttonNewFile);
+            this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "Form1";
             this.Text = "CodeForger";

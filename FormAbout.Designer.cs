@@ -34,8 +34,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabControlAbout = new System.Windows.Forms.TabControl();
-            this.tabPageDescription = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
             this.tabPageInformation = new System.Windows.Forms.TabPage();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label11 = new System.Windows.Forms.Label();
@@ -50,12 +48,13 @@
             this.tabPageCredits = new System.Windows.Forms.TabPage();
             this.tabPageLicense = new System.Windows.Forms.TabPage();
             this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.tabControlAbout.SuspendLayout();
-            this.tabPageDescription.SuspendLayout();
             this.tabPageInformation.SuspendLayout();
+            this.tabPageCredits.SuspendLayout();
             this.tabPageLicense.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,7 +99,6 @@
             // 
             // tabControlAbout
             // 
-            this.tabControlAbout.Controls.Add(this.tabPageDescription);
             this.tabControlAbout.Controls.Add(this.tabPageInformation);
             this.tabControlAbout.Controls.Add(this.tabPageCredits);
             this.tabControlAbout.Controls.Add(this.tabPageLicense);
@@ -110,26 +108,6 @@
             this.tabControlAbout.SelectedIndex = 0;
             this.tabControlAbout.Size = new System.Drawing.Size(2169, 516);
             this.tabControlAbout.TabIndex = 0;
-            // 
-            // tabPageDescription
-            // 
-            this.tabPageDescription.Controls.Add(this.label2);
-            this.tabPageDescription.Location = new System.Drawing.Point(12, 58);
-            this.tabPageDescription.Name = "tabPageDescription";
-            this.tabPageDescription.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDescription.Size = new System.Drawing.Size(2145, 446);
-            this.tabPageDescription.TabIndex = 0;
-            this.tabPageDescription.Text = "Description";
-            this.tabPageDescription.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 75);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(190, 37);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "[description]";
             // 
             // tabPageInformation
             // 
@@ -171,7 +149,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(504, 46);
             this.label11.TabIndex = 8;
-            this.label11.Text = "Manea Vlad, Vestea Darius";
+            this.label11.Text = "Manea Vlad, Veștea Darius";
             // 
             // label10
             // 
@@ -179,9 +157,9 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(494, 214);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(108, 46);
+            this.label10.Size = new System.Drawing.Size(127, 46);
             this.label10.TabIndex = 7;
-            this.label10.Text = "4.7.2";
+            this.label10.Text = "v4.7.2";
             // 
             // label9
             // 
@@ -229,9 +207,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(19, 214);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(471, 46);
+            this.label5.Size = new System.Drawing.Size(332, 46);
             this.label5.TabIndex = 2;
-            this.label5.Text = ".NET Framework version:";
+            this.label5.Text = ".NET Framework:";
             // 
             // label4
             // 
@@ -255,6 +233,7 @@
             // 
             // tabPageCredits
             // 
+            this.tabPageCredits.Controls.Add(this.label13);
             this.tabPageCredits.Location = new System.Drawing.Point(12, 58);
             this.tabPageCredits.Name = "tabPageCredits";
             this.tabPageCredits.Size = new System.Drawing.Size(2145, 446);
@@ -282,6 +261,16 @@
             this.label12.TabIndex = 0;
             this.label12.Text = resources.GetString("label12.Text");
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(23, 55);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(504, 46);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Manea Vlad, Veștea Darius";
+            // 
             // FormAbout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
@@ -298,10 +287,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.tabControlAbout.ResumeLayout(false);
-            this.tabPageDescription.ResumeLayout(false);
-            this.tabPageDescription.PerformLayout();
             this.tabPageInformation.ResumeLayout(false);
             this.tabPageInformation.PerformLayout();
+            this.tabPageCredits.ResumeLayout(false);
+            this.tabPageCredits.PerformLayout();
             this.tabPageLicense.ResumeLayout(false);
             this.tabPageLicense.PerformLayout();
             this.ResumeLayout(false);
@@ -315,11 +304,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TabControl tabControlAbout;
-        private System.Windows.Forms.TabPage tabPageDescription;
         private System.Windows.Forms.TabPage tabPageInformation;
         private System.Windows.Forms.TabPage tabPageCredits;
         private System.Windows.Forms.TabPage tabPageLicense;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
@@ -331,5 +318,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }
