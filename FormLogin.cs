@@ -24,14 +24,65 @@ namespace CodeForger
             this.Close();
         }
 
+        private void disposeErrorLabel()
+        {
+            Control[] ctrls = this.Controls.Find("errorLabel", true);
+            Label errorLabel = null;
+            if (ctrls.Length > 0)
+                errorLabel = ctrls[0] as Label;
+            if (errorLabel != null)
+                errorLabel.Dispose();
+        }
+
         private bool valid()
         {
+            disposeErrorLabel();
+
+            if (textBoxUsername.Text == "")
+            {
+                Label error = new Label();
+                error.Text = "Username field is required!";
+                error.Name = "errorLabel";
+                error.Location = new Point(10, 280);
+                error.Size = new Size(350, 40);
+                this.Controls.Add(error);
+                error.BackColor = Color.Transparent;
+                error.ForeColor = Color.Red;
+                return false;
+            }
+            if (textBoxEmail.Text == "")
+            {
+                Label error = new Label();
+                error.Text = "Email field is required!";
+                error.Name = "errorLabel";
+                error.Location = new Point(10, 280);
+                error.Size = new Size(350, 40);
+                this.Controls.Add(error);
+                error.BackColor = Color.Transparent;
+                error.ForeColor = Color.Red;
+                return false;
+            }
+            if (textBoxPassword.Text == "")
+            {
+                Label error = new Label();
+                error.Text = "Password field is required!";
+                error.Name = "errorLabel";
+                error.Location = new Point(10, 280);
+                error.Size = new Size(350, 40);
+                this.Controls.Add(error);
+                error.BackColor = Color.Transparent;
+                error.ForeColor = Color.Red;
+                return false;
+            }
             if (textBoxEmail.Text.IndexOf('@') == -1 || textBoxEmail.Text.IndexOf('.') == -1)
             {
                 Label error = new Label();
                 error.Text = "Invalid Email!";
+                error.Name = "errorLabel";
                 error.Location = new Point(10, 280);
                 error.Size = new Size(350, 40);
+                error.BackColor = Color.Transparent;
+                error.ForeColor = Color.Red;
                 this.Controls.Add(error);
                 return false;
             }
@@ -39,45 +90,24 @@ namespace CodeForger
             {
                 Label error = new Label();
                 error.Text = "Password is too short! Minimum length is 3 characters.";
+                error.Name = "errorLabel";
                 error.Location = new Point(10, 280);
                 error.Size = new Size(350, 40);
                 this.Controls.Add(error);
+                error.BackColor = Color.Transparent;
+                error.ForeColor = Color.Red;
                 return false;
             }
-            /*if(textBoxPassword!=textBoxConfirmPassword)
+            if (textBoxPassword != textBoxConfirmPassword)
             {
                 Label error = new Label();
                 error.Text = "Passwords don't match!";
+                error.Name = "errorLabel";
                 error.Location = new Point(10, 280);
                 error.Size = new Size(350, 40);
                 this.Controls.Add(error);
-                return false;
-            }*/
-            if (textBoxUsername.Text == "")
-            {
-                Label error = new Label();
-                error.Text = "Username field is required!";
-                error.Location = new Point(10, 280);
-                error.Size = new Size(350, 40);
-                this.Controls.Add(error);
-                return false;
-            }
-            if (textBoxEmail.Text == "")
-            {
-                Label error = new Label();
-                error.Text = "Email field is required!";
-                error.Location = new Point(10, 280);
-                error.Size = new Size(350, 40);
-                this.Controls.Add(error);
-                return false;
-            }
-            if (textBoxPassword.Text == "")
-            {
-                Label error = new Label();
-                error.Text = "Password field is required!";
-                error.Location = new Point(10, 280);
-                error.Size = new Size(350, 40);
-                this.Controls.Add(error);
+                error.BackColor = Color.Transparent;
+                error.ForeColor = Color.Red;
                 return false;
             }
             return true;
