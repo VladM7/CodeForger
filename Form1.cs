@@ -48,6 +48,42 @@ namespace CodeForger
             }
         }
 
+        public void toggleDarkMode()
+        {
+            if (Properties.Settings.Default.AccountDarkModeSetting == false || Properties.Settings.Default.AccountLogin == -1)
+            {
+                this.BackgroundImage = Properties.Resources.fundal;
+                this.label1.ForeColor = Color.Black;
+                this.buttonNewFile.ForeColor = Color.Black;
+                this.buttonOpenFile.ForeColor = Color.Black;
+                this.buttonAccountSettings.ForeColor = Color.Black;
+                this.buttonLog.ForeColor = Color.Black;
+                this.buttonNewFile.BackColor = Color.White;
+                this.buttonOpenFile.BackColor = Color.White;
+                this.buttonAccountSettings.BackColor = Color.White;
+                this.buttonLog.BackColor = Color.White;
+                this.labelCopyright.ForeColor = Color.Black;
+                foreach (Button btn in this.Controls.OfType<Button>())
+                    btn.FlatStyle = FlatStyle.Standard;
+            }
+            else
+            {
+                this.BackgroundImage = Properties.Resources.darkModeForm1;
+                this.label1.ForeColor = Color.White;
+                this.buttonNewFile.ForeColor = Color.White;
+                this.buttonOpenFile.ForeColor = Color.White;
+                this.buttonAccountSettings.ForeColor = Color.White;
+                this.buttonLog.ForeColor = Color.White;
+                this.buttonNewFile.BackColor = Color.DimGray;
+                this.buttonOpenFile.BackColor = Color.DimGray;
+                this.buttonAccountSettings.BackColor = Color.DimGray;
+                this.buttonLog.BackColor = Color.DimGray;
+                this.labelCopyright.ForeColor = Color.White;
+                foreach (Button btn in this.Controls.OfType<Button>())
+                    btn.FlatStyle = FlatStyle.Flat;
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             //MessageBox.Show(Properties.Settings.Default.RememberAccount.ToString());
@@ -60,6 +96,8 @@ namespace CodeForger
             else
                 buttonAccountSettings.Visible = false;
 
+            toggleDarkMode();
+
             this.Location = new Point(
     (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
     (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
@@ -67,7 +105,7 @@ namespace CodeForger
 
         private void buttonNewFile_Click(object sender, EventArgs e)
         {
-            var form = new FormMain("Untitled*", null, null, null);
+            var form = new FormMain("Untitled*", null, null, null, null);
             form.Show();
             this.Hide();
             form.FormClosed += (sdr, args) =>

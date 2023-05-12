@@ -160,5 +160,29 @@ namespace CodeForger.Properties {
                 return ((string)(this["CodeForgerDBConnectionString5"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AccountDarkModeSetting {
+            get {
+                return ((bool)(this["AccountDarkModeSetting"]));
+            }
+            set {
+                this["AccountDarkModeSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        public string OpenFileType {
+            get {
+                return ((string)(this["OpenFileType"]));
+            }
+            set {
+                this["OpenFileType"] = value;
+            }
+        }
     }
 }

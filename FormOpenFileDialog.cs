@@ -41,10 +41,28 @@ namespace CodeForger
             //MessageBox.Show(this.Owner.Name);
         }
 
+        string parseFileExtension(string extension)
+        {
+            switch (extension)
+            {
+                case ".txt":
+                    return "Text";
+                case ".c":
+                    return "C";
+                case ".bf":
+                    return "Brainfuck";
+                case ".cpp":
+                    return "C++";
+                case ".lsp":
+                    return "LISP";
+            }
+            return null;
+        }
+
         private void buttonOpenFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Text files (*.txt)|*.txt|LISP files (*.lsp)|*.lsp|C files (*.c)|*.c|C++ files (*.cpp)|*.cpp|All files (*.*)|*.*";
+            ofd.Filter = "Text files (*.txt)|*.txt|Brainfuck files (*.bf)|*.bf|LISP files (*.lsp)|*.lsp|C files (*.c)|*.c|C++ files (*.cpp)|*.cpp|All files (*.*)|*.*";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 string title = Path.GetFileName(ofd.FileName);
@@ -52,6 +70,7 @@ namespace CodeForger
 
                 StreamReader sr = new StreamReader(path);
                 string content = sr.ReadToEnd();
+                sr.Close();
                 //MessageBox.Show(title);
 
                 titleGlobal = title;
@@ -63,10 +82,12 @@ namespace CodeForger
                 Properties.Settings.Default.OpenFilePath = pathGlobal;
                 Properties.Settings.Default.OpenFileContents = contentsGlobal;
                 Properties.Settings.Default.OpenFileIsExternal = isexternalGlobal;
+                Properties.Settings.Default.OpenFileType = parseFileExtension(Path.GetExtension(path));
+                //MessageBox.Show(Path.GetExtension(path));
 
                 if (string.Equals(this.Owner.Name, "Form1"))
                 {
-                    var form = new FormMain(title, path, content, "1");
+                    var form = new FormMain(title, path, content, "1", parseFileExtension(Path.GetExtension(path)));
                     form.Show();
                     this.Hide();
                     //this.Close();
@@ -150,7 +171,7 @@ namespace CodeForger
                     if (this.Owner.Name == "Form1")
                     {
 
-                        var form = new FormMain(row[5].ToString(), counter.ToString(), row[1].ToString(), "0");
+                        var form = new FormMain(row[5].ToString(), counter.ToString(), row[1].ToString(), "0", row[2].ToString());
                         form.Show();
                         this.Hide();
                         //this.Close();

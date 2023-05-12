@@ -25,7 +25,7 @@ namespace CodeForger
 {
     public partial class FormMain : Form
     {
-        string titleGlobal, contentsGlobal, pathGlobal, isExternalGlobal;
+        string titleGlobal, contentsGlobal, pathGlobal, isExternalGlobal, typeGlobal;
 
         string[,] openTabs = new string[100, 100];
         int tabsCounter = 0;
@@ -37,7 +37,7 @@ namespace CodeForger
             form1.FormClosed += (sdr, args) =>
             {
                 //MessageBox.Show(Properties.Settings.Default.OpenFileTitle);
-                addTab(Properties.Settings.Default.OpenFileTitle, Properties.Settings.Default.OpenFilePath, Properties.Settings.Default.OpenFileContents, Properties.Settings.Default.OpenFileIsExternal);
+                addTab(Properties.Settings.Default.OpenFileTitle, Properties.Settings.Default.OpenFilePath, Properties.Settings.Default.OpenFileContents, Properties.Settings.Default.OpenFileIsExternal, Properties.Settings.Default.OpenFileType);
                 tabControlMain.Invalidate();
             };
             form1.ShowDialog();
@@ -45,17 +45,18 @@ namespace CodeForger
 
         private void toolStripButtonNewFile_Click(object sender, EventArgs e)
         {
-            addTab("Untitled*", null, null, null);
+            addTab("Untitled*", null, null, null, null);
             tabControlMain.Invalidate();
         }
 
-        public FormMain(string title, string path, string contents, string isExternal)
+        public FormMain(string title, string path, string contents, string isExternal, string type)
         {
             InitializeComponent();
             titleGlobal = title;
             contentsGlobal = contents;
             pathGlobal = path;
             isExternalGlobal = isExternal;
+            typeGlobal = type;
         }
 
         Style GreenStyle = new TextStyle(Brushes.Green, null, FontStyle.Italic);
@@ -173,6 +174,47 @@ namespace CodeForger
             //Refresh();
         }
 
+        private void askToSaveFile(TabPage tabPage, int tabIndex, FastColoredTextBox contentsTextbox)
+        {
+            DialogResult result = MessageBox.Show("Do you want to save " + tabPage.Text + "?", "Save File", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            if (result == DialogResult.Yes)
+            {
+                if (openTabs[tabIndex, 4] == "1")
+                {
+                    if (openTabs[tabIndex, 3][0] == '1')
+                    {
+                        StreamWriter sw = new StreamWriter(pathGlobal);
+                        sw.Write(contentsTextbox.Text);
+                        sw.Close();
+                    }
+                    else
+                    {
+                        CodeTableTableAdapter codeTableTA = new CodeTableTableAdapter();
+                        var data = codeTableTA.GetData();
+                        data[int.Parse(pathGlobal)][1] = contentsTextbox.Text;
+                        codeTableTA.Update(data);
+                    }
+                    openTabs[tabIndex, 2] = "saved";
+                    tabPage.Text = tabPage.Text.Remove(tabPage.Text.Length - 1, 1);
+                }
+                else
+                {
+                    var form = new FormSaveFileDialog(contentsTextbox.Text);
+                    form.FormClosed += (sdr, args) =>
+                    {
+                        //MessageBox.Show(Properties.Settings.Default.OpenFileTitle);
+                        tabPage.Text = Properties.Settings.Default.OpenFileTitle;
+                        openTabs[tabIndex, 0] = Properties.Settings.Default.OpenFileTitle;
+                        openTabs[tabIndex, 1] = contentsTextbox.Text;
+                        openTabs[tabIndex, 2] = "saved";
+                        openTabs[tabIndex, 3] = Properties.Settings.Default.OpenFileIsExternal;
+                        openTabs[tabIndex, 4] = "1";
+                    };
+                    form.ShowDialog();
+                }
+            }
+        }
+
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             int tabIndex = 0;
@@ -189,44 +231,9 @@ namespace CodeForger
                 }
                 if (openTabs[tabIndex, 2] == "unsaved")
                 {
-                    DialogResult result = MessageBox.Show("Do you want to save " + tabPage.Text + "?", "Save File", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    if (result == DialogResult.Yes)
-                    {
-                        if (openTabs[tabIndex, 4] == "1")
-                        {
-                            if (openTabs[tabIndex, 3] == "1")
-                            {
-                                StreamWriter sw = new StreamWriter(pathGlobal);
-                                sw.Write(contentsTextbox.Text);
-                                sw.Close();
-                            }
-                            else
-                            {
-                                CodeTableTableAdapter codeTableTA = new CodeTableTableAdapter();
-                                var data = codeTableTA.GetData();
-                                data[int.Parse(pathGlobal)][1] = contentsTextbox.Text;
-                                codeTableTA.Update(data);
-                            }
-                            openTabs[tabIndex, 2] = "saved";
-                            tabPage.Text = tabPage.Text.Remove(tabPage.Text.Length - 1, 1);
-                        }
-                        else
-                        {
-                            var form = new FormSaveFileDialog(contentsTextbox.Text);
-                            form.FormClosed += (sdr, args) =>
-                            {
-                                //MessageBox.Show(Properties.Settings.Default.OpenFileTitle);
-                                tabPage.Text = Properties.Settings.Default.OpenFileTitle;
-                                openTabs[tabIndex, 0] = Properties.Settings.Default.OpenFileTitle;
-                                openTabs[tabIndex, 1] = contentsTextbox.Text;
-                                openTabs[tabIndex, 2] = "saved";
-                                openTabs[tabIndex, 3] = Properties.Settings.Default.OpenFileIsExternal;
-                                openTabs[tabIndex, 4] = "1";
-                            };
-                            form.ShowDialog();
-                        }
-                    }
+                    askToSaveFile(tabPage, tabIndex, contentsTextbox);
                 }
+                tabIndex++;
             }
         }
 
@@ -347,11 +354,16 @@ namespace CodeForger
                     closeImage.Height);
                 if (imageRect.Contains(e.Location))
                 {
+                    if (openTabs[i, 2] == "unsaved")
+                    {
+                        //TODO show dialog message to save the file or not
+                        TabPage tbpg = tabControlMain.TabPages[i];
+                        FastColoredTextBox fst = tbpg.Controls.OfType<FastColoredTextBox>().FirstOrDefault();
+                        askToSaveFile(tbpg, i, fst);
+                    }
                     this.tabControlMain.TabPages.RemoveAt(i);
                     openTabs = RemoveRow(openTabs, i);
-
-                    //showOpenTabs();
-
+                    tabsCounter--;
                     break;
                 }
             }
@@ -586,6 +598,12 @@ namespace CodeForger
             structure.body.Append(Walk());
         }
 
+        private bool IsValidPath(string path)
+        {
+            Regex r = new Regex(@"^(([a-zA-Z]:)|(\))(\{1}|((\{1})[^\]([^/:*?<>""|]*))+)$");
+            return r.IsMatch(path);
+        }
+
         private void toolStripButtonRun_Click(object sender, EventArgs e)
         {
             //tokenizer("(add 8 (sub 8 6))");
@@ -595,7 +613,16 @@ namespace CodeForger
             int tab = tabControlMain.SelectedIndex;
 
             string path = openTabs[tab, 3].ToString();
+
+            if (!IsValidPath(path))
+            {
+                MessageBox.Show("Invalid file path or file doesn't exist yet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             path = path.Substring(1);
+            string folderPath = Path.GetDirectoryName(path);
+            string name = Path.GetFileNameWithoutExtension(path);
 
             if (openTabs[tab, 2] == "unsaved")
             {
@@ -606,26 +633,39 @@ namespace CodeForger
                     return;
             }
 
-            if (openTabs[tab, 0][openTabs[tab, 0].Length - 1] != 'c')
+            if (openTabs[tab, 5] != "C" && openTabs[tab, 5] != "Brainfuck")
             {
-                MessageBox.Show("For now, only .c files are supported for compiling", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(openTabs[tab, 5]);
+                MessageBox.Show("For now, only .c and .bf files are supported for compiling", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             //string path = Path.GetDirectoryName(Application.ExecutablePath);
-            string compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\c"));
+            string compilerPath;
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = "cmd.exe";
-            startInfo.Arguments = "/c c4 " + path + " & pause";
+            if (openTabs[tab, 5] == "C")
+            {
+                compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\c"));
+                startInfo.Arguments = "/c c4 " + path + " & pause";
+            }
+            else if (openTabs[tab, 5] == "Brainfuck")
+            {
+                compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\brainfuck\bfcc"));
+                startInfo.Arguments = "/c bfcc -backend=c -run " + path + " " + folderPath + @"\" + name + " & pause";
+            }
+            else
+                throw new Exception("Invalid file type");
             //startInfo.Arguments = "/c " + path + " & pause";
             startInfo.WorkingDirectory = compilerPath;
 
             //MessageBox.Show(Application.StartupPath);
 
             Process.Start(startInfo);
-            //System.Console.ReadLine();
-            //process1.Close();
+
+            Label lbl = this.Controls.Find("outputLabel" + tab, true)[0] as Label;
+            lbl.Text += "\nRun started...";
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -767,7 +807,7 @@ namespace CodeForger
             tabPage.Controls.Add(dataGridView);
         }
 
-        private void addTab(string title, string path, string contents, string isexternal)
+        private void addTab(string title, string path, string contents, string isexternal, string type)
         {
             TabPage tabPage = new TabPage();
 
@@ -822,6 +862,7 @@ namespace CodeForger
             Label outputLabel = new Label();
             outputLabel.Dock = DockStyle.Fill;
             outputLabel.Text = "==============================";
+            outputLabel.Name = "outputLabel" + tabsCounter;
             tabPageOutput.Controls.Add(outputLabel);
 
             tabControl.TabPages.Add(tabPageOutput);
@@ -854,7 +895,7 @@ namespace CodeForger
                 filePanel.Text = path;
             filePanel.AutoSize = StatusBarPanelAutoSize.Spring;
             filePanel.Name = "filePanel";
-            languagePanel.Text = "C";
+            languagePanel.Text = type;
             //languagePanel.AutoSize= StatusBarPanelAutoSize.Spring;
             //statusPanel.Alignment = HorizontalAlignment.Left;
             lineColPanel.Text = "Lin ?, Col ?";
@@ -893,6 +934,7 @@ namespace CodeForger
                 openTabs[tabsCounter, 4] = "0";
             else
                 openTabs[tabsCounter, 4] = "1";
+            openTabs[tabsCounter, 5] = type;
 
             textBox.ZoomChanged += new EventHandler(richTextBox_ZoomChanged);
             textBox.TextChanged += new EventHandler<TextChangedEventArgs>(richTextBoxCode_TextChanged);
@@ -1153,6 +1195,8 @@ namespace CodeForger
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            this.Focus();
+
             updateLayout();
 
             this.tabControlMain.Padding = new Point(12, 4);
@@ -1169,7 +1213,7 @@ namespace CodeForger
 
             resize();
             findAccount();
-            addTab(titleGlobal, pathGlobal, contentsGlobal, isExternalGlobal);
+            addTab(titleGlobal, pathGlobal, contentsGlobal, isExternalGlobal, typeGlobal);
 
             //toolStripMenuItemUser.Image = new Bitmap(Resources.user_icon, new Size(16, 16));
         }
