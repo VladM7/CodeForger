@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -46,6 +46,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>codeforger.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutocompleteMenu, Version=1.3.5.0, Culture=neutral, processorArchitecture=MSIL">
@@ -235,8 +238,18 @@
     <None Include="Resources\dark-setting-icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="codeforger.ico" />
     <Content Include="compilers\c\c4.c" />
     <Content Include="compilers\c\c4.exe" />
+    <None Include="Resources\save-as-icon-coloured.png" />
+    <None Include="Resources\save-all-icon-coloured.png" />
+    <None Include="Resources\icons8-opened-folder-48.png" />
+    <None Include="Resources\icons8-align-left-24.png" />
+    <None Include="Resources\icons8-paste-24.png" />
+    <None Include="Resources\icons8-cut-24.png" />
+    <None Include="Resources\copy-icon.png" />
+    <None Include="Resources\icons8-save-64.png" />
+    <None Include="Resources\icons8-opened-folder-128.png" />
     <None Include="Resources\Dark mode.png" />
     <None Include="Resources\White1.jpg" />
     <None Include="Resources\Main-White.jpg" />

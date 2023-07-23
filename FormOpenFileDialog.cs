@@ -1,4 +1,5 @@
 ﻿using CodeForger.CodeForgerDBDataSetTableAdapters;
+using extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,6 +56,24 @@ namespace CodeForger
                     return "C++";
                 case ".lsp":
                     return "LISP";
+            }
+            return null;
+        }
+
+        string parseFileTypeName(string fileTypeName)
+        {
+            switch (fileTypeName)
+            {
+                case "Text":
+                    return ".txt";
+                case "C":
+                    return ".c";
+                case "Brainfuck":
+                    return ".bf";
+                case "C++":
+                    return ".cpp";
+                case "LISP":
+                    return ".lsp";
             }
             return null;
         }
@@ -167,6 +186,18 @@ namespace CodeForger
                     Properties.Settings.Default.OpenFilePath = pathGlobal;
                     Properties.Settings.Default.OpenFileContents = contentsGlobal;
                     Properties.Settings.Default.OpenFileIsExternal = isexternalGlobal;
+
+                    string extension = parseFileTypeName(row[2].ToString());
+
+                    //Create a temporary file to allow compiling
+                    string newPath = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\tmp\" + titleGlobal + extension));
+                    if (!File.Exists(newPath))
+                    {
+                        File.Create(newPath).Close();
+                    }
+                    StreamWriter sr = new StreamWriter(newPath);
+                    sr.Write(row[1].ToString());
+                    sr.Close();
 
                     if (this.Owner.Name == "Form1")
                     {

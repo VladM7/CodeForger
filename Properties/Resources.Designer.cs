@@ -73,6 +73,26 @@ namespace CodeForger.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap copy_icon {
+            get {
+                object obj = ResourceManager.GetObject("copy-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cut_icon {
+            get {
+                object obj = ResourceManager.GetObject("cut-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dark_setting_icon {
             get {
                 object obj = ResourceManager.GetObject("dark_setting_icon", resourceCulture);
@@ -96,6 +116,16 @@ namespace CodeForger.Properties {
         internal static System.Drawing.Bitmap DeleteButton_Image {
             get {
                 object obj = ResourceManager.GetObject("DeleteButton_Image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap format_icon {
+            get {
+                object obj = ResourceManager.GetObject("format-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +203,59 @@ namespace CodeForger.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap open_file_icon {
+        internal static System.Drawing.Bitmap open_file_icon_coloured {
             get {
-                object obj = ResourceManager.GetObject("open-file-icon", resourceCulture);
+                object obj = ResourceManager.GetObject("open-file-icon-coloured", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap open_file_image {
+            get {
+                object obj = ResourceManager.GetObject("open-file-image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap paste_icon {
+            get {
+                object obj = ResourceManager.GetObject("paste-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap save_all_icon_coloured {
+            get {
+                object obj = ResourceManager.GetObject("save_all_icon_coloured", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap save_as_icon_coloured {
+            get {
+                object obj = ResourceManager.GetObject("save_as_icon_coloured", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap save_file_image {
+            get {
+                object obj = ResourceManager.GetObject("save-file-image", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

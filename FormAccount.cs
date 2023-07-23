@@ -205,8 +205,58 @@ namespace CodeForger
             Properties.Settings.Default.Save();
         }
 
+        public void toggleDarkMode()
+        {
+            if (Properties.Settings.Default.AccountDarkModeSetting == false || Properties.Settings.Default.AccountLogin == -1)
+            {
+                this.BackgroundImage = Properties.Resources.fundal;
+                this.label1.ForeColor = Color.Black;
+                this.label2.ForeColor = Color.Black;
+                this.label3.ForeColor = Color.Black;
+                this.label4.ForeColor = Color.Black;
+                this.label1.BackColor = Color.Transparent;
+                this.label2.BackColor = Color.Transparent;
+                this.label3.BackColor = Color.Transparent;
+                this.label4.BackColor = Color.Transparent;
+                pictureBoxLogo.BackColor = Color.Transparent;
+                this.buttonRegister.ForeColor = Color.Black;
+                this.buttonCancel.ForeColor = Color.Black;
+                this.buttonRegister.BackColor = Color.White;
+                this.buttonCancel.BackColor = Color.White;
+                this.buttonLogin.ForeColor = Color.Black;
+                this.buttonLogin.BackColor = Color.White;
+                this.checkBoxRemember.ForeColor = Color.Black;
+                this.checkBoxRemember.BackColor = Color.Transparent;
+            }
+            else
+            {
+                this.BackgroundImage = Properties.Resources.darkModeForm1;
+                this.label1.ForeColor = Color.White;
+                this.label2.ForeColor = Color.White;
+                this.label3.ForeColor = Color.White;
+                this.label4.ForeColor = Color.White;
+                this.label1.BackColor = Color.Transparent;
+                this.label2.BackColor = Color.Transparent;
+                this.label3.BackColor = Color.Transparent;
+                this.label4.BackColor = Color.Transparent;
+                pictureBoxLogo.BackColor = Color.Transparent;
+                this.buttonRegister.ForeColor = Color.White;
+                this.buttonCancel.ForeColor = Color.White;
+                this.buttonRegister.BackColor = Color.Gray;
+                this.buttonCancel.BackColor = Color.Gray;
+                this.buttonLogin.ForeColor = Color.White;
+                this.buttonLogin.BackColor = Color.Gray;
+                this.checkBoxRemember.ForeColor = Color.White;
+                this.checkBoxRemember.BackColor = Color.Transparent;
+                foreach (Button btn in this.Controls.OfType<Button>())
+                    btn.FlatStyle = FlatStyle.Flat;
+            }
+        }
+
         private void FormAccount_Load(object sender, EventArgs e)
         {
+            toggleDarkMode();
+
             this.Location = new Point(
     (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
     (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);

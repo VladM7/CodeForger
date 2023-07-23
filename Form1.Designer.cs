@@ -157,6 +157,7 @@
             this.Controls.Add(this.buttonOpenFile);
             this.Controls.Add(this.buttonNewFile);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "Form1";
             this.Text = "CodeForger";

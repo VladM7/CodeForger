@@ -20,6 +20,8 @@ using System.Runtime.Remoting.Channels;
 using CodeForger.Properties;
 using System.Runtime.CompilerServices;
 using static System.Net.Mime.MediaTypeNames;
+using System.Windows.Forms.VisualStyles;
+using extensions;
 
 namespace CodeForger
 {
@@ -149,6 +151,7 @@ namespace CodeForger
                         openTabs[tabIndex, 2] = "saved";
                         openTabs[tabIndex, 3] = Properties.Settings.Default.OpenFileIsExternal + Properties.Settings.Default.OpenFilePath;
                         openTabs[tabIndex, 4] = "1";
+                        openTabs[tabIndex, 5] = Properties.Settings.Default.OpenFileType;
                         tabControlMain.Invalidate();
                     }
                 };
@@ -215,8 +218,18 @@ namespace CodeForger
             }
         }
 
+        private void deleteTempFiles()
+        {
+            // Delete all files in a directory    
+            string[] files = Directory.GetFiles(Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\tmp\")));
+            foreach (string file in files)
+                File.Delete(file);
+        }
+
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            deleteTempFiles();
+
             int tabIndex = 0;
             foreach (TabPage tabPage in tabControlMain.Controls)
             {
@@ -600,8 +613,25 @@ namespace CodeForger
 
         private bool IsValidPath(string path)
         {
-            Regex r = new Regex(@"^(([a-zA-Z]:)|(\))(\{1}|((\{1})[^\]([^/:*?<>""|]*))+)$");
-            return r.IsMatch(path);
+            return path != null && path != "";
+        }
+
+        string parseFileTypeName(string fileTypeName)
+        {
+            switch (fileTypeName)
+            {
+                case "Text":
+                    return ".txt";
+                case "C":
+                    return ".c";
+                case "Brainfuck":
+                    return ".bf";
+                case "C++":
+                    return ".cpp";
+                case "LISP":
+                    return ".lsp";
+            }
+            return null;
         }
 
         private void toolStripButtonRun_Click(object sender, EventArgs e)
@@ -612,7 +642,19 @@ namespace CodeForger
 
             int tab = tabControlMain.SelectedIndex;
 
-            string path = openTabs[tab, 3].ToString();
+            string path;
+            if (openTabs[tab, 3][0] == '0')
+            {
+                string extension = parseFileTypeName(openTabs[tab, 5]);
+                path = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\tmp\" + titleGlobal + extension));
+            }
+            else
+            {
+                path = openTabs[tab, 3].ToString();
+                path = path.Substring(1).Trim();
+            }
+
+            //MessageBox.Show(path);
 
             if (!IsValidPath(path))
             {
@@ -620,7 +662,6 @@ namespace CodeForger
                 return;
             }
 
-            path = path.Substring(1);
             string folderPath = Path.GetDirectoryName(path);
             string name = Path.GetFileNameWithoutExtension(path);
 
@@ -652,8 +693,15 @@ namespace CodeForger
             }
             else if (openTabs[tab, 5] == "Brainfuck")
             {
+                if (!File.Exists(folderPath + @"\" + name + ".exe"))
+                {
+                    var result = MessageBox.Show("The file has not been built yet, do you want to build it now?", "Run", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
+                        toolStripButtonBuildRun_Click(null, null);
+                    return;
+                }
                 compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\brainfuck\bfcc"));
-                startInfo.Arguments = "/c bfcc -backend=c -run " + path + " " + folderPath + @"\" + name + " & pause";
+                startInfo.Arguments = "/c " + folderPath + @"\" + name + " & pause";
             }
             else
                 throw new Exception("Invalid file type");
@@ -665,7 +713,7 @@ namespace CodeForger
             Process.Start(startInfo);
 
             Label lbl = this.Controls.Find("outputLabel" + tab, true)[0] as Label;
-            lbl.Text += "\nRun started...";
+            lbl.Text += "\nRun started      at      " + DateTime.Now.ToString("HH:mm:ss");
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -746,7 +794,12 @@ namespace CodeForger
 
         private void closeAllButCurrentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            foreach (TabPage tab in tabControlMain.TabPages)
+            {
+                int index = tabControlMain.TabPages.IndexOf(tab);
+                if (index != tabControlMain.SelectedIndex)
+                    closetab(index);
+            }
         }
 
         private void tabPage_TextChanged(object sender, EventArgs e)
@@ -843,6 +896,14 @@ namespace CodeForger
             autocompleteMenuC.Colors = clrs;
 
             autocompleteMenuC.Show(textBox, false);
+
+            ContextMenuStrip ctx = new ContextMenuStrip();
+            ctx.Items.Add(new ToolStripMenuItem("Cut", Resources.cut_icon, cutToolStripMenuItem_Click));
+            ctx.Items.Add(new ToolStripMenuItem("Copy", Resources.copy_icon, copyToolStripMenuItem_Click));
+            ctx.Items.Add(new ToolStripMenuItem("Paste", Resources.paste_icon, pasteToolStripMenuItem_Click));
+            ctx.Items.Add(new ToolStripSeparator());
+            ctx.Items.Add(new ToolStripMenuItem("Format", Resources.format_icon, toolStripButtonFormat_Click));
+            textBox.ContextMenuStrip = ctx;
 
             tabPage.Controls.Add(textBox);
 
@@ -1042,16 +1103,62 @@ namespace CodeForger
             int tab = tabControlMain.SelectedIndex;
 
             string path = openTabs[tab, 3].ToString();
-            path = path.Substring(1);
+            path = path.Substring(1).Trim();
 
-            string compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\c"));
+            //MessageBox.Show(path);
+
+            if (!IsValidPath(path))
+            {
+                MessageBox.Show("Invalid file path or file doesn't exist yet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string folderPath = Path.GetDirectoryName(path);
+            string name = Path.GetFileNameWithoutExtension(path);
+
+            if (openTabs[tab, 2] == "unsaved")
+            {
+                var result = MessageBox.Show("Do you want to save the file before compiling?", "Unsaved File", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                    saveFileToolStripMenuItem_Click(null, null);
+                else if (result == DialogResult.Cancel)
+                    return;
+            }
+
+            if (openTabs[tab, 5] != "C" && openTabs[tab, 5] != "Brainfuck")
+            {
+                MessageBox.Show(openTabs[tab, 5]);
+                MessageBox.Show("For now, only .c and .bf files are supported for compiling", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            //string path = Path.GetDirectoryName(Application.ExecutablePath);
+            string compilerPath;
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = "cmd.exe";
-            startInfo.Arguments = "/c c4 " + path + " & pause";
+            if (openTabs[tab, 5] == "C")
+            {
+                compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\c"));
+                startInfo.Arguments = "/c c4 " + path + " & pause";
+            }
+            else if (openTabs[tab, 5] == "Brainfuck")
+            {
+                compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\brainfuck\bfcc"));
+                startInfo.Arguments = "/c bfcc -backend=c -run " + path + " " + folderPath + @"\" + name + " & pause";
+            }
+            else
+                throw new Exception("Invalid file type");
+            //startInfo.Arguments = "/c " + path + " & pause";
             startInfo.WorkingDirectory = compilerPath;
 
+            //MessageBox.Show(Application.StartupPath);
+
             Process.Start(startInfo);
+
+            Label lbl = this.Controls.Find("outputLabel" + tab, true)[0] as Label;
+            lbl.Text += "\nBuild started        at      " + DateTime.Now.ToString("HH:mm:ss");
+            lbl.Text += "\nRun started      at      " + DateTime.Now.ToString("HH:mm:ss");
         }
 
         private void toolStripButtonBuild_Click(object sender, EventArgs e)
@@ -1059,16 +1166,61 @@ namespace CodeForger
             int tab = tabControlMain.SelectedIndex;
 
             string path = openTabs[tab, 3].ToString();
-            path = path.Substring(1);
+            path = path.Substring(1).Trim();
 
-            string compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\c"));
+            //MessageBox.Show(path);
+
+            if (!IsValidPath(path))
+            {
+                MessageBox.Show("Invalid file path or file doesn't exist yet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string folderPath = Path.GetDirectoryName(path);
+            string name = Path.GetFileNameWithoutExtension(path);
+
+            if (openTabs[tab, 2] == "unsaved")
+            {
+                var result = MessageBox.Show("Do you want to save the file before compiling?", "Unsaved File", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                    saveFileToolStripMenuItem_Click(null, null);
+                else if (result == DialogResult.Cancel)
+                    return;
+            }
+
+            if (openTabs[tab, 5] != "C" && openTabs[tab, 5] != "Brainfuck")
+            {
+                MessageBox.Show(openTabs[tab, 5]);
+                MessageBox.Show("For now, only .c and .bf files are supported for compiling", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            //string path = Path.GetDirectoryName(Application.ExecutablePath);
+            string compilerPath;
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = "cmd.exe";
-            startInfo.Arguments = "/c c4 " + path;
+            if (openTabs[tab, 5] == "C")
+            {
+                compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\c"));
+                startInfo.Arguments = "/c c4 " + path + " & pause";
+            }
+            else if (openTabs[tab, 5] == "Brainfuck")
+            {
+                compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\brainfuck\bfcc"));
+                startInfo.Arguments = "/c bfcc -backend=c " + path + " " + folderPath + @"\" + name;
+            }
+            else
+                throw new Exception("Invalid file type");
+            //startInfo.Arguments = "/c " + path + " & pause";
             startInfo.WorkingDirectory = compilerPath;
 
+            //MessageBox.Show(Application.StartupPath);
+
             Process.Start(startInfo);
+
+            Label lbl = this.Controls.Find("outputLabel" + tab, true)[0] as Label;
+            lbl.Text += "\nBuild started        at      " + DateTime.Now.ToString("HH:mm:ss");
         }
 
         private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1118,39 +1270,70 @@ namespace CodeForger
 
         private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TabPage currentTabPage = tabControlMain.SelectedTab;
-            foreach (Control ctrl in currentTabPage.Controls)
-                if (ctrl.GetType() == typeof(FastColoredTextBox))
-                {
-                    FastColoredTextBox textBox = ctrl as FastColoredTextBox;
-                    textBox.SelectAll();
-                }
+            TabPage tabPage = tabControlMain.SelectedTab;
+            FastColoredTextBox fst = tabPage.Controls.OfType<FastColoredTextBox>().FirstOrDefault();
+            fst.SelectAll();
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TabPage currentTabPage = tabControlMain.SelectedTab;
-            foreach (Control ctrl in currentTabPage.Controls)
-                if (ctrl.GetType() == typeof(FastColoredTextBox))
-                {
-                    FastColoredTextBox textBox = ctrl as FastColoredTextBox;
-                    Clipboard.SetText(textBox.SelectedText);
-                }
+            TabPage tabPage = tabControlMain.SelectedTab;
+            FastColoredTextBox fst = tabPage.Controls.OfType<FastColoredTextBox>().FirstOrDefault();
+            Clipboard.SetText(fst.SelectedText);
         }
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            TabPage tabPage = tabControlMain.SelectedTab;
+            FastColoredTextBox fst = tabPage.Controls.OfType<FastColoredTextBox>().FirstOrDefault();
+            fst.Cut();
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TabPage tabPage = tabControlMain.SelectedTab;
+            FastColoredTextBox fst = tabPage.Controls.OfType<FastColoredTextBox>().FirstOrDefault();
+            fst.Paste();
+        }
 
+        private void accountSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormAccountSettings();
+            form.ShowDialog();
+        }
+
+        private void closetab(int tabIndex)
+        {
+            if (openTabs[tabIndex, 2] == "unsaved")
+            {
+                TabPage tbpg = tabControlMain.TabPages[tabIndex];
+                FastColoredTextBox fst = tbpg.Controls.OfType<FastColoredTextBox>().FirstOrDefault();
+                askToSaveFile(tbpg, tabIndex, fst);
+            }
+            this.tabControlMain.TabPages.RemoveAt(tabIndex);
+            openTabs = RemoveRow(openTabs, tabIndex);
+            tabsCounter--;
+        }
+
+        private void closeAllTabsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (TabPage tab in tabControlMain.TabPages)
+            {
+                int index = tabControlMain.TabPages.IndexOf(tab);
+                closetab(index);
+            }
+        }
+
+        private void closeCurrentTabToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            closetab(tabControlMain.SelectedIndex);
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            TabPage tabPage = tabControlMain.SelectedTab;
+            FastColoredTextBox fst = tabPage.Controls.OfType<FastColoredTextBox>().FirstOrDefault();
+            fst.SelectedText = "";
         }
 
         private void findAccount()
@@ -1183,7 +1366,7 @@ namespace CodeForger
                 //toolStripItem.Width =;
                 toolStripItem.Height = 30;
                 toolStripItem.Width = (int)(0.775 * toolStripItem.Width);
-                toolStripItem.TextAlign = ContentAlignment.MiddleCenter;
+                toolStripItem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             }
 
             toolStripButtonBuildRun.Width = (int)(1.125 * toolStripButtonBuildRun.Width);
@@ -1191,6 +1374,18 @@ namespace CodeForger
             toolStripMenuItemUser.AutoSize = false;
             toolStripMenuItemUser.Height = 22;
             toolStripMenuItemUser.Width = (int)(0.70 * toolStripMenuItemUser.Width);
+
+            /*
+            saveAllToolStripMenuItem.AutoSize = false;
+            saveAllToolStripMenuItem.Height = 30;
+            saveAllToolStripMenuItem.Width = (int)(0.775 * saveAllToolStripMenuItem.Width);
+            saveAllToolStripMenuItem.TextAlign = ContentAlignment.MiddleCenter;
+
+            saveToolStripMenuItem.AutoSize = false;
+            saveToolStripMenuItem.Height = 30;
+            saveToolStripMenuItem.Width = (int)(0.775 * saveToolStripMenuItem.Width);
+            saveToolStripMenuItem.TextAlign = ContentAlignment.MiddleCenter;
+            */
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -1198,6 +1393,11 @@ namespace CodeForger
             this.Focus();
 
             updateLayout();
+
+            if (Settings.Default.AccountLogin == -1)
+            {
+                accountSettingsToolStripMenuItem.Enabled = false;
+            }
 
             this.tabControlMain.Padding = new Point(12, 4);
             //this.tabControlMain.DrawMode = TabDrawMode.OwnerDrawFixed;
@@ -1209,9 +1409,8 @@ namespace CodeForger
             //this.tabControlMain.DrawItem += tabControlMain_DrawItem;
             //MessageBox.Show("Title: " + titleGlobal + "\nContents: " + contentsGlobal);
             //MessageBox.Show(tabControlMain.TabCount.ToString());
-            //addTab("muie", null, "lol", "0");
 
-            resize();
+            //resize();
             findAccount();
             addTab(titleGlobal, pathGlobal, contentsGlobal, isExternalGlobal, typeGlobal);
 

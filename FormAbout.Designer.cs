@@ -46,9 +46,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPageCredits = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
             this.tabPageLicense = new System.Windows.Forms.TabPage();
             this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -241,6 +241,16 @@
             this.tabPageCredits.Text = "Credits";
             this.tabPageCredits.UseVisualStyleBackColor = true;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(23, 55);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(504, 46);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Manea Vlad, Veștea Darius";
+            // 
             // tabPageLicense
             // 
             this.tabPageLicense.AutoScroll = true;
@@ -261,16 +271,6 @@
             this.label12.TabIndex = 0;
             this.label12.Text = resources.GetString("label12.Text");
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(23, 55);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(504, 46);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Manea Vlad, Veștea Darius";
-            // 
             // FormAbout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
@@ -278,6 +278,7 @@
             this.ClientSize = new System.Drawing.Size(2169, 840);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAbout";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "About";

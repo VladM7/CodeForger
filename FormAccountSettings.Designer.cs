@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAccountSettings));
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonDeleteAccount = new System.Windows.Forms.Button();
@@ -160,6 +161,7 @@
             this.Controls.Add(this.buttonDeleteAccount);
             this.Controls.Add(this.pictureBoxLogo);
             this.Controls.Add(this.label2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAccountSettings";
             this.Text = "Account Settings";
             this.Load += new System.EventHandler(this.FormAccountSettings_Load);

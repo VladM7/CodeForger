@@ -35,11 +35,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.comboBoxFileType = new System.Windows.Forms.ComboBox();
             this.textBoxTitle = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // radioButtonSaveDBFile
@@ -97,6 +99,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.comboBoxFileType);
             this.panel2.Controls.Add(this.textBoxTitle);
             this.panel2.Controls.Add(this.label2);
@@ -106,16 +109,29 @@
             this.panel2.Size = new System.Drawing.Size(1124, 200);
             this.panel2.TabIndex = 5;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox1.Image = global::CodeForger.Properties.Resources.save_file_image;
+            this.pictureBox1.Location = new System.Drawing.Point(651, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(473, 200);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // comboBoxFileType
             // 
             this.comboBoxFileType.FormattingEnabled = true;
             this.comboBoxFileType.Items.AddRange(new object[] {
+            ".txt (Text)",
             ".lsp (LISP)",
+            ".bf (Brainfuck)",
             ".c (C)",
             ".cpp (C++)"});
             this.comboBoxFileType.Location = new System.Drawing.Point(420, 138);
             this.comboBoxFileType.Name = "comboBoxFileType";
-            this.comboBoxFileType.Size = new System.Drawing.Size(306, 45);
+            this.comboBoxFileType.Size = new System.Drawing.Size(185, 45);
             this.comboBoxFileType.TabIndex = 2;
             // 
             // textBoxTitle
@@ -141,6 +157,7 @@
             this.ClientSize = new System.Drawing.Size(1124, 631);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormSaveFileDialog";
             this.Text = "Save File";
             this.Load += new System.EventHandler(this.FormSaveFileDialog_Load);
@@ -148,6 +165,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -163,5 +181,6 @@
         private System.Windows.Forms.TextBox textBoxTitle;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBoxFileType;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -98,7 +98,7 @@ namespace CodeForger
                 error.ForeColor = Color.Red;
                 return false;
             }
-            if (textBoxPassword != textBoxConfirmPassword)
+            if (string.Equals(textBoxPassword, textBoxConfirmPassword))
             {
                 Label error = new Label();
                 error.Text = "Passwords don't match!";
@@ -110,6 +110,9 @@ namespace CodeForger
                 error.ForeColor = Color.Red;
                 return false;
             }
+
+            //gigel@gmail.com gigel2005
+
             return true;
         }
 
