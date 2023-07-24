@@ -1,10 +1,10 @@
 # CodeForger
 
-CodeForger is a versatile IDE-like application that allows users to write and compile C or Brainfuck code. With CodeForger, developers can write, test, and execute their code efficiently in a user-friendly environment.
+CodeForger is a versatile IDE-like application that allows users to write and compile Pseudocode, C or Brainfuck code. With CodeForger, developers can write, test, and execute their code efficiently in a user-friendly environment.
 
 ## Features
 
-- **C and Brainfuck Support**: CodeForger supports both C and Brainfuck programming languages, providing a convenient platform for developers interested in these languages.
+- **Pseudocode, C and Brainfuck Support**: CodeForger supports Pseudocode, C and Brainfuck programming languages, providing a convenient platform for developers interested in these languages.
 - **Code Editor**: Write your code using the built-in code editor, which offers syntax highlighting and automatic indentation to enhance your coding experience.
 - **Compilation**: Compile your code directly within CodeForger. It utilizes a robust compilation process to generate executable files.
 - **Output Console**: Observe the program output and any potential errors in the integrated output console.
@@ -41,7 +41,7 @@ We would like to acknowledge the following resources that have contributed to th
 
 ## Future plans
  
-- Pseudocode compiler (partially done)
+- Pseudocode compiler in other languages other than Romanian
 
 ## Contact
 
