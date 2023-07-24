@@ -184,4 +184,7 @@
   <data name="save_as_icon_coloured" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save-as-icon-coloured.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="OCRButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-ocr-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

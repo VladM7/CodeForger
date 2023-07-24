@@ -239,8 +239,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="codeforger.ico" />
-    <Content Include="compilers\c\c4.c" />
-    <Content Include="compilers\c\c4.exe" />
+    <None Include="Resources\icons8-ocr-48.png" />
     <None Include="Resources\save-as-icon-coloured.png" />
     <None Include="Resources\save-all-icon-coloured.png" />
     <None Include="Resources\icons8-opened-folder-48.png" />
@@ -256,8 +255,6 @@
     <None Include="Resources\Fundal-Main-White.jpg" />
     <None Include="Resources\icons8-male-user-48.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="compilers\brainfuck\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

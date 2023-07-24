@@ -57,6 +57,10 @@
             this.checkBoxShowErrorList = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBoxShowNavbar = new System.Windows.Forms.CheckBox();
+            this.checkBoxIconScaling = new System.Windows.Forms.CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControlSettings.SuspendLayout();
             this.tabPageGeneral.SuspendLayout();
             this.groupBoxEditor.SuspendLayout();
@@ -69,6 +73,7 @@
             this.tabPageTabsWindows.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlSettings
@@ -91,6 +96,7 @@
             // 
             // tabPageGeneral
             // 
+            this.tabPageGeneral.Controls.Add(this.groupBox4);
             this.tabPageGeneral.Controls.Add(this.groupBoxEditor);
             this.tabPageGeneral.Controls.Add(this.groupBoxAppearance);
             this.tabPageGeneral.Location = new System.Drawing.Point(104, 4);
@@ -106,7 +112,7 @@
             this.groupBoxEditor.Controls.Add(this.checkBoxErrorSquiggles);
             this.groupBoxEditor.Controls.Add(this.checkBoxWordWrap);
             this.groupBoxEditor.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBoxEditor.Location = new System.Drawing.Point(3, 407);
+            this.groupBoxEditor.Location = new System.Drawing.Point(3, 501);
             this.groupBoxEditor.Name = "groupBoxEditor";
             this.groupBoxEditor.Size = new System.Drawing.Size(1882, 261);
             this.groupBoxEditor.TabIndex = 1;
@@ -137,6 +143,7 @@
             // 
             // groupBoxAppearance
             // 
+            this.groupBoxAppearance.Controls.Add(this.checkBoxIconScaling);
             this.groupBoxAppearance.Controls.Add(this.radioButtonLight);
             this.groupBoxAppearance.Controls.Add(this.pictureBox2);
             this.groupBoxAppearance.Controls.Add(this.pictureBox1);
@@ -144,7 +151,7 @@
             this.groupBoxAppearance.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBoxAppearance.Location = new System.Drawing.Point(3, 3);
             this.groupBoxAppearance.Name = "groupBoxAppearance";
-            this.groupBoxAppearance.Size = new System.Drawing.Size(1882, 404);
+            this.groupBoxAppearance.Size = new System.Drawing.Size(1882, 498);
             this.groupBoxAppearance.TabIndex = 0;
             this.groupBoxAppearance.TabStop = false;
             this.groupBoxAppearance.Text = "Appearance";
@@ -373,6 +380,51 @@
             this.checkBoxShowNavbar.UseVisualStyleBackColor = true;
             this.checkBoxShowNavbar.CheckedChanged += new System.EventHandler(this.checkBoxShowNavbar_CheckedChanged);
             // 
+            // checkBoxIconScaling
+            // 
+            this.checkBoxIconScaling.AutoSize = true;
+            this.checkBoxIconScaling.Location = new System.Drawing.Point(44, 407);
+            this.checkBoxIconScaling.Name = "checkBoxIconScaling";
+            this.checkBoxIconScaling.Size = new System.Drawing.Size(718, 41);
+            this.checkBoxIconScaling.TabIndex = 5;
+            this.checkBoxIconScaling.Text = "Icon scaling (use mainly for high-DPI displays)";
+            this.checkBoxIconScaling.UseVisualStyleBackColor = true;
+            this.checkBoxIconScaling.CheckedChanged += new System.EventHandler(this.checkBoxIconScaling_CheckedChanged);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.comboBox1);
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox4.Location = new System.Drawing.Point(3, 762);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(1882, 193);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Pseudocode";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "English",
+            "Romanian",
+            "French",
+            "German"});
+            this.comboBox1.Location = new System.Drawing.Point(323, 80);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(254, 45);
+            this.comboBox1.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 83);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(279, 37);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Language (soon!):";
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
@@ -400,6 +452,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -431,5 +485,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.CheckBox checkBoxIconScaling;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -56,6 +56,8 @@ namespace CodeForger
                     return "C++";
                 case ".lsp":
                     return "LISP";
+                case ".psc":
+                    return "Pseudocode";
             }
             return null;
         }
@@ -74,6 +76,8 @@ namespace CodeForger
                     return ".cpp";
                 case "LISP":
                     return ".lsp";
+                case "Pseudocode":
+                    return ".psc";
             }
             return null;
         }
@@ -81,7 +85,7 @@ namespace CodeForger
         private void buttonOpenFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Text files (*.txt)|*.txt|Brainfuck files (*.bf)|*.bf|LISP files (*.lsp)|*.lsp|C files (*.c)|*.c|C++ files (*.cpp)|*.cpp|All files (*.*)|*.*";
+            ofd.Filter = "Text files (*.txt)|*.txt|Pseudocode files (*.psc)|*.psc|Brainfuck files (*.bf)|*.bf|LISP files (*.lsp)|*.lsp|C files (*.c)|*.c|C++ files (*.cpp)|*.cpp|All files (*.*)|*.*";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 string title = Path.GetFileName(ofd.FileName);

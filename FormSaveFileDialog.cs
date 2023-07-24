@@ -36,15 +36,18 @@ namespace CodeForger
                         filetype = "Text";
                         break;
                     case 1:
-                        filetype = "LISP";
+                        filetype = "Pseudocode";
                         break;
                     case 2:
-                        filetype = "Brainfuck";
+                        filetype = "LISP";
                         break;
                     case 3:
-                        filetype = "C";
+                        filetype = "Brainfuck";
                         break;
                     case 4:
+                        filetype = "C";
+                        break;
+                    case 5:
                         filetype = "C++";
                         break;
                 }
@@ -66,22 +69,25 @@ namespace CodeForger
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Title = "Save File";
                 //if (comboBoxFileType.SelectedIndex == 0)
-                sfd.Filter = "Text files (*.txt)|*.txt|LISP files (*.lsp)|*.lsp|Brainfuck files (*.bf)|*.bf|C files (*.c)|*.c|C++ files (*.cpp)|*.cpp|All files (*.*)|*.*";
+                sfd.Filter = "Text files (*.txt)|*.txt|Pseudocode files (*.psc)|*.psc|LISP files (*.lsp)|*.lsp|Brainfuck files (*.bf)|*.bf|C files (*.c)|*.c|C++ files (*.cpp)|*.cpp|All files (*.*)|*.*";
                 switch (sfd.FilterIndex)
                 {
                     case 0:
                         sfd.FileName = "untitled.txt";
                         break;
                     case 1:
-                        sfd.FileName = "untitled.lsp";
+                        sfd.FileName = "untitled.psc";
                         break;
                     case 2:
-                        sfd.FileName = "untitled.bf";
+                        sfd.FileName = "untitled.lsp";
                         break;
                     case 3:
-                        sfd.FileName = "untitled.c";
+                        sfd.FileName = "untitled.bf";
                         break;
                     case 4:
+                        sfd.FileName = "untitled.c";
+                        break;
+                    case 5:
                         sfd.FileName = "untitled.cpp";
                         break;
                 }
@@ -99,6 +105,9 @@ namespace CodeForger
                     {
                         case ".txt":
                             Properties.Settings.Default.OpenFileType = "Text";
+                            break;
+                        case ".psc":
+                            Properties.Settings.Default.OpenFileType = "Pseudocode";
                             break;
                         case ".lsp":
                             Properties.Settings.Default.OpenFileType = "LISP";

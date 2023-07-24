@@ -22,6 +22,7 @@ using System.Runtime.CompilerServices;
 using static System.Net.Mime.MediaTypeNames;
 using System.Windows.Forms.VisualStyles;
 using extensions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CodeForger
 {
@@ -674,15 +675,15 @@ namespace CodeForger
                     return;
             }
 
-            if (openTabs[tab, 5] != "C" && openTabs[tab, 5] != "Brainfuck")
+            if (openTabs[tab, 5] != "Pseudocode" && openTabs[tab, 5] != "C" && openTabs[tab, 5] != "Brainfuck")
             {
                 MessageBox.Show(openTabs[tab, 5]);
-                MessageBox.Show("For now, only .c and .bf files are supported for compiling", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("For now, only .psc, .c and .bf files are supported for compiling", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             //string path = Path.GetDirectoryName(Application.ExecutablePath);
-            string compilerPath;
+            string compilerPath = null;
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = "cmd.exe";
@@ -702,6 +703,19 @@ namespace CodeForger
                 }
                 compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\brainfuck\bfcc"));
                 startInfo.Arguments = "/c " + folderPath + @"\" + name + " & pause";
+            }
+            else if (openTabs[tab, 5] == "Pseudocode")
+            {
+                string outputPath = Path.GetDirectoryName(path) + @"\" + Path.GetFileNameWithoutExtension(path) + ".exe";
+                if (!File.Exists(outputPath))
+                {
+                    var result = MessageBox.Show("The file has not been built yet, do you want to build it now?", "Run", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
+                        toolStripButtonBuildRun_Click(null, null);
+                    return;
+                }
+                compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\c"));
+                startInfo.Arguments = "/c " + outputPath + " & pause";
             }
             else
                 throw new Exception("Invalid file type");
@@ -1125,10 +1139,10 @@ namespace CodeForger
                     return;
             }
 
-            if (openTabs[tab, 5] != "C" && openTabs[tab, 5] != "Brainfuck")
+            if (openTabs[tab, 5] != "Pseudocode" && openTabs[tab, 5] != "C" && openTabs[tab, 5] != "Brainfuck")
             {
                 MessageBox.Show(openTabs[tab, 5]);
-                MessageBox.Show("For now, only .c and .bf files are supported for compiling", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("For now, only .psc, .c and .bf files are supported for compiling", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -1146,6 +1160,27 @@ namespace CodeForger
             {
                 compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\brainfuck\bfcc"));
                 startInfo.Arguments = "/c bfcc -backend=c -run " + path + " " + folderPath + @"\" + name + " & pause";
+            }
+            else if (openTabs[tab, 5] == "Pseudocode")
+            {
+                TabPage tabPage = tabControlMain.SelectedTab;
+                FastColoredTextBox fst = tabPage.Controls.OfType<FastColoredTextBox>().FirstOrDefault();
+                string tempFolderPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\tmp\"));
+                using (FileStream fs = File.Create(tempFolderPath + "temp_psc.psc"))
+                {
+                    byte[] bytes = Encoding.UTF8.GetBytes(fst.Text);
+                    fs.Write(bytes, 0, bytes.Length);
+                }
+                string psccpppath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\pseudocod\pseudocod.exe"));
+                ProcessStartInfo psc2 = new ProcessStartInfo("cmd.exe");
+                psc2.Arguments = "/c" + psccpppath + " " + tempFolderPath + "temp_psc.psc " + tempFolderPath + "temp_c.cpp";
+                var cmdpsc2 = Process.Start(psc2);
+
+                compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\c"));
+                string outputPath = Path.GetDirectoryName(path) + @"\" + Path.GetFileNameWithoutExtension(path) + ".exe";
+                startInfo.Arguments = "/c g++ " + tempFolderPath + "temp_c.cpp" + " -o " + outputPath + " & " + outputPath + " & pause";
+
+                cmdpsc2.WaitForExit();
             }
             else
                 throw new Exception("Invalid file type");
@@ -1188,10 +1223,10 @@ namespace CodeForger
                     return;
             }
 
-            if (openTabs[tab, 5] != "C" && openTabs[tab, 5] != "Brainfuck")
+            if (openTabs[tab, 5] != "Pseudocode" && openTabs[tab, 5] != "C" && openTabs[tab, 5] != "Brainfuck")
             {
                 MessageBox.Show(openTabs[tab, 5]);
-                MessageBox.Show("For now, only .c and .bf files are supported for compiling", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("For now, only .psc, .c and .bf files are supported for compiling", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -1209,6 +1244,27 @@ namespace CodeForger
             {
                 compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\brainfuck\bfcc"));
                 startInfo.Arguments = "/c bfcc -backend=c " + path + " " + folderPath + @"\" + name;
+            }
+            else if (openTabs[tab, 5] == "Pseudocode")
+            {
+                TabPage tabPage = tabControlMain.SelectedTab;
+                FastColoredTextBox fst = tabPage.Controls.OfType<FastColoredTextBox>().FirstOrDefault();
+                string tempFolderPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\tmp\"));
+                using (FileStream fs = File.Create(tempFolderPath + "temp_psc.psc"))
+                {
+                    byte[] bytes = Encoding.UTF8.GetBytes(fst.Text);
+                    fs.Write(bytes, 0, bytes.Length);
+                }
+                string psccpppath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\pseudocod\pseudocod.exe"));
+                ProcessStartInfo psc2 = new ProcessStartInfo("cmd.exe");
+                psc2.Arguments = "/c" + psccpppath + " " + tempFolderPath + "temp_psc.psc " + tempFolderPath + "temp_c.cpp";
+                var cmdpsc2 = Process.Start(psc2);
+
+                compilerPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\c"));
+                string outputPath = Path.GetDirectoryName(path) + @"\" + Path.GetFileNameWithoutExtension(path) + ".exe";
+                startInfo.Arguments = "/c g++ " + tempFolderPath + "temp_c.cpp" + " -o " + outputPath;
+
+                cmdpsc2.WaitForExit();
             }
             else
                 throw new Exception("Invalid file type");
@@ -1329,6 +1385,47 @@ namespace CodeForger
             closetab(tabControlMain.SelectedIndex);
         }
 
+        private void toolStripButtonOCR_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("All the file contents will be lost! Are you sure do you want to proceed?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            int tab = tabControlMain.SelectedIndex;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Choose image";
+            openFileDialog.Filter = "JPG files (*.jpg)|*.jpg|PNG files (*png)|*.png";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string path;
+                if (openTabs[tab, 3][0] == '0')
+                {
+                    string extension = parseFileTypeName(openTabs[tab, 5]);
+                    path = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\tmp\" + titleGlobal + extension));
+                }
+                else
+                {
+                    path = openTabs[tab, 3].ToString();
+                    path = path.Substring(1).Trim();
+                }
+
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = "cmd.exe";
+                var ocrPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\ocr-vision-ai\dist\google_ocr\"));
+                var idPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\ocr-vision-ai\client_id.json"));
+                startInfo.Arguments = "/C" + ocrPath + "google_ocr.exe -o " + path + " -c " + idPath + " -i " + openFileDialog.FileName;
+                startInfo.WorkingDirectory = ocrPath;
+                var cmd = Process.Start(startInfo);
+
+                TabPage tabPage = tabControlMain.SelectedTab;
+                FastColoredTextBox fst = tabPage.Controls.OfType<FastColoredTextBox>().FirstOrDefault();
+
+                cmd.WaitForExit();
+
+                StreamReader sr = new StreamReader(path);
+                string content = sr.ReadToEnd();
+                sr.Close();
+                fst.Text = content;
+            }
+        }
+
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TabPage tabPage = tabControlMain.SelectedTab;
@@ -1410,7 +1507,8 @@ namespace CodeForger
             //MessageBox.Show("Title: " + titleGlobal + "\nContents: " + contentsGlobal);
             //MessageBox.Show(tabControlMain.TabCount.ToString());
 
-            //resize();
+            if (Settings.Default.Scaling == true)
+                resize();
             findAccount();
             addTab(titleGlobal, pathGlobal, contentsGlobal, isExternalGlobal, typeGlobal);
 

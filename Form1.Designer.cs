@@ -37,6 +37,7 @@
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.buttonNewFile = new System.Windows.Forms.Button();
             this.labelCopyright = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,6 +141,17 @@
             this.labelCopyright.TabIndex = 7;
             this.labelCopyright.Text = "© 2023, CodeForger";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(460, 312);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(416, 47);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "The pseudocode IDE";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
@@ -148,6 +160,7 @@
             this.BackgroundImage = global::CodeForger.Properties.Resources.fundal;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1491, 774);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.labelCopyright);
             this.Controls.Add(this.buttonAccountSettings);
             this.Controls.Add(this.labelEmail);
@@ -178,6 +191,7 @@
         private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.Button buttonAccountSettings;
         private System.Windows.Forms.Label labelCopyright;
+        private System.Windows.Forms.Label label2;
     }
 }
 

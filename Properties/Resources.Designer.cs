@@ -203,6 +203,16 @@ namespace CodeForger.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap OCRButton {
+            get {
+                object obj = ResourceManager.GetObject("OCRButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap open_file_icon_coloured {
             get {
                 object obj = ResourceManager.GetObject("open-file-icon-coloured", resourceCulture);

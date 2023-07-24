@@ -125,6 +125,7 @@
             this.comboBoxFileType.FormattingEnabled = true;
             this.comboBoxFileType.Items.AddRange(new object[] {
             ".txt (Text)",
+            ".psc (Pseudocode)",
             ".lsp (LISP)",
             ".bf (Brainfuck)",
             ".c (C)",

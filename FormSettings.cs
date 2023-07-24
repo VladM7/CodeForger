@@ -75,6 +75,7 @@ namespace CodeForger
 
         private void updateCheckboxes()
         {
+            checkBoxIconScaling.Checked = Properties.Settings.Default.Scaling;
             PrefsTableTableAdapter prefsTableTA = new PrefsTableTableAdapter();
             var data = prefsTableTA.GetData();
 
@@ -299,6 +300,12 @@ namespace CodeForger
                 }
                 counter++;
             }
+        }
+
+        private void checkBoxIconScaling_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Scaling = checkBoxIconScaling.Checked;
+            Properties.Settings.Default.Save();
         }
     }
 }
