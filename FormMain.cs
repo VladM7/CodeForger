@@ -1426,6 +1426,33 @@ namespace CodeForger
             }
         }
 
+        private void convertPseudocodepscToCcppToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TabPage tabPage = tabControlMain.SelectedTab;
+            int tab = tabControlMain.SelectedIndex;
+            FastColoredTextBox fst = tabPage.Controls.OfType<FastColoredTextBox>().FirstOrDefault();
+            string tempFolderPath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\tmp\"));
+            using (FileStream fs = File.Create(tempFolderPath + "temp_psc.psc"))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(fst.Text);
+                fs.Write(bytes, 0, bytes.Length);
+            }
+            string path = openTabs[tab, 3].ToString();
+            path = path.Substring(1).Trim();
+
+            if (!IsValidPath(path))
+            {
+                MessageBox.Show("Invalid file path or file doesn't exist yet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string outputPath = Path.GetDirectoryName(path) + @"\" + Path.GetFileNameWithoutExtension(path) + ".cpp";
+            string psccpppath = Path.GetFullPath(Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\compilers\pseudocod\pseudocod.exe"));
+            ProcessStartInfo psc2 = new ProcessStartInfo("cmd.exe");
+            psc2.Arguments = "/c" + psccpppath + " " + tempFolderPath + "temp_psc.psc " + outputPath;
+            Process.Start(psc2);
+            MessageBox.Show("C++ file saved in " + outputPath, "File saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TabPage tabPage = tabControlMain.SelectedTab;

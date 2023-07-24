@@ -147,7 +147,7 @@
             this.toolStripSeparator5,
             this.toolStripButtonFormat,
             this.toolStripButtonOCR});
-            this.toolStripOptions.Location = new System.Drawing.Point(0, 56);
+            this.toolStripOptions.Location = new System.Drawing.Point(0, 61);
             this.toolStripOptions.Name = "toolStripOptions";
             this.toolStripOptions.Padding = new System.Windows.Forms.Padding(0);
             this.toolStripOptions.Size = new System.Drawing.Size(3844, 61);
@@ -382,10 +382,10 @@
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlMain.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControlMain.ItemSize = new System.Drawing.Size(100, 20);
-            this.tabControlMain.Location = new System.Drawing.Point(0, 117);
+            this.tabControlMain.Location = new System.Drawing.Point(0, 122);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(3844, 1798);
+            this.tabControlMain.Size = new System.Drawing.Size(3844, 1793);
             this.tabControlMain.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControlMain.TabIndex = 3;
             this.tabControlMain.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControlMain_DrawItem);
@@ -447,7 +447,7 @@
             this.toolStripMenuItemUser});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(3844, 56);
+            this.menuStripMain.Size = new System.Drawing.Size(3844, 61);
             this.menuStripMain.TabIndex = 4;
             this.menuStripMain.Text = "menuStripMain";
             // 
@@ -668,6 +668,7 @@
             this.convertPseudocodepscToCcppToolStripMenuItem.Name = "convertPseudocodepscToCcppToolStripMenuItem";
             this.convertPseudocodepscToCcppToolStripMenuItem.Size = new System.Drawing.Size(863, 66);
             this.convertPseudocodepscToCcppToolStripMenuItem.Text = "Convert Pseudocode (.psc) to C++ (.cpp)";
+            this.convertPseudocodepscToCcppToolStripMenuItem.Click += new System.EventHandler(this.convertPseudocodepscToCcppToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 

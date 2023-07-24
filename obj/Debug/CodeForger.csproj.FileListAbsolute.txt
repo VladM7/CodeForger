@@ -15,9 +15,13 @@ C:\Users\mvlad\source\repos\CodeForger\obj\Debug\CodeForger.FormLogin.resources
 C:\Users\mvlad\source\repos\CodeForger\obj\Debug\CodeForger.FormAccountSettings.resources
 C:\Users\mvlad\source\repos\CodeForger\obj\Debug\CodeForger.FormOpenFileDialog.resources
 C:\Users\mvlad\source\repos\CodeForger\obj\Debug\CodeForger.FormSaveFileDialog.resources
-C:\Users\mvlad\source\repos\CodeForger\bin\Debug\FastColoredTextBox.dll
 C:\Users\mvlad\source\repos\CodeForger\bin\Debug\FastColoredTextBox.xml
 C:\Users\mvlad\source\repos\CodeForger\obj\Debug\CodeForger.csproj.CopyComplete
 C:\Users\mvlad\source\repos\CodeForger\obj\Debug\CodeForger.FormAbout.resources
 C:\Users\mvlad\source\repos\CodeForger\obj\Debug\CodeForger.FormSettings.resources
+C:\Users\mvlad\source\repos\CodeForger\bin\Debug\CodeForger.exe.manifest
+C:\Users\mvlad\source\repos\CodeForger\bin\Debug\CodeForger.application
+C:\Users\mvlad\source\repos\CodeForger\obj\Debug\CodeForger.exe.manifest
+C:\Users\mvlad\source\repos\CodeForger\obj\Debug\CodeForger.application
 C:\Users\mvlad\source\repos\CodeForger\bin\Debug\AutocompleteMenu.dll
+C:\Users\mvlad\source\repos\CodeForger\bin\Debug\FastColoredTextBox.dll
