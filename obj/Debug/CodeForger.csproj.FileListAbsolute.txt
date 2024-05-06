@@ -2,7 +2,6 @@ C:\Users\mvlad\source\repos\CodeForger\bin\Debug\CodeForger.exe.config
 C:\Users\mvlad\source\repos\CodeForger\bin\Debug\CodeForger.exe
 C:\Users\mvlad\source\repos\CodeForger\bin\Debug\CodeForger.pdb
 C:\Users\mvlad\source\repos\CodeForger\obj\Debug\CodeForger.csproj.AssemblyReference.cache
-C:\Users\mvlad\source\repos\CodeForger\obj\Debug\CodeForger.csproj.SuggestedBindingRedirects.cache
 C:\Users\mvlad\source\repos\CodeForger\obj\Debug\CodeForger.Form1.resources
 C:\Users\mvlad\source\repos\CodeForger\obj\Debug\CodeForger.FormMain.resources
 C:\Users\mvlad\source\repos\CodeForger\obj\Debug\CodeForger.Properties.Resources.resources

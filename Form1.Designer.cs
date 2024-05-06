@@ -137,9 +137,9 @@
             this.labelCopyright.BackColor = System.Drawing.Color.Transparent;
             this.labelCopyright.Location = new System.Drawing.Point(542, 719);
             this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(311, 37);
+            this.labelCopyright.Size = new System.Drawing.Size(393, 37);
             this.labelCopyright.TabIndex = 7;
-            this.labelCopyright.Text = "© 2023, CodeForger";
+            this.labelCopyright.Text = "© 2023-2024, CodeForger";
             // 
             // label2
             // 
