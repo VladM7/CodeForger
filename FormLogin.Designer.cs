@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,89 +46,94 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(288, 54);
+            this.label1.Location = new System.Drawing.Point(91, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(864, 101);
+            this.label1.Size = new System.Drawing.Size(293, 36);
             this.label1.TabIndex = 0;
             this.label1.Text = "CodeForger Register";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(13, 239);
+            this.label2.Location = new System.Drawing.Point(4, 84);
+            this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(173, 37);
+            this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Username:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(13, 322);
+            this.label3.Location = new System.Drawing.Point(4, 113);
+            this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 37);
+            this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Email:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(13, 413);
+            this.label4.Location = new System.Drawing.Point(4, 145);
+            this.label4.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(167, 37);
+            this.label4.Size = new System.Drawing.Size(56, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Password:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(13, 507);
+            this.label5.Location = new System.Drawing.Point(4, 178);
+            this.label5.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(286, 37);
+            this.label5.Size = new System.Drawing.Size(93, 13);
             this.label5.TabIndex = 4;
             this.label5.Text = "Confirm password:";
             // 
             // textBoxUsername
             // 
-            this.textBoxUsername.Location = new System.Drawing.Point(342, 236);
+            this.textBoxUsername.Location = new System.Drawing.Point(108, 83);
+            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(1);
             this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.Size = new System.Drawing.Size(320, 44);
+            this.textBoxUsername.Size = new System.Drawing.Size(81, 20);
             this.textBoxUsername.TabIndex = 5;
             // 
             // textBoxEmail
             // 
-            this.textBoxEmail.Location = new System.Drawing.Point(342, 319);
+            this.textBoxEmail.Location = new System.Drawing.Point(108, 112);
+            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(1);
             this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(320, 44);
+            this.textBoxEmail.Size = new System.Drawing.Size(81, 20);
             this.textBoxEmail.TabIndex = 6;
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(342, 410);
+            this.textBoxPassword.Location = new System.Drawing.Point(108, 144);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(1);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(320, 44);
+            this.textBoxPassword.Size = new System.Drawing.Size(81, 20);
             this.textBoxPassword.TabIndex = 7;
             this.textBoxPassword.UseSystemPasswordChar = true;
             // 
             // textBoxConfirmPassword
             // 
-            this.textBoxConfirmPassword.Location = new System.Drawing.Point(342, 507);
+            this.textBoxConfirmPassword.Location = new System.Drawing.Point(108, 178);
+            this.textBoxConfirmPassword.Margin = new System.Windows.Forms.Padding(1);
             this.textBoxConfirmPassword.Name = "textBoxConfirmPassword";
-            this.textBoxConfirmPassword.Size = new System.Drawing.Size(320, 44);
+            this.textBoxConfirmPassword.Size = new System.Drawing.Size(81, 20);
             this.textBoxConfirmPassword.TabIndex = 8;
             this.textBoxConfirmPassword.UseSystemPasswordChar = true;
             // 
             // buttonConfirm
             // 
-            this.buttonConfirm.Location = new System.Drawing.Point(13, 643);
+            this.buttonConfirm.Location = new System.Drawing.Point(4, 226);
+            this.buttonConfirm.Margin = new System.Windows.Forms.Padding(1);
             this.buttonConfirm.Name = "buttonConfirm";
-            this.buttonConfirm.Size = new System.Drawing.Size(348, 91);
+            this.buttonConfirm.Size = new System.Drawing.Size(110, 32);
             this.buttonConfirm.TabIndex = 10;
             this.buttonConfirm.Text = "Confirm";
             this.buttonConfirm.UseVisualStyleBackColor = true;
@@ -137,9 +141,10 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(402, 643);
+            this.buttonCancel.Location = new System.Drawing.Point(127, 226);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(1);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(348, 91);
+            this.buttonCancel.Size = new System.Drawing.Size(110, 32);
             this.buttonCancel.TabIndex = 11;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -147,21 +152,21 @@
             // 
             // pictureBoxLogo
             // 
-            this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxLogo.Image = global::CodeForger.Properties.Resources.Logo;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(13, 0);
+            this.pictureBoxLogo.Location = new System.Drawing.Point(4, 0);
+            this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(1);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(269, 191);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(85, 67);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLogo.TabIndex = 9;
             this.pictureBoxLogo.TabStop = false;
             // 
             // FormLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1495, 959);
+            this.ClientSize = new System.Drawing.Size(472, 337);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonConfirm);
             this.Controls.Add(this.pictureBoxLogo);
@@ -174,10 +179,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "FormLogin";
-            this.Text = "Register";
-            this.Load += new System.EventHandler(this.FormLogin_Load);
+            this.Text = "FormLogin";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

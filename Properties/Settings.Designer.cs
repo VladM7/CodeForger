@@ -12,7 +12,7 @@ namespace CodeForger.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.5.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -77,123 +77,6 @@ namespace CodeForger.Properties {
             }
             set {
                 this["RememberAccount"] = value;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\CodeForgerDB." +
-            "mdf;Integrated Security=True;Connect Timeout=30")]
-        public string CodeForgerDBConnectionString3 {
-            get {
-                return ((string)(this["CodeForgerDBConnectionString3"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("null")]
-        public string OpenFileTitle {
-            get {
-                return ((string)(this["OpenFileTitle"]));
-            }
-            set {
-                this["OpenFileTitle"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("null")]
-        public string OpenFileContents {
-            get {
-                return ((string)(this["OpenFileContents"]));
-            }
-            set {
-                this["OpenFileContents"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("null")]
-        public string OpenFilePath {
-            get {
-                return ((string)(this["OpenFilePath"]));
-            }
-            set {
-                this["OpenFilePath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("null")]
-        public string OpenFileIsExternal {
-            get {
-                return ((string)(this["OpenFileIsExternal"]));
-            }
-            set {
-                this["OpenFileIsExternal"] = value;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\CodeForgerDB." +
-            "mdf;Integrated Security=True;Connect Timeout=30")]
-        public string CodeForgerDBConnectionString4 {
-            get {
-                return ((string)(this["CodeForgerDBConnectionString4"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\CodeForgerDB." +
-            "mdf;Integrated Security=True;Connect Timeout=30")]
-        public string CodeForgerDBConnectionString5 {
-            get {
-                return ((string)(this["CodeForgerDBConnectionString5"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool AccountDarkModeSetting {
-            get {
-                return ((bool)(this["AccountDarkModeSetting"]));
-            }
-            set {
-                this["AccountDarkModeSetting"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("null")]
-        public string OpenFileType {
-            get {
-                return ((string)(this["OpenFileType"]));
-            }
-            set {
-                this["OpenFileType"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool Scaling {
-            get {
-                return ((bool)(this["Scaling"]));
-            }
-            set {
-                this["Scaling"] = value;
             }
         }
     }
